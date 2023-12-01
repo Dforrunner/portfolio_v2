@@ -26,7 +26,7 @@ export default function Nav() {
       <IconButtonWithLabel icon={<PersonIcon fontSize='medium' />} section='About' />
       <IconButtonWithLabel icon={<HomeRepairServiceIcon fontSize='medium' />} section='Skills' />
       {/* <IconButtonWithLabel icon={<RoomServiceIcon fontSize='medium' />} section='Services' /> */}
-      <IconButtonWithLabel icon={<BusinessCenterIcon fontSize='medium' />} section='Portfolio' />
+      {/* <IconButtonWithLabel icon={<BusinessCenterIcon fontSize='medium' />} section='Portfolio' /> */}
       <IconButtonWithLabel icon={<EmailIcon fontSize='medium' />} section='Contact' />
     </nav>
   );
