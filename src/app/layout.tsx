@@ -22,6 +22,9 @@ export default function RootLayout({
         <ColorModeToggle />
         <Nav />
         {children}
+        <div className='w-full h-[50px] bg-gray-800 text-gray-500 flex items-center px-10 text-sm'>
+          &copy; 2023 copyright all right reserved
+        </div>
       </body>
     </html>
   );

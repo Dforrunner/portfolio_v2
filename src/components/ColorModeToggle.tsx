@@ -57,6 +57,7 @@ export default function ColorModeToggle() {
     //Set the checked state based on local storage value or by default user preference if there is no value in local storage
     if ((darkMode && darkMode === 'enabled') || (!darkMode && prefersDarkMode)) {
       document.documentElement.classList.add('dark');
+      setChecked(true);
     }
   }, []);
 

@@ -23,3 +23,65 @@ html {
     @apply bg-gray-300 text-gray-900 dark:bg-slate-800 dark:text-white;
   }
 }
+
+@layer components {
+  .slider {
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 10px 0;
+    position: relative;
+  }
+
+  .slider-dark::before,
+  .slider-dark::after,
+  .slider-light::before,
+  .slider-light::after {
+    content: '';
+    width: 400px;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .slider-dark::before,
+  .slider-dark::after {
+    background: linear-gradient(to right, rgb(30, 41, 59) 40%, rgba(30, 41, 59, 0.9) 60%, rgba(17, 24, 39, 0) 100%);
+  }
+
+  .slider-light::before,
+  .slider-light::after {
+    background: linear-gradient(to right, rgb(209, 213, 219) 40%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .slider-dark::after,
+  .slider-light::after {
+    right: 0;
+    top: 0;
+    transform: rotateZ(180deg);
+  }
+
+  .slider-dark::before,
+  .slider-light::before {
+    left: 0;
+    top: 0;
+  }
+
+  .slide {
+    animation: slide 10s infinite linear;
+    display: inline-block;
+  }
+
+  .slider:hover > .slide {
+    animation-name: slide;
+    animation-play-state: paused;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

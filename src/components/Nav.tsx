@@ -21,11 +21,11 @@ function IconButtonWithLabel({ icon, section }: { icon: ReactNode; section: stri
 }
 export default function Nav() {
   return (
-    <nav className='fixed left-0 top-0 h-screen w-[140px] flex flex-col justify-center items-start pl-5 gap-3'>
+    <nav className='fixed left-0 top-0 h-screen w-[140px] flex flex-col justify-center items-start pl-5 gap-3 z-50'>
       <IconButtonWithLabel icon={<HomeIcon fontSize='medium' />} section='Home' />
       <IconButtonWithLabel icon={<PersonIcon fontSize='medium' />} section='About' />
       <IconButtonWithLabel icon={<HomeRepairServiceIcon fontSize='medium' />} section='Skills' />
-      <IconButtonWithLabel icon={<RoomServiceIcon fontSize='medium' />} section='Services' />
+      {/* <IconButtonWithLabel icon={<RoomServiceIcon fontSize='medium' />} section='Services' /> */}
       <IconButtonWithLabel icon={<BusinessCenterIcon fontSize='medium' />} section='Portfolio' />
       <IconButtonWithLabel icon={<EmailIcon fontSize='medium' />} section='Contact' />
     </nav>
