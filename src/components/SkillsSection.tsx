@@ -13,7 +13,7 @@ export default async function SkillsSection() {
 
       <SkillsSlider className='hidden lg:flex' skills={skills} />
 
-      <div className='flex flex-wrap justify-center'>
+      <div className='flex flex-wrap justify-center lg:hidden'>
         {[...langs, ...frameworks, ...tools].map((image) => (
           <div
             key={image.path}
