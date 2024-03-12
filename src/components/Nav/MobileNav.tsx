@@ -8,7 +8,7 @@ import ColorModeToggle from '@/components/ColorModeToggle';
 export default function MobileNav() {
   const [open, setOpen] = useState(false);
   return (
-    <nav className='fixed top-0 flex md:hidden justify-end w-full p-3'>
+    <nav className='flex bg-gray-300 text-gray-900 dark:bg-slate-800 dark:text-white md:hidden justify-end w-full p-3'>
       <HamburgerMenuButton open={open} onClick={() => setOpen((prevState) => !prevState)} />
 
       {

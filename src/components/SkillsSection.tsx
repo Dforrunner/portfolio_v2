@@ -2,7 +2,6 @@ import { skillImages } from '@/utils/skillImages';
 import SkillsSlider from './SkillsSlider';
 import Image from 'next/image';
 import SectionTitle from './SectionTitle';
-import SkillReOrderable from './SkillReOrderable';
 
 export default async function SkillsSection() {
   const skills = await skillImages();
