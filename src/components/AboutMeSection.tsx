@@ -27,14 +27,14 @@ const aboutMeContent = {
 export default function AboutMeSection() {
   return (
     <section id='About' className='flex flex-col justify-center items-center py-10'>
-      <div className='flex flex-col justify-center lg:grid lg:grid-cols-[400px_600px] gap-5 '>
+      <div className='flex flex-col justify-center lg:grid lg:grid-cols-[40%_60%] gap-5 xl:min-w-[950px]'>
         <div className='pl-4 lg:p-0 col-span-2'>
           <SectionTitle title='About Me' />
-          <h2 className='pt-2'>{aboutMeContent.subtitle}</h2>
+          <h2 className='pt-2 text-center lg:text-left'>{aboutMeContent.subtitle}</h2>
         </div>
 
-        <div className='flex justify-center lg:col-span-1'>
-          <div className='w-[400px] h-[500px] bg-slate-300 rounded bg-[url(/p2.JPG)] bg-cover bg-center'></div>
+        <div className='flex justify-center lg:col-span-1 px-5 lg:p-0'>
+          <div className='w-full max-w-[600px] h-[500px] bg-slate-300 rounded bg-[url(/p2.JPG)] bg-cover bg-center'></div>
         </div>
 
         <div className='flex flex-col justify-between lg:col-span-1 text-[15px] px-5'>

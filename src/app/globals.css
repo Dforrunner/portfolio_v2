@@ -45,12 +45,12 @@ html {
 
   .slider-dark::before,
   .slider-dark::after {
-    background: linear-gradient(to right, rgb(30, 41, 59) 40%, rgba(30, 41, 59, 0.9) 60%, rgba(17, 24, 39, 0) 100%);
+    background: linear-gradient(to right, rgb(30, 41, 59) 10%, rgba(30, 41, 59, 0.9) 40%, rgba(17, 24, 39, 0) 100%);
   }
 
   .slider-light::before,
   .slider-light::after {
-    background: linear-gradient(to right, rgb(209, 213, 219) 40%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to right, rgb(209, 213, 219) 10%, rgba(0, 0, 0, 0) 100%);
   }
 
   .slider-dark::after,

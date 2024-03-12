@@ -62,7 +62,7 @@ export default function ColorModeToggle() {
   }, []);
 
   return (
-    <div className='fixed top-0 right-0 p-3'>
+    <div className='fixed top-0 right-0 p-3 z-50'>
       {!checked && <SunButton onClick={() => enableDarkMode(true)} />}
       {checked && <MoonButton onClick={() => enableDarkMode(false)} />}
     </div>
