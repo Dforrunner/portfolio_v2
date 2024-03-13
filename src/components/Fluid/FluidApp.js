@@ -9,11 +9,8 @@ import {
   VelocityDivergenceFrag,
   AdvectFrag,
   PressureGradientSubstractFrag,
-  ShaderBaseVert,
   PressureSolveFrag,
   ShaderBaseFrag,
-  RenderParticlesVert,  
-  RenderParticlesFrag,
   StepParticlesFrag,
   QuadTextureFrag,
   ColorParticleMotionVert,
@@ -34,7 +31,6 @@ const SimulationQuality = {
 
 const CONFIG = {
   antialiasing: 0,
-  background: 16777215,
   borderless: false,
   depthBuffer: false,
   fps: 0,
@@ -685,21 +681,12 @@ function FL() {
     this.screenBuffer = null;
     this.textureQuad = null;
     App.call(this);
-    this.performanceMonitor = new PerformanceMonitor(35, null, 2000);
-    this.set_simulationQuality(SimulationQuality.Medium);
-    this.performanceMonitor.fpsTooLowCallback = this.lowerQualityRequired;
+    this.set_simulationQuality(SimulationQuality.Low);
   };
 
   Main.prototype = {
     ...App.prototype,
     init: function (context) {
-      const isIOSBrowser = '/(iPad|iPhone|iPod)/g'.match(window.navigator.userAgent);
-      if (isIOSBrowser) {
-        alert('iOS is not supported yet :(');
-        window.location.href = 'mobile-app/index.html';
-        return;
-      }
-
       const gl = context;
       this.gl = gl;
       gl.disable(gl.DEPTH_TEST);
@@ -741,7 +728,6 @@ function FL() {
       this.time = Timer.stamp();
       const dt = this.time - this.lastTime;
       this.lastTime = this.time;
-      if (dt > 0) this.performanceMonitor.recordFPS(1 / dt);
       if (this.lastMousePointKnown) {
         this.updateDyeShader.isMouseDown.set(this.isMouseDown);
         this.mouseForceShader.isMouseDown.set(this.isMouseDown);
@@ -834,7 +820,7 @@ function FL() {
         case 3:
           this.particleCount = 65536;
           this.fluidScale = 0.2;
-          this.set_fluidIterations(14);
+          this.set_fluidIterations(10);
           this.offScreenScale = 1;
           break;
         case 4:
@@ -850,21 +836,6 @@ function FL() {
       this.fluidIterations = v;
       if (this.fluid) this.fluid.solverIterations = v;
       return v;
-    },
-    lowerQualityRequired: function (magnitude) {
-      console.log(this);
-      if (this.qualityDirection > 0) return;
-      this.qualityDirection = -1;
-      console.log(simulationQuality);
-      let qualityIndex = simulationQuality[1];
-      const maxIndex = Object.keys(SimulationQuality).length - 1;
-      if (qualityIndex >= maxIndex) return;
-      if (magnitude < 0.5) qualityIndex += 1;
-      else qualityIndex += 2;
-      if (qualityIndex > maxIndex) qualityIndex = maxIndex;
-      const newQuality = Object.values(SimulationQuality)[qualityIndex];
-      this.set_simulationQuality(newQuality);
-      this.updateSimulationTextures();
     },
     reset: function () {
       this.particles.reset();
@@ -1063,50 +1034,6 @@ function FL() {
       const instance2 = new Uniforms.UVec2('lastMouseClipSpace', -1);
       this.lastMouseClipSpace = instance2;
       this.uniforms.push(instance2);
-    },
-  };
-
-  const PerformanceMonitor = function (lowerBoundFPS, upperBoundFPS, thresholdTime_ms, fpsSampleSize) {
-    if (fpsSampleSize == null) fpsSampleSize = 30;
-    if (thresholdTime_ms == null) thresholdTime_ms = 3000;
-    if (lowerBoundFPS == null) lowerBoundFPS = 30;
-    this.upperBoundEnterTime = null;
-    this.lowerBoundEnterTime = null;
-    this.fpsTooHighCallback = null;
-    this.fpsTooLowCallback = null;
-    this.fpsIgnoreBounds = [5, 180];
-    this.lowerBoundFPS = lowerBoundFPS;
-    this.upperBoundFPS = upperBoundFPS;
-    this.thresholdTime_ms = thresholdTime_ms;
-    this.fpsSample = new RollingSample(fpsSampleSize);
-  };
-  PerformanceMonitor.prototype = {
-    recordFrameTime: function (dt_seconds) {
-      if (dt_seconds > 0) this.recordFPS(1 / dt_seconds);
-    },
-    recordFPS: function (fps) {
-      if (fps < this.fpsIgnoreBounds[0] && fps > this.fpsIgnoreBounds[1]) return;
-      this.fpsSample.add(fps);
-      if (this.fpsSample.sampleCount < this.fpsSample.length) return;
-      const now = Timer.stamp() * 1000;
-      if (this.fpsSample.average < this.lowerBoundFPS) {
-        if (this.lowerBoundEnterTime == null) this.lowerBoundEnterTime = now;
-        if (now - this.lowerBoundEnterTime >= this.thresholdTime_ms && this.fpsTooLowCallback) {
-          this.fpsTooLowCallback((this.lowerBoundFPS - this.fpsSample.average) / this.lowerBoundFPS);
-          this.fpsSample.clear();
-          this.lowerBoundEnterTime = null;
-        }
-      } else if (this.fpsSample.average > this.upperBoundFPS) {
-        if (this.upperBoundEnterTime == null) this.upperBoundEnterTime = now;
-        if (now - this.upperBoundEnterTime >= this.thresholdTime_ms && this.fpsTooHighCallback) {
-          this.fpsTooHighCallback((this.fpsSample.average - this.upperBoundFPS) / this.upperBoundFPS);
-          this.fpsSample.clear();
-          this.upperBoundEnterTime = null;
-        }
-      } else {
-        this.lowerBoundEnterTime = null;
-        this.upperBoundEnterTime = null;
-      }
     },
   };
 
@@ -1739,19 +1666,8 @@ function FL() {
   return ApplicationMain;
 }
 
-export default function FluidApp(elementName, width = 0, height = 0, background) {
+export default function FluidApp(elementName) {
   const app = FL();
-  let element = window.document.getElementById(elementName);
-  let color = null;
-  if (background) {
-    background = background.replace('#', '');
-    if (background.indexOf('0x') > -1) color = parseInt(background);
-    else color = parseInt('0x' + background);
-  }
-
-  CONFIG.background = color;
-  CONFIG.element = element;
-  CONFIG.width = width;
-  CONFIG.height = height;
-  app.create();
+  CONFIG.element = document.getElementById(elementName);
+  app.create();  
 }

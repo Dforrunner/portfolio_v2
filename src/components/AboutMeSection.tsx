@@ -34,7 +34,7 @@ export default function AboutMeSection() {
         </div>
 
         <div className='flex justify-center lg:col-span-1 px-5 lg:p-0'>
-          <div className='w-full max-w-[600px] h-[500px] bg-slate-300 rounded bg-[url(/p2.JPG)] bg-cover bg-center'></div>
+          <div className='w-full max-w-[600px] h-[500px] bg-slate-300 rounded bg-[url(/p1.JPG)] bg-cover bg-center'></div>
         </div>
 
         <div className='flex flex-col justify-between lg:col-span-1 text-[15px] px-5'>

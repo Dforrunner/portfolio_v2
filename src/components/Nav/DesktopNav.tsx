@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import { NavLinks } from './NavLinks';
+import { AnimatePresence, motion } from 'framer-motion';
 
 function IconButtonWithLabel({ icon, section }: { icon: ReactNode; section: string }) {
   return (
@@ -17,10 +18,18 @@ function IconButtonWithLabel({ icon, section }: { icon: ReactNode; section: stri
 
 export default function Nav() {
   return (
-    <nav className='hidden fixed left-0 top-0 h-screen w-[140px] md:flex flex-col justify-center items-start pl-5 gap-3 z-50'>
-      {NavLinks.map((route) => (
-        <IconButtonWithLabel key={route.section} icon={route.icon} section={route.section} />
-      ))}
-    </nav>
+    <AnimatePresence>
+      <nav className='hidden fixed left-0 top-0 h-screen w-[140px] md:flex flex-col justify-center items-start pl-5 gap-3 z-50'>
+        {NavLinks.map((route, index) => (
+          <motion.div
+            key={route.section}
+            animate={{ x: [-100, 0] }}
+            transition={{ type: 'spring', stiffness: 100, delay: index/10 }}
+          >
+            <IconButtonWithLabel icon={route.icon} section={route.section} />
+          </motion.div>
+        ))}
+      </nav>
+    </AnimatePresence>
   );
 }
