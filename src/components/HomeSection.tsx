@@ -1,7 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Fluid from './Fluid/Fluid';
+import dynamic from 'next/dynamic';
+
+const Fluid = dynamic(() => import('./Fluid/Fluid'), { ssr: false });
+
 export default function HomeSection() {
 
   const transitionText = (str: string, lineNum: number) => {
@@ -11,10 +14,6 @@ export default function HomeSection() {
       strArr.push(' ');
     }); 
     
-    strArr.map((el, i) => {
-      console.log(i, i / 50 + lineNum/2 );
-    }
-    );
     return strArr.map((el, i) => (
       <motion.span
         initial={{ opacity: 0 }}

@@ -19,7 +19,7 @@ import {
   UpdateDyeFrag,
   MouseDownFrag,
   MouseDyeFrag,
-} from './Shaders';
+} from './shaders';
 
 const SimulationQuality = {
   UltraHigh: ['UltraHigh', 0],
