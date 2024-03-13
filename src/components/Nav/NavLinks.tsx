@@ -18,14 +18,14 @@ export const NavLinks = [
     section: 'Skills',
     icon: <HomeRepairServiceIcon fontSize='medium' />,
   },
-  {
-    section: 'Services',
-    icon: <RoomServiceIcon fontSize='medium' />,
-  },
-  {
-    section: 'Portfolio',
-    icon: <BusinessCenterIcon fontSize='medium' />,
-  },
+  // {
+  //   section: 'Services',
+  //   icon: <RoomServiceIcon fontSize='medium' />,
+  // },
+  // {
+  //   section: 'Portfolio',
+  //   icon: <BusinessCenterIcon fontSize='medium' />,
+  // },
   {
     section: 'Contact',
     icon: <EmailIcon fontSize='medium' />,
