@@ -1,14 +1,15 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import FluidApp from './FluidApp';
+import { Slider } from '@mui/material';
 
 export default function Fluid() {
   useEffect(() => {
+    const canvas = document.getElementById('FluidContent');
     FluidApp('FluidContent');
-    const el = document.getElementById('FluidContent');
     const timer = setTimeout(() => {
-      el?.dispatchEvent(new Event('mousedown'));
+      canvas?.dispatchEvent(new Event('mousedown'));
       clearTimeout(timer);
     }, 500);
   }, []);

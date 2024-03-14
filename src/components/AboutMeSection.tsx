@@ -1,6 +1,10 @@
+'use client';
 import { getAge } from '@/utils/helpers';
-import { Button } from '@mui/material';
+import { Button, Fade } from '@mui/material';
 import SectionTitle from './SectionTitle';
+import { motion } from 'framer-motion';
+import { FadeInUp } from './Animate/FadeInUp';
+import { TextFadeIn } from './Animate/TextFadeIn';
 
 const aboutMeContent = {
   subtitle: 'A Full Stack Developer Based In IL, USA',
@@ -38,27 +42,37 @@ export default function AboutMeSection() {
         </div>
 
         <div className='flex flex-col justify-between lg:col-span-1 text-[15px] px-5'>
-          <h2 className='pb-1'>{aboutMeContent.introTitle}</h2>
+          <FadeInUp>
+            <h2 className='pb-1'>{aboutMeContent.introTitle}</h2>
+          </FadeInUp>
           <div className='max-w-[700px] flex flex-col gap-4'>
             {aboutMeContent.paragraphs.map((p, i) => (
-              <p key={i + 'ps'}>{p}</p>
+              <FadeInUp index={i} key={i + 'ps'}>
+                {p}
+              </FadeInUp>
             ))}
           </div>
 
           <div className='pt-5 text-sm flex flex-col gap-2'>
-            {aboutMeContent.details.map((item) => (
-              <div key={item.label + 'aboutme'} className='w-[350px] flex gap-5'>
+            {aboutMeContent.details.map((item, i) => (
+              <FadeInUp
+                key={item.label + 'aboutme'}
+                className='w-[350px] flex gap-5'
+                index={aboutMeContent.paragraphs.length + i}
+              >
                 <span className='font-bold border-r border-slate-300 w-1/2'>{item.label}</span>
                 <span className='w-1/2'>{item.value}</span>
-              </div>
+              </FadeInUp>
             ))}
           </div>
 
-          <Button variant='outlined' className='w-[180px] mt-1'>
-            <a href='/Resume_.pdf' target='_blank' download>
-              Download CV
-            </a>
-          </Button>
+          <FadeInUp index={aboutMeContent.paragraphs.length + aboutMeContent.details.length}>
+            <Button variant='outlined' className='w-[180px] mt-1'>
+              <a href='/Resume_.pdf' target='_blank' download>
+                Download CV
+              </a>
+            </Button>
+          </FadeInUp>
         </div>
       </div>
     </section>

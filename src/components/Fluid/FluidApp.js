@@ -30,48 +30,19 @@ const SimulationQuality = {
 };
 
 const CONFIG = {
-  antialiasing: 0,
-  borderless: false,
-  depthBuffer: false,
-  fps: 0,
   fullscreen: false,
+  backgroundColor: {
+    r: 0,
+    g: 0,
+    b: 0,
+    a: 1,
+  },
   height: 0,
-  orientation: '',
-  resizable: true,
-  stencilBuffer: false,
-  title: 'WebGL Fluid Experiment',
-  vsync: true,
   width: 0,
 };
 
 function FL() {
   let GL;
-  let simulationQuality;
-
-  const Preloader = {
-    total: 0,
-    loaded: 0,
-    load: function () {
-      if (this.total == 0) this.start();
-    },
-    start: function () {
-      if (this.onComplete) this.onComplete();
-    },
-  };
-
-  const ApplicationMain = {
-    create: () => {
-      ApplicationMain.preloader = Preloader;
-      ApplicationMain.preloader.onComplete = ApplicationMain.start;
-      ApplicationMain.preloader.load();
-    },
-    main: () => {},
-    start: () => {
-      ApplicationMain.app = new Main();
-      ApplicationMain.app.create(CONFIG);
-      ApplicationMain.app.exec();
-    },
-  };
 
   const GPUFluid = function (gl, width, height, cellSize, solverIterations) {
     if (solverIterations == null) solverIterations = 18;
@@ -100,7 +71,11 @@ function FL() {
     this.dyeRenderTarget = new Render.RenderTarget2Phase(
       width,
       height,
-      TextureTools.createTextureFactory(gl.RGB, gl.FLOAT, texture_float_linear_supported ? gl.LINEAR : gl.NEAREST)
+      TextureTools.createTextureFactory(
+        gl.RGB,
+        gl.FLOAT,
+        texture_float_linear_supported ? gl.LINEAR : gl.NEAREST
+      )
     );
 
     this.updateCoreShaderUniforms(this.advectShader);
@@ -108,7 +83,6 @@ function FL() {
     this.updateCoreShaderUniforms(this.pressureSolveShader);
     this.updateCoreShaderUniforms(this.pressureGradientSubstractShader);
   };
-
   GPUFluid.prototype = {
     step: function (dt) {
       this.gl.viewport(0, 0, this.width, this.height);
@@ -230,7 +204,6 @@ function FL() {
       return this.updateDyeShader;
     },
   };
-
   const ShaderBase = function () {
     this.uniforms = [];
     this.attributes = [];
@@ -491,7 +464,11 @@ function FL() {
       const dataHeight = dataWidth;
       if (this.particleData) this.particleData.resize(dataWidth, dataHeight);
       else
-        this.particleData = new Render.RenderTarget2Phase(dataWidth, dataHeight, TextureTools.floatTextureFactoryRGBA);
+        this.particleData = new Render.RenderTarget2Phase(
+          dataWidth,
+          dataHeight,
+          TextureTools.floatTextureFactoryRGBA
+        );
 
       if (this.particleUVs) this.gl.deleteBuffer(this.particleUVs);
 
@@ -668,7 +645,6 @@ function FL() {
   };
 
   const Main = function () {
-    this.qualityDirection = 0;
     this.renderFluidEnabled = true;
     this.renderParticlesEnabled = true;
     this.lastMouseClipSpace = Vector2();
@@ -683,7 +659,6 @@ function FL() {
     App.call(this);
     this.set_simulationQuality(SimulationQuality.Low);
   };
-
   Main.prototype = {
     ...App.prototype,
     init: function (context) {
@@ -733,13 +708,20 @@ function FL() {
         this.mouseForceShader.isMouseDown.set(this.isMouseDown);
       }
       this.fluid.step(dt);
-      this.particles.stepParticlesShader.flowVelocityField.set_data(this.fluid.velocityRenderTarget.readFromTexture);
+      this.particles.stepParticlesShader.flowVelocityField.set_data(
+        this.fluid.velocityRenderTarget.readFromTexture
+      );
 
       if (this.renderParticlesEnabled) this.particles.step(dt);
 
       this.gl.viewport(0, 0, this.offScreenTarget.width, this.offScreenTarget.height);
       this.gl.bindFramebuffer(this.gl.FRAMEBUFFER, this.offScreenTarget.frameBufferObject);
-      this.gl.clearColor(0, 0, 0, 1);
+      this.gl.clearColor(
+        CONFIG.backgroundColor.r,
+        CONFIG.backgroundColor.b,
+        CONFIG.backgroundColor.g,
+        CONFIG.backgroundColor.a
+      );
       this.gl.clear(this.gl.COLOR_BUFFER_BIT);
       this.gl.enable(this.gl.BLEND);
       this.gl.blendFunc(this.gl.SRC_ALPHA, this.gl.SRC_ALPHA);
@@ -747,7 +729,9 @@ function FL() {
 
       if (this.renderParticlesEnabled) {
         this.gl.bindBuffer(this.gl.ARRAY_BUFFER, this.particles.particleUVs);
-        this.renderParticlesShader.particleData.set_data(this.particles.particleData.readFromTexture);
+        this.renderParticlesShader.particleData.set_data(
+          this.particles.particleData.readFromTexture
+        );
         this.renderParticlesShader.activate(true, true);
         this.gl.drawArrays(this.gl.POINTS, 0, this.particles.count);
         this.renderParticlesShader.deactivate();
@@ -783,21 +767,7 @@ function FL() {
       this.gl.drawArrays(this.gl.POINTS, 0, this.particles.count);
       this.renderParticlesShader.deactivate();
     },
-    updateSimulationTextures: function () {
-      let w = Math.round(this.windows[0].width * this.fluidScale);
-      let h = Math.round(this.windows[0].height * this.fluidScale);
-
-      if (w != this.fluid.width || h != this.fluid.height) this.fluid.resize(w, h);
-
-      w = Math.round(this.windows[0].width * this.offScreenScale);
-      h = Math.round(this.windows[0].height * this.offScreenScale);
-
-      if (w != this.offScreenTarget.width || h != this.offScreenTarget.height) this.offScreenTarget.resize(w, h);
-
-      if (this.particleCount != this.particles.count) this.particles.setCount(this.particleCount);
-    },
     set_simulationQuality: function (quality) {
-      simulationQuality = quality;
       switch (quality[1]) {
         case 0:
           this.particleCount = 1048576;
@@ -847,13 +817,13 @@ function FL() {
     windowToClipSpaceY: function (y) {
       return ((this.windows[0].height - y) / this.windows[0].height) * 2 - 1;
     },
-    onMouseDown: function (x, y, button) {
+    onMouseDown: function () {
       this.isMouseDown = true;
     },
-    onMouseUp: function (x, y, button) {
+    onMouseUp: function () {
       this.isMouseDown = false;
     },
-    onMouseMove: function (x, y, button) {
+    onMouseMove: function (x, y) {
       this.mouse.setTo(x, y);
       this.mouseClipSpace.setTo(
         (x / this.windows[0].width) * 2 - 1,
@@ -1103,7 +1073,8 @@ function FL() {
             originX + width,
             originY,
           ];
-          if (drawMode == 4) vertices = vertices.concat([originX + width, originY + height, originX, originY]);
+          if (drawMode == 4)
+            vertices = vertices.concat([originX + width, originY + height, originX, originY]);
           break;
         case 6:
           vertices = [
@@ -1151,8 +1122,10 @@ function FL() {
       (channelType = 6408, dataType = 5121, filter = 9728) =>
       (width, height) =>
         TextureTools.textureFactory(width, height, channelType, dataType, filter),
-    floatTextureFactoryRGB: (width, height) => TextureTools.textureFactory(width, height, 6407, 5126),
-    floatTextureFactoryRGBA: (width, height) => TextureTools.textureFactory(width, height, 6408, 5126),
+    floatTextureFactoryRGB: (width, height) =>
+      TextureTools.textureFactory(width, height, 6407, 5126),
+    floatTextureFactoryRGBA: (width, height) =>
+      TextureTools.textureFactory(width, height, 6408, 5126),
   };
 
   const Render = {};
@@ -1181,7 +1154,12 @@ function FL() {
     clear: function (mask) {
       if (mask == null) mask = 16384;
       GL.bindFramebuffer(36160, this.frameBufferObject);
-      GL.clearColor(0, 0, 0, 1);
+      GL.clearColor(
+        CONFIG.backgroundColor.r,
+        CONFIG.backgroundColor.b,
+        CONFIG.backgroundColor.g,
+        CONFIG.backgroundColor.a
+      );
       GL.clear(mask);
     },
     dispose: function () {
@@ -1295,11 +1273,13 @@ function FL() {
       if (this.window.canvas) {
         const options = {
           alpha: true,
-          antialias: this.window.config.antialiasing > 0,
-          depth: this.window.config.depthBuffer,
+          antialias: false,
+          depth: false,
           premultipliedAlpha: true,
-          stencil: this.window.config.stencilBuffer,
+          stencil: false,
           preserveDrawingBuffer: false,
+          willReadFrequently: true,
+          desynchronized: true,
         };
 
         GL = this.window.canvas.getContext('webgl', options);
@@ -1598,7 +1578,8 @@ function FL() {
     apply: function () {
       if (this.data == null) return;
       const idx = 33984 + this.samplerIndex;
-      if (Uniforms.UTexture.lastActiveTexture != idx) GL.activeTexture((Uniforms.UTexture.lastActiveTexture = idx));
+      if (Uniforms.UTexture.lastActiveTexture != idx)
+        GL.activeTexture((Uniforms.UTexture.lastActiveTexture = idx));
       GL.uniform1i(this.location, this.samplerIndex);
       GL.bindTexture(this.type, this.data);
       this.dirty = false;
@@ -1661,13 +1642,19 @@ function FL() {
   TouchEventManager.onTouchMove = new Event();
   TouchEventManager.onTouchStart = new Event();
   Uniforms.UTexture.lastActiveTexture = -1;
-  ApplicationMain.main();
 
-  return ApplicationMain;
+  return {
+    start: () => {
+      const main = new Main();
+      main.create(CONFIG);
+      main.exec();
+    },
+  };
 }
 
-export default function FluidApp(elementName) {
+export default function FluidApp(elementName, backgroundColor) {
   const app = FL();
   CONFIG.element = document.getElementById(elementName);
-  app.create();  
+  if (backgroundColor) CONFIG.backgroundColor = backgroundColor;
+  app.start();
 }
