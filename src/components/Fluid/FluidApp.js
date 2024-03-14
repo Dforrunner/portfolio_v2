@@ -336,13 +336,14 @@ function FL() {
 
   const FluidBase = function () {
     const instance = new Uniforms.UFloat('aspectRatio', -1);
-    this.aspectRatio = instance;
-    this.uniforms.push(instance);
     const instance1 = new Uniforms.UVec2('invresolution', -1);
-    this.invresolution = instance1;
-    this.uniforms.push(instance1);
     const instance2 = FloatAttribute('vertexPosition', 0, 2);
+
+    this.aspectRatio = instance;
+    this.invresolution = instance1;
     this.vertexPosition = instance2;
+
+    this.uniforms.push(instance, instance1);
     this.attributes.push(instance2);
   };
 
@@ -380,18 +381,11 @@ function FL() {
     },
     createProperties: function () {
       FluidBase.call(this);
-      const instance = new Uniforms.UTexture('velocity', -1, false);
-      this.velocity = instance;
-      this.uniforms.push(instance);
-      const instance1 = new Uniforms.UTexture('target', -1, false);
-      this.target = instance1;
-      this.uniforms.push(instance1);
-      const instance2 = new Uniforms.UFloat('dt', -1);
-      this.dt = instance2;
-      this.uniforms.push(instance2);
-      const instance3 = new Uniforms.UFloat('rdx', -1);
-      this.rdx = instance3;
-      this.uniforms.push(instance3);
+      this.velocity = new Uniforms.UTexture('velocity', -1, false);
+      this.target = new Uniforms.UTexture('target', -1, false);
+      this.dt = new Uniforms.UFloat('dt', -1);
+      this.rdx = new Uniforms.UFloat('rdx', -1);
+      this.uniforms.push(this.velocity, this.target, this.dt, this.rdx);
     },
   };
 
@@ -406,12 +400,11 @@ function FL() {
     },
     createProperties: function () {
       FluidBase.call(this);
-      const instance = new Uniforms.UTexture('velocity', -1, false);
-      this.velocity = instance;
-      this.uniforms.push(instance);
-      const instance1 = new Uniforms.UFloat('halfrdx', -1);
-      this.halfrdx = instance1;
-      this.uniforms.push(instance1);
+      const velocity = new Uniforms.UTexture('velocity', -1, false);
+      const halfrdx = new Uniforms.UFloat('halfrdx', -1);
+      this.velocity = velocity;
+      this.halfrdx = halfrdx;
+      this.uniforms.push(velocity, halfrdx);
     },
   };
 
@@ -426,15 +419,13 @@ function FL() {
     },
     createProperties: function () {
       FluidBase.call(this);
-      const instance = new Uniforms.UTexture('pressure', -1, false);
-      this.pressure = instance;
-      this.uniforms.push(instance);
-      const instance1 = new Uniforms.UTexture('divergence', -1, false);
-      this.divergence = instance1;
-      this.uniforms.push(instance1);
-      const instance2 = new Uniforms.UFloat('alpha', -1);
-      this.alpha = instance2;
-      this.uniforms.push(instance2);
+      const pressure = new Uniforms.UTexture('pressure', -1, false);
+      const divergence = new Uniforms.UTexture('divergence', -1, false);
+      const alpha = new Uniforms.UFloat('alpha', -1);
+      this.pressure = pressure;
+      this.divergence = divergence;
+      this.alpha = alpha;
+      this.uniforms.push(pressure, divergence, alpha);
     },
   };
 
@@ -548,24 +539,21 @@ function FL() {
     },
     particleBase: function () {
       InitialConditions.prototype.createProperties.call(this);
-      const instance = new Uniforms.UFloat('dt', -1);
-      this.dt = instance;
-      this.uniforms.push(instance);
-      const instance1 = new Uniforms.UTexture('particleData', -1, false);
-      this.particleData = instance1;
-      this.uniforms.push(instance1);
+      this.dt = new Uniforms.UFloat('dt', -1);
+      this.particleData = new Uniforms.UTexture('particleData', -1, false);
+      this.uniforms.push(this.dt, this.particleData);
     },
     createProperties: function () {
       this.particleBase();
-      const instance = new Uniforms.UFloat('dragCoefficient', -1);
-      this.dragCoefficient = instance;
-      this.uniforms.push(instance);
-      const instance1 = new Uniforms.UVec2('flowScale', -1);
-      this.flowScale = instance1;
-      this.uniforms.push(instance1);
-      const instance2 = new Uniforms.UTexture('flowVelocityField', -1, false);
-      this.flowVelocityField = instance2;
-      this.uniforms.push(instance2);
+      const dragCoefficientUniform = new Uniforms.UFloat('dragCoefficient', -1);
+      const flowScaleUniform = new Uniforms.UVec2('flowScale', -1);
+      const flowVelocityFieldUniform = new Uniforms.UTexture('flowVelocityField', -1, false);
+
+      this.uniforms.push(dragCoefficientUniform, flowScaleUniform, flowVelocityFieldUniform);
+
+      this.dragCoefficient = dragCoefficientUniform;
+      this.flowScale = flowScaleUniform;
+      this.flowVelocityField = flowVelocityFieldUniform;
     },
   };
 
@@ -937,15 +925,10 @@ function FL() {
 
   const UpdateDye = function () {
     FluidBase.call(this);
-    const instance = new Uniforms.UTexture('dye', -1, false);
-    this.dye = instance;
-    this.uniforms.push(instance);
-    const instance1 = new Uniforms.UFloat('dt', -1);
-    this.dt = instance1;
-    this.uniforms.push(instance1);
-    const instance2 = new Uniforms.UFloat('dx', -1);
-    this.dx = instance2;
-    this.uniforms.push(instance2);
+    this.dye = new Uniforms.UTexture('dye', -1, false);
+    this.dt = new Uniforms.UFloat('dt', -1);
+    this.dx = new Uniforms.UFloat('dx', -1);
+    this.uniforms.push(this.dye, this.dt, this.dx);
   };
 
   const MouseDye = function () {
@@ -959,29 +942,22 @@ function FL() {
     },
     createProperties: function () {
       UpdateDye.call(this);
-      const instance = new Uniforms.UBool('isMouseDown', -1);
-      this.isMouseDown = instance;
-      this.uniforms.push(instance);
-      const instance1 = new Uniforms.UVec2('mouseClipSpace', -1);
-      this.mouseClipSpace = instance1;
-      this.uniforms.push(instance1);
-      const instance2 = new Uniforms.UVec2('lastMouseClipSpace', -1);
-      this.lastMouseClipSpace = instance2;
-      this.uniforms.push(instance2);
+      this.isMouseDown = new Uniforms.UBool('isMouseDown', -1);
+      this.mouseClipSpace = new Uniforms.UVec2('mouseClipSpace', -1);
+      this.lastMouseClipSpace = new Uniforms.UVec2('lastMouseClipSpace', -1);
+      this.uniforms.push(this.isMouseDown, this.mouseClipSpace, this.lastMouseClipSpace);
     },
   };
 
   const ApplyForces = function () {
     FluidBase.call(this);
     const instance = new Uniforms.UTexture('velocity', -1, false);
-    this.velocity = instance;
-    this.uniforms.push(instance);
     const instance1 = new Uniforms.UFloat('dt', -1);
-    this.dt = instance1;
-    this.uniforms.push(instance1);
     const instance2 = new Uniforms.UFloat('dx', -1);
+    this.velocity = instance;
+    this.dt = instance1;
     this.dx = instance2;
-    this.uniforms.push(instance2);
+    this.uniforms.push(instance, instance1, instance2);
   };
 
   const MouseForce = function () {
@@ -995,15 +971,10 @@ function FL() {
     },
     createProperties: function () {
       ApplyForces.call(this);
-      const instance = new Uniforms.UBool('isMouseDown', -1);
-      this.isMouseDown = instance;
-      this.uniforms.push(instance);
-      const instance1 = new Uniforms.UVec2('mouseClipSpace', -1);
-      this.mouseClipSpace = instance1;
-      this.uniforms.push(instance1);
-      const instance2 = new Uniforms.UVec2('lastMouseClipSpace', -1);
-      this.lastMouseClipSpace = instance2;
-      this.uniforms.push(instance2);
+      this.isMouseDown = new Uniforms.UBool('isMouseDown', -1);
+      this.mouseClipSpace = new Uniforms.UVec2('mouseClipSpace', -1);
+      this.lastMouseClipSpace = new Uniforms.UVec2('lastMouseClipSpace', -1);
+      this.uniforms.push(this.isMouseDown, this.mouseClipSpace, this.lastMouseClipSpace);
     },
   };
 
