@@ -3,17 +3,29 @@
   "editor.suggest.insertMode": "replace",
   "editor.linkedEditing": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "window.zoomLevel": 0, 
+  "window.zoomLevel": 0,
   "editor.minimap.enabled": false,
   "workbench.iconTheme": "material-icon-theme",
   "gitlens.keymap": "none",
+
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[json]": { 
+  "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "glsl-canvas.refreshOnChange": false,
+  "[glsl]": {
+    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+  },
+  "[frag]": {
+    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+  },
+  "[vert]": {
+    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
   }
 }

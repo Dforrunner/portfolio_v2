@@ -68,7 +68,7 @@ export default function AboutMeSection() {
 
           <FadeInUp index={aboutMeContent.paragraphs.length + aboutMeContent.details.length}>
             <Button variant='outlined' className='w-[180px] mt-1'>
-              <a href='/Resume_.pdf' target='_blank' download>
+              <a href='/MuhammetBarutResume2024.pdf' target='_blank' download>
                 Download CV
               </a>
             </Button>
