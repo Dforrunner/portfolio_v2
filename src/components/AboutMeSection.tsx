@@ -30,11 +30,16 @@ const aboutMeContent = {
 
 export default function AboutMeSection() {
   return (
-    <section id='About' className='flex flex-col justify-center items-center py-10'>
+    <section
+      id='About'
+      className='flex flex-col justify-center items-center py-10'
+    >
       <div className='flex flex-col justify-center lg:grid lg:grid-cols-[40%_60%] gap-5 xl:min-w-[950px]'>
         <div className='pl-4 lg:p-0 col-span-2'>
           <SectionTitle title='About Me' />
-          <h2 className='pt-2 text-center lg:text-left'>{aboutMeContent.subtitle}</h2>
+          <h2 className='pt-2 text-center lg:text-left'>
+            {aboutMeContent.subtitle}
+          </h2>
         </div>
 
         <div className='flex justify-center lg:col-span-1 px-5 lg:p-0'>
@@ -60,15 +65,21 @@ export default function AboutMeSection() {
                 className='w-[350px] flex gap-5'
                 index={aboutMeContent.paragraphs.length + i}
               >
-                <span className='font-bold border-r border-slate-300 w-1/2'>{item.label}</span>
+                <span className='font-bold border-r border-slate-300 w-1/2'>
+                  {item.label}
+                </span>
                 <span className='w-1/2'>{item.value}</span>
               </FadeInUp>
             ))}
           </div>
 
-          <FadeInUp index={aboutMeContent.paragraphs.length + aboutMeContent.details.length}>
+          <FadeInUp
+            index={
+              aboutMeContent.paragraphs.length + aboutMeContent.details.length
+            }
+          >
             <Button variant='outlined' className='w-[180px] mt-1'>
-              <a href='/MuhammetBarutResume2024.pdf' target='_blank' download>
+              <a href='/MuhammetBarutResume122425.pdf' target='_blank' download>
                 Download CV
               </a>
             </Button>

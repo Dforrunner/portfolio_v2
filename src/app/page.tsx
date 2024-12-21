@@ -1,13 +1,13 @@
 import AboutMeSection from '@/components/AboutMeSection';
 import ContactSection from '@/components/ContactSection';
-import LandingSection from '@/components/HomeSection';
+import HomeSection from '@/components/HomeSection';
 import ScrollToTopFab from '@/components/ScrollToTopFab';
 import SkillsSection from '@/components/SkillsSection';
 
 export default function Home() {
   return (
-    <main>
-      <LandingSection />
+    <main className='grid-bg'>
+      <HomeSection />
       <AboutMeSection />
       <SkillsSection />
       {/* <ServicesSection /> */}

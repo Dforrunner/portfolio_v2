@@ -5,8 +5,8 @@ const Fluid = dynamic(() => import('./Fluid/Fluid'), { ssr: false });
 
 export default function HomeSection() {
   return (
-    <section className='flex relative w-full' id='Home'>
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-white'>
+    <section className='flex relative w-full ' id='Home'>
+      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-white pointer-events-none'>
         <p className='text-2xl md:text-3xl '>
           <TextFadeIn text='Hello there...' lineNum={1} />
         </p>
@@ -18,7 +18,7 @@ export default function HomeSection() {
         </p>
       </div>
 
-      <Fluid />
+      {/* <Fluid /> */}
     </section>
   );
 }

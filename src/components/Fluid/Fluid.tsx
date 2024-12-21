@@ -9,9 +9,17 @@ export default function Fluid() {
     const canvas = document.getElementById('FluidContent');
     FluidApp('FluidContent');
     const timer = setTimeout(() => {
-      canvas?.dispatchEvent(new Event('mousedown'));
+      if (canvas) {
+        canvas.dispatchEvent(new Event('mousedown'));
+      }
+
       clearTimeout(timer);
     }, 500);
   }, []);
-  return <canvas id='FluidContent' className='w-full h-screen hidden xl:block'></canvas>;
+  return (
+    <canvas
+      id='FluidContent'
+      className='w-screen h-screen hidden xl:block'
+    ></canvas>
+  );
 }
