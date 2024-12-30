@@ -79,7 +79,7 @@ export default function AboutMeSection() {
             }
           >
             <Button variant='outlined' className='w-[180px] mt-1'>
-              <a href='/MuhammetBarutResume122224.pdf' target='_blank' download>
+              <a href='/MuhammetBarutResume122924.pdf' target='_blank' download>
                 Download CV
               </a>
             </Button>
