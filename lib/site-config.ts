@@ -1,3 +1,18 @@
+
+import { FaReact } from "react-icons/fa";
+import { SiTypescript } from "react-icons/si";
+import { RiNextjsFill } from "react-icons/ri";
+import { RiTailwindCssFill } from "react-icons/ri";
+import { FaHtml5 } from "react-icons/fa";
+import { FaCss3Alt } from "react-icons/fa";
+import { FaNodeJs } from "react-icons/fa";
+import { FaPython } from "react-icons/fa";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { FaGitAlt } from "react-icons/fa";
+import { IoLogoVercel } from "react-icons/io5";
+import { IoLogoFigma } from "react-icons/io5";
+import { SiCanva } from "react-icons/si";
+
 export const siteConfig = {
   name: "Muhammet Barut",
   title: "Freelance Full-Stack Developer",
@@ -5,41 +20,43 @@ export const siteConfig = {
     "Experienced freelance developer helping businesses build powerful web applications and digital solutions",
   url: "https://mobarut.dev",
   logo: "/logo.svg",
-  email: "mo@mobarut.dev",
-  phone: "+1 (555) 123-4567",
+  email: "mo.code.solutions@gmail.com",
+  phone: "+1 (802) 310-9538",
   location: "Available Worldwide",
+  communication: {
+    whatsapp: "+1-802-310-9538",
+    telegram: "@mobarut",
+    line: "mobarut"
+  },
   social: {
-    github: "https://github.com/mobarut",
-    linkedin: "https://linkedin.com/in/muhammet-barut",
-    twitter: "https://twitter.com/mobarut",
+    github: "https://github.com/Dforrunner",
+    linkedin: "https://www.linkedin.com/in/mo-barut/",
+    twitter: "https://x.com/dforrunner?s=21",
   },
   navigation: [
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
+    // { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
   ],
   skills: {
     frontend: [
-      { name: "React", icon: "⚛️" },
-      { name: "TypeScript", icon: "🔷" },
-      { name: "Next.js", icon: "▲" },
-      { name: "Tailwind CSS", icon: "🎨" },
-      { name: "Vue.js", icon: "💚" },
+      { name: "React", icon: FaReact },
+      { name: "TypeScript", icon: SiTypescript },
+      { name: "Tailwind CSS", icon: RiTailwindCssFill },
+      { name: "HTML", icon: FaHtml5 }
     ],
     backend: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "Python", icon: "🐍" },
-      { name: "PostgreSQL", icon: "🐘" },
-      { name: "MongoDB", icon: "🍃" },
-      { name: "GraphQL", icon: "🔗" },
+      { name: "Node.js", icon: FaNodeJs },
+      { name: "Next.js", icon: RiNextjsFill },
+      { name: "Python", icon: FaPython },
+      { name: "PostgreSQL", icon: BiLogoPostgresql }
     ],
     tools: [
-      { name: "Git", icon: "📝" },
-      { name: "Docker", icon: "🐳" },
-      { name: "AWS", icon: "☁️" },
-      { name: "Vercel", icon: "▲" },
-      { name: "Figma", icon: "🎨" },
+      { name: "Git", icon: FaGitAlt },
+      { name: "Vercel", icon: IoLogoVercel },
+      { name: "Figma", icon: IoLogoFigma },
+      { name: "Canva", icon: SiCanva },
     ],
   },
   projects: [
@@ -81,11 +98,19 @@ export const siteConfig = {
     projectsCompleted: "75+",
     clientsSatisfied: "45+",
     highlights: [
-      "Delivered 75+ successful projects for clients worldwide",
-      "Helped 15+ startups launch their MVP products",
-      "Maintained 98% client satisfaction rate",
-      "Available for long-term partnerships and ongoing support",
+      "🤖 AI-powered automation solutions that reduce manual work by 70%",
+      "⚡ Lightning-fast development with modern frameworks and best practices",
+      "🚀 End-to-end solutions from MVP to enterprise-scale applications",
+      "💰 ROI-focused development that increases revenue and reduces costs",
+      "🔧 Custom integrations with APIs, payment systems, and third-party tools",
+      "📱 Mobile-first responsive designs that work perfectly on all devices",
+      "🛡️ Enterprise-grade security and performance optimization",
     ],
+    images: {
+      headshot: "/mo-headshot.jpg",
+      casual: "/mo-casual.jpg",
+      workspace: "/mo-workspace.jpg",
+    },
   },
 }
 

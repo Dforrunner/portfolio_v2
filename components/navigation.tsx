@@ -1,45 +1,54 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
-import { siteConfig } from "@/lib/site-config"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import { siteConfig } from "@/lib/site-config";
+import { ThemeToggle } from "@/components/theme-toggle";
+import Image from "next/image";
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+      setIsScrolled(window.scrollY > 50);
+    };
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
+    const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-    setIsMobileMenuOpen(false)
-  }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
+        isScrolled
+          ? "bg-background/95 backdrop-blur-sm shadow-sm"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <div className="font-bold text-lg sm:text-xl">
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              {siteConfig.name.split(" ")[0]}
-            </span>
+          <div className="relative flex items-center justify-center">
+            <Image
+              src={"/logo.png"}
+              alt="Logo"
+              width={50}
+              height={50}
+              className="cursor-pointer "
+              onClick={() => scrollToSection("#top")}
+            />
+            <div className="absolute size-11 rounded-full animate-pulse-glow" />
           </div>
 
           {/* Desktop Navigation */}
@@ -68,7 +77,11 @@ export function Navigation() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 min-w-[40px] min-h-[40px]"
             >
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isMobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
             </Button>
           </div>
         </div>
@@ -86,7 +99,11 @@ export function Navigation() {
                   {item.name}
                 </button>
               ))}
-              <Button size="sm" onClick={() => scrollToSection("#contact")} className="self-start mt-2 min-h-[44px]">
+              <Button
+                size="sm"
+                onClick={() => scrollToSection("#contact")}
+                className="self-start mt-2 min-h-[44px]"
+              >
                 Contact Me
               </Button>
             </div>
@@ -94,5 +111,5 @@ export function Navigation() {
         )}
       </div>
     </nav>
-  )
+  );
 }

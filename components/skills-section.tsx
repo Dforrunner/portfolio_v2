@@ -90,7 +90,7 @@ export function SkillsSection() {
                           className="text-xl sm:text-2xl animate-bounce-in flex-shrink-0"
                           style={{ animationDelay: `${categoryIndex * 0.3 + skillIndex * 0.1}s` }}
                         >
-                          {skill.icon}
+                          {skill.icon({})}
                         </span>
                         <span className="font-medium text-base sm:text-lg">{skill.name}</span>
                       </div>

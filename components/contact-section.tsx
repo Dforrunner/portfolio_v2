@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, MessageCircle } from "lucide-react"
 import { siteConfig } from "@/lib/site-config"
 import { sendContactMessage } from "@/app/actions/contact"
 
@@ -77,6 +77,30 @@ export function ContactSection() {
     },
   ]
 
+  const communicationApps = [
+    {
+      name: "WhatsApp",
+      icon: "💬",
+      value: siteConfig.communication.whatsapp,
+      href: `https://wa.me/${siteConfig.communication.whatsapp.replace(/[^0-9]/g, "")}`,
+      color: "hover:text-green-600",
+    },
+    {
+      name: "Telegram",
+      icon: "✈️",
+      value: siteConfig.communication.telegram,
+      href: `https://t.me/${siteConfig.communication.telegram.replace("@", "")}`,
+      color: "hover:text-blue-500",
+    },
+    {
+      name: "Line",
+      icon: "📱",
+      value: siteConfig.communication.line,
+      href: `https://line.me/ti/p/~${siteConfig.communication.line}`,
+      color: "hover:text-green-500",
+    }
+  ]
+
   return (
     <section ref={sectionRef} id="contact" className="py-20">
       <div className="container mx-auto px-4">
@@ -109,7 +133,10 @@ export function ContactSection() {
                     <div>
                       <p className="font-medium">{info.label}</p>
                       {info.href !== "#" ? (
-                        <a href={info.href} className="text-muted-foreground hover:text-primary transition-colors">
+                        <a
+                          href={info.href}
+                          className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                        >
                           {info.value}
                         </a>
                       ) : (
@@ -118,6 +145,31 @@ export function ContactSection() {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Communication Apps */}
+              <div className="mt-12">
+                <h4 className="text-lg font-semibold mb-6 flex items-center">
+                  <MessageCircle className="h-5 w-5 mr-2 text-primary" />
+                  Chat with Me
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                  {communicationApps.map((app, index) => (
+                    <a
+                      key={index}
+                      href={app.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex flex-col items-center p-4 rounded-lg bg-card border hover:border-primary/50 transition-all duration-300 hover:shadow-md cursor-pointer ${app.color}`}
+                    >
+                      <span className="text-2xl mb-2">{app.icon}</span>
+                      <span className="text-sm font-medium text-center">{app.name}</span>
+                      <span className="text-xs text-muted-foreground text-center mt-1 truncate w-full">
+                        {app.value}
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
 

@@ -1,58 +1,92 @@
 "use server"
 
+import { siteConfig } from "@/lib/site-config"
+import { Resend } from "resend"
+import { z } from "zod"
+
+const apiKey = process.env.RESEND_API_KEY
+if (!apiKey) {
+  throw new Error("RESEND_API_KEY environment variable is not set")
+}
+
+const resend = new Resend(apiKey)
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Please enter a valid email address"),
+  subject: z.string().optional().default("General Inquiry"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+})
+
 export async function sendContactMessage(formData: FormData) {
-  const name = formData.get("name") as string
-  const email = formData.get("email") as string
-  const subject = formData.get("subject") as string
-  const message = formData.get("message") as string
-
-  // Validate required fields
-  if (!name || !email || !subject || !message) {
-    return { success: false, error: "All fields are required" }
-  }
-
-  // Email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!emailRegex.test(email)) {
-    return { success: false, error: "Please enter a valid email address" }
-  }
-
   try {
-    // In a real application, you would integrate with an email service like:
-    // - Resend, SendGrid, Nodemailer, etc.
-    // For now, we'll simulate the email sending process
-
-    console.log("Contact form submission:", {
-      name,
-      email,
-      subject,
-      message,
-      timestamp: new Date().toISOString(),
+    // Validate form data
+    const validatedData = contactSchema.parse({
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
     })
 
-    // Simulate API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // In production, replace this with actual email sending logic:
-    /*
-    await emailService.send({
-      to: 'your-email@example.com',
-      from: email,
-      subject: `Portfolio Contact: ${subject}`,
+    // Send email using Resend
+    const { data, error } = await resend.emails.send({
+      from: `Portfolio Contact <noreply@mobarut.com>`,
+      to: [siteConfig.email], // Mo's email address
+      replyTo: validatedData.email,
+      subject: `Portfolio Contact: ${validatedData.subject}`,
       html: `
-        <h3>New contact form submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1e40af; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
+            New Contact Form Submission
+          </h2>
+          
+          <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Name:</strong> ${validatedData.name}</p>
+            <p><strong>Email:</strong> ${validatedData.email}</p>
+            <p><strong>Subject:</strong> ${validatedData.subject}</p>
+          </div>
+          
+          <div style="margin: 20px 0;">
+            <h3 style="color: #374151;">Message:</h3>
+            <div style="background-color: #ffffff; padding: 15px; border-left: 4px solid #1e40af; border-radius: 4px;">
+              ${validatedData.message.replace(/\n/g, "<br>")}
+            </div>
+          </div>
+          
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px;">
+            <p>This message was sent from your portfolio contact form.</p>
+            <p>Reply directly to this email to respond to ${validatedData.name}.</p>
+          </div>
+        </div>
+      `,
     })
-    */
 
-    return { success: true, message: "Message sent successfully!" }
+    if (error) {
+      console.error("Resend error:", error)
+      return {
+        success: false,
+        error: "Failed to send email. Please try again or contact me directly.",
+      }
+    }
+
+    // console.log("Email sent successfully:", data?.id)
+    return {
+      success: true,
+      message: "Thank you for your message! I'll get back to you within 24 hours.",
+    }
   } catch (error) {
-    console.error("Error sending contact message:", error)
-    return { success: false, error: "Failed to send message. Please try again." }
+    console.error("Contact form error:", error)
+
+    if (error instanceof z.ZodError) {
+      return {
+        success: false,
+        error: error.errors[0].message,
+      }
+    }
+
+    return {
+      success: false,
+      error: "Something went wrong. Please try again later.",
+    }
   }
 }
