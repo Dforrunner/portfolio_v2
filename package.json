@@ -1,6 +1,6 @@
 {
-  "name": "my-v0-project",
-  "version": "0.1.0",
+  "name": "Portfolio V3",
+  "version": "3",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -71,5 +71,8 @@
     "tailwindcss": "^4.1.9",
     "tw-animate-css": "1.3.3",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
