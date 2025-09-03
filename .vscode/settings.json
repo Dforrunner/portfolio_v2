@@ -27,5 +27,11 @@
   },
   "[vert]": {
     "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
-  }
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.singleAttributePerLine": false,
+  "prettier.printWidth": 200,
+  "bracketSameLine": true,
 }
