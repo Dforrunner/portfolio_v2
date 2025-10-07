@@ -41,8 +41,8 @@ export function Navigation() {
           {/* Logo */}
           <div className="relative flex items-center justify-center">
             <Image
-              src={"/logo.png"}
-              alt="Logo"
+              src={siteConfig.logo}
+              alt={siteConfig.logoAlt}
               width={50}
               height={50}
               className="cursor-pointer "

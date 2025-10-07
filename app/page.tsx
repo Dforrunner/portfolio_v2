@@ -6,6 +6,7 @@ import { ProjectsSection } from "@/components/projects-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { SEOSchema } from "@/components/seo-schema"
+import ServicesSection from "@/components/services-section"
 
 export default function Home() {
   return (
@@ -14,9 +15,10 @@ export default function Home() {
       <main className="min-h-screen">
         <Navigation />
         <HeroSection />
+        <ServicesSection />
         <AboutSection />
         <SkillsSection />
-        {/* <ProjectsSection /> */}
+        <ProjectsSection />
         <ContactSection />
         <Footer />
       </main>

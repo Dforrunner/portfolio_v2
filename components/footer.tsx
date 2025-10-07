@@ -16,7 +16,7 @@ export function Footer() {
             <p className="text-muted-foreground mb-4">{siteConfig.description}</p>
             <div className="flex space-x-4">
               <a
-                href={siteConfig.social.github}
+                href={siteConfig.social.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -24,7 +24,7 @@ export function Footer() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href={siteConfig.social.linkedin}
+                href={siteConfig.social.linkedin.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"

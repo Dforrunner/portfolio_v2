@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI & Automation",
     readTime: "8 min read",
     date: "Jan 15, 2025",
-    image: "/ai-artificial-intelligence-neural-network-technolo.jpg",
+    image: "/ai-artificial-intelligence-neural-network-technolo.webp",
     gradient: "from-purple-500 to-pink-500",
   },
   {
@@ -30,7 +30,7 @@ export const blogPosts: BlogPost[] = [
     category: "Web Development",
     readTime: "12 min read",
     date: "Jan 10, 2025",
-    image: "/modern-web-development-code-programming.jpg",
+    image: "/modern-web-development-code-programming.webp",
     gradient: "from-blue-500 to-cyan-500",
   },
   {
@@ -41,7 +41,7 @@ export const blogPosts: BlogPost[] = [
     category: "Payment Processing",
     readTime: "10 min read",
     date: "Jan 5, 2025",
-    image: "/payment-processing-credit-card-checkout.jpg",
+    image: "/payment-processing-credit-card-checkout.webp",
     gradient: "from-emerald-500 to-teal-500",
   },
   {
@@ -52,7 +52,7 @@ export const blogPosts: BlogPost[] = [
     category: "SEO",
     readTime: "9 min read",
     date: "Dec 28, 2024",
-    image: "/seo-search-engine-optimization-analytics.jpg",
+    image: "/seo-search-engine-optimization-analytics.webp",
     gradient: "from-orange-500 to-red-500",
   },
   {
@@ -63,7 +63,7 @@ export const blogPosts: BlogPost[] = [
     category: "Database",
     readTime: "11 min read",
     date: "Dec 20, 2024",
-    image: "/database-server-data-management.jpg",
+    image: "/database-server-data-management.webp",
     gradient: "from-indigo-500 to-blue-500",
   },
   {
@@ -74,7 +74,7 @@ export const blogPosts: BlogPost[] = [
     category: "Hosting",
     readTime: "7 min read",
     date: "Dec 15, 2024",
-    image: "/cloud-hosting-server-infrastructure.jpg",
+    image: "/cloud-hosting-server-infrastructure.webp",
     gradient: "from-slate-500 to-zinc-500",
   },
 ];

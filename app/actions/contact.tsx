@@ -14,17 +14,20 @@ const resend = new Resend(apiKey)
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
-  subject: z.string().optional().default("General Inquiry"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 })
 
+export interface ContactForm {
+  name: string;
+  email: string;
+  message: string;
+}
 export async function sendContactMessage(formData: FormData) {
   try {
     // Validate form data
     const validatedData = contactSchema.parse({
       name: formData.get("name"),
       email: formData.get("email"),
-      subject: formData.get("subject"),
       message: formData.get("message"),
     })
 
@@ -33,7 +36,7 @@ export async function sendContactMessage(formData: FormData) {
       from: `Portfolio Contact <noreply@mobarut.com>`,
       to: [siteConfig.email], // Mo's email address
       replyTo: validatedData.email,
-      subject: `Portfolio Contact: ${validatedData.subject}`,
+      subject: `Portfolio Contact`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #1e40af; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px;">
@@ -43,7 +46,6 @@ export async function sendContactMessage(formData: FormData) {
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <p><strong>Name:</strong> ${validatedData.name}</p>
             <p><strong>Email:</strong> ${validatedData.email}</p>
-            <p><strong>Subject:</strong> ${validatedData.subject}</p>
           </div>
           
           <div style="margin: 20px 0;">

@@ -1,0 +1,34 @@
+# Dependencies (they will be installed/copied in Docker)
+node_modules
+.pnpm-store
+
+# Build artifacts (Next.js will generate .next)
+dist
+.out
+.build
+
+# Dev/IDE files
+.devcontainer
+.vscode
+.idea
+
+# Git & CI
+.git
+.github
+.gitignore
+
+# Logs
+npm-debug.log
+yarn-debug.log
+pnpm-debug.log
+*.log
+
+# Documentation & miscellaneous
+*.md
+LICENSE
+tests
+docs
+reports
+
+# Docker-specific
+docker-data
