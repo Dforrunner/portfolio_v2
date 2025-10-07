@@ -1,13 +1,16 @@
 {
-  "editor.formatOnSave": true,
   "editor.suggest.insertMode": "replace",
   "editor.linkedEditing": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
   "window.zoomLevel": 0,
   "editor.minimap.enabled": false,
-  "workbench.iconTheme": "material-icon-theme",
   "gitlens.keymap": "none",
-
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.fixAll.ts": "always",
+    "source.organizeImports": "always",
+    "source.removeUnusedImports": "always"
+  },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -17,21 +20,9 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-
-  "glsl-canvas.refreshOnChange": false,
-  "[glsl]": {
-    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
-  },
-  "[frag]": {
-    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
-  },
-  "[vert]": {
-    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
-  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.singleAttributePerLine": false,
-  "prettier.printWidth": 200,
-  "bracketSameLine": true,
+  "prettier.printWidth": 200
 }
