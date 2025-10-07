@@ -1,4 +1,4 @@
-import { siteConfig } from "@/lib/site-config"
+import { siteConfig } from "@/lib/site-config";
 
 export function SEOSchema() {
   const organizationSchema = {
@@ -20,39 +20,21 @@ export function SEOSchema() {
       alternateName: "Mo Barut",
       jobTitle: "Freelance Full-Stack Developer",
     },
-    serviceType: "Web Development Services",
+    serviceType: "Full Stack Developer Services",
     areaServed: "Worldwide",
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Web Development Services",
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Full-Stack Web Development",
-            description: "Custom web application development using modern technologies",
-          },
+      name: "Full Stack Developer Services",
+      itemListElement: siteConfig.services.map((service) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: service.title,
+          description: service.description,
         },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "SaaS Development",
-            description: "Software as a Service platform development and deployment",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "E-commerce Development",
-            description: "Custom e-commerce solutions and online store development",
-          },
-        },
-      ],
+      })),
     },
-  }
+  };
 
   return (
     <script
@@ -61,5 +43,5 @@ export function SEOSchema() {
         __html: JSON.stringify(organizationSchema),
       }}
     />
-  )
+  );
 }
