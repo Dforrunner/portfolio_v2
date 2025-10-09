@@ -5,7 +5,9 @@ import { siteConfig } from "@/lib/site-config";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { AvailableBadge } from "./available-badge";
 import { ContactDialog } from "./contact-dialog";
+import { TextAnimate } from "./ui/text-animate";
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,8 +27,8 @@ export function HeroSection() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-background via-background to-muted">
-      <div className="absolute inset-0 overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center relative text-foreground">
+      <div className="absolute inset-0 ">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full animate-float hover-glow" />
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/5 rounded-full animate-rotate-glow" style={{ animationDelay: "2s" }} />
         <div className="absolute top-1/4 right-1/4 w-32 h-32 bg-primary/5 rounded-full animate-bounce-in animate-stagger-3" />
@@ -36,6 +38,9 @@ export function HeroSection() {
 
       <div className={`container mx-auto px-4 sm:px-6 text-center relative z-10 transition-all duration-1000 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
         <div className="max-w-4xl mx-auto">
+          {/* Available Badge */}
+          <AvailableBadge />
+
           <div className="animate-scale-in">
             <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-6">
               <Image
@@ -49,13 +54,20 @@ export function HeroSection() {
             </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-3 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent animate-scale-in">{siteConfig.name}</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent animate-scale-in">{siteConfig.name}</h1>
           <div className="h-10 sm:h-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl text-muted-foreground font-medium animate-slide-in-right animate-stagger-2">{siteConfig.title}</h2>
+            <h2 className="text-xl sm:text-2xl md:text-3xl text-slate-800 dark:text-slate-200 font-medium animate-slide-in-right animate-stagger-2">{siteConfig.title}</h2>
           </div>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-10 sm:mb-14 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animate-stagger-3 px-4 sm:px-0">
-            {siteConfig.description}
-          </p>
+
+          <TextAnimate
+            animation="blurInUp"
+            delay={0.3}
+            by="word"
+            once
+            className="text-base sm:text-lg md:text-xl break-keep text-muted-foreground mb-10  sm:mb-14 max-w-2xl mx-auto leading-snug animate-fade-in-up animate-stagger-3 px-4 sm:px-0"
+          >
+            {siteConfig.description2}
+          </TextAnimate>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-16 sm:mb-20 px-4 sm:px-0">
             <ContactDialog />
@@ -93,7 +105,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce animate-shimmer">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce animate-shimmer rounded-2xl">
         <ArrowDown className="h-6 w-6 text-muted-foreground" />
       </div>
     </section>

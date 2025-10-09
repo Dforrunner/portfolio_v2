@@ -1,9 +1,17 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { blogPosts } from "../blog-posts";
-import { AIIntegrationContent, DatabasePerformanceContent, SEOOptimizationContent, StripePaymentContent, WebDevelopmentContent, WebHostingContent } from "./content";
-import BlogPostClient from "./page.client";
+// import { blogPosts } from "../blog-posts";
 import { siteConfig } from "@/lib/site-config";
+import { getPostBySlug } from "../post.util";
+import {
+  AIIntegrationContent,
+  DatabasePerformanceContent,
+  SEOOptimizationContent,
+  StripePaymentContent,
+  WebDevelopmentContent,
+  WebHostingContent,
+} from "./content";
+import BlogPostClient from "./page.client";
 
 export async function generateMetadata({
   params,
@@ -13,7 +21,7 @@ export async function generateMetadata({
   }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     return {
@@ -67,16 +75,13 @@ interface Props {
 }
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getPostBySlug(slug);
 
   if (!post) {
     notFound();
   }
 
-  // Get content based on slug
-  const content = getPostContent(slug);
-
-  return <BlogPostClient post={post} content={content} />;
+  return <BlogPostClient post={post} />;
 }
 
 function getPostContent(slug: string) {

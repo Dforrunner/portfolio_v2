@@ -9,15 +9,19 @@ import { LinkedinIcon, XIcon } from "react-share";
 export const siteConfig = {
   name: "Mo Barut",
   title: "Full-Stack Developer & Tech Consultant",
+  shortDescription: "I help businesses leverage modern web technologies to build scalable, high-performance applications.",
   description:
     "I help businesses leverage modern web technologies to build scalable, high-performance applications. With 6+ years of experience in full-stack development, I specialize in modern web app development, seo, AI integration, payment systems, and cloud architecture.",
+  description2:
+    "I turn ideas into powerful web applications that drive real business results. With a passion for clean code and user-centric design, I help businesses scale with modern, performant solutions.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://mobarut.dev",
   logo: "/logo.webp",
   logoAlt: "Mo Barut's logo",
+  ogImage: "og-image.webp",
   profileImage: "/developer-headshot.webp",
   email: "mo.code.solutions@gmail.com",
   phone: "+1 (802) 310-9538",
-  phoneDigitsOnly: '+18023109538',
+  phoneDigitsOnly: "+18023109538",
   location: "Available Worldwide",
   communication: {
     whatsapp: "+1-802-310-9538",
@@ -42,11 +46,12 @@ export const siteConfig = {
     },
   },
   navigation: [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Blog", href: "/#blogs" },
+    { name: "Contact", href: "/#contact" },
   ],
   skills: {
     frontend: [
@@ -187,33 +192,13 @@ export const siteConfig = {
   projects: [
     {
       id: 1,
-      title: "SaaS Analytics Platform",
-      description: "Custom analytics dashboard for a fintech startup with real-time data visualization and reporting",
-      image: "/modern-ecommerce-dashboard.webp",
-      technologies: ["React", "Node.js", "PostgreSQL", "Chart.js"],
-      github: "https://github.com/mobarut/analytics-platform",
-      live: "https://analytics-demo.mobarut.dev",
+      title: "BargoProCare - Business Website",
+      description: "Custom business website that is SEO optimized, with online booking, quote generation, automated emails, scheduling, progress tracking and more",
+      image: "/bargoprocare-landing.webp",
+      technologies: ["Next.js", "PostgreSQL", "Tailwind", "Mailgun", "NextAuth"],
+      live: "https://bargo.moproserv.com",
+      github: '',
       featured: true,
-    },
-    {
-      id: 2,
-      title: "E-Learning Platform",
-      description: "Complete learning management system for an education company with video streaming and progress tracking",
-      image: "/task-management-interface.webp",
-      technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
-      github: "https://github.com/mobarut/elearning-platform",
-      live: "https://learning.mobarut.dev",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Restaurant Management System",
-      description: "Full-stack solution for restaurant operations including POS, inventory, and customer management",
-      image: "/weather-dashboard-interface.webp",
-      technologies: ["Vue.js", "Express", "MongoDB", "Stripe"],
-      github: "https://github.com/mobarut/restaurant-system",
-      live: "https://restaurant.mobarut.dev",
-      featured: false,
     },
   ],
   about: {

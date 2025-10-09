@@ -2,9 +2,10 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { ContactForm } from "./contact-form";
+import { Globe } from "./ui/globe";
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -35,12 +36,6 @@ export function ContactSection() {
       href: `mailto:${siteConfig.email}`,
     },
     {
-      icon: Phone,
-      label: "Phone",
-      value: siteConfig.phone,
-      href: `tel:${siteConfig.phone}`,
-    },
-    {
       icon: MapPin,
       label: "Location",
       value: siteConfig.location,
@@ -48,33 +43,9 @@ export function ContactSection() {
     },
   ];
 
-  const communicationApps = [
-    {
-      name: "WhatsApp",
-      icon: "💬",
-      value: siteConfig.communication.whatsapp,
-      href: `https://wa.me/${siteConfig.communication.whatsapp.replace(/[^0-9]/g, "")}`,
-      color: "hover:text-green-600",
-    },
-    {
-      name: "Telegram",
-      icon: "✈️",
-      value: siteConfig.communication.telegram,
-      href: `https://t.me/${siteConfig.communication.telegram.replace("@", "")}`,
-      color: "hover:text-blue-500",
-    },
-    {
-      name: "Line",
-      icon: "📱",
-      value: siteConfig.communication.line,
-      href: `https://line.me/ti/p/~${siteConfig.communication.line}`,
-      color: "hover:text-green-500",
-    },
-  ];
-
   return (
-    <section ref={sectionRef} id="contact" className="py-20">
-      <div className="container mx-auto px-4">
+    <section ref={sectionRef} id="contact" className="py-20 overflow-hidden">
+      <div className="container mx-auto px-4  ">
         <div className={`transition-all duration-1000 ${isVisible ? "animate-slide-up" : "opacity-0"}`}>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
@@ -92,7 +63,7 @@ export function ContactSection() {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 relative overflow-hidden h-full">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -110,34 +81,13 @@ export function ContactSection() {
                     </div>
                   </div>
                 ))}
-              </div>
 
-              {/* Communication Apps */}
-              <div className="mt-12">
-                <h4 className="text-lg font-semibold mb-6 flex items-center">
-                  <MessageCircle className="h-5 w-5 mr-2 text-primary" />
-                  Chat with Me
-                </h4>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                  {communicationApps.map((app, index) => (
-                    <a
-                      key={index}
-                      href={app.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`flex flex-col items-center p-4 rounded-lg bg-card border hover:border-primary/50 transition-all duration-300 hover:shadow-md cursor-pointer ${app.color}`}
-                    >
-                      <span className="text-2xl mb-2">{app.icon}</span>
-                      <span className="text-sm font-medium text-center">{app.name}</span>
-                      <span className="text-xs text-muted-foreground text-center mt-1 truncate w-full">{app.value}</span>
-                    </a>
-                  ))}
-                </div>
+                <Globe className="left-0 top-20 -z-10 opacity-35" />
               </div>
             </div>
 
             {/* Contact Form */}
-            <Card>
+            <Card className="bg-gradient-primary">
               <CardHeader>
                 <CardTitle>Send Message</CardTitle>
               </CardHeader>

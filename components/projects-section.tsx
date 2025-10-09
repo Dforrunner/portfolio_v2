@@ -1,50 +1,50 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { ExternalLink, Github } from "lucide-react"
-import { siteConfig } from "@/lib/site-config"
-import Image from "next/image"
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { siteConfig } from "@/lib/site-config";
+import { ExternalLink, Github } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 export function ProjectsSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [animateProjects, setAnimateProjects] = useState(false)
-  const [animateOtherProjects, setAnimateOtherProjects] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
+  const [isVisible, setIsVisible] = useState(false);
+  const [animateProjects, setAnimateProjects] = useState(false);
+  const [animateOtherProjects, setAnimateOtherProjects] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true)
-          setTimeout(() => setAnimateProjects(true), 300)
-          setTimeout(() => setAnimateOtherProjects(true), 800)
+          setIsVisible(true);
+          setTimeout(() => setAnimateProjects(true), 300);
+          setTimeout(() => setAnimateOtherProjects(true), 800);
         }
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
-  const featuredProjects = siteConfig.projects.filter((project) => project.featured)
-  const otherProjects = siteConfig.projects.filter((project) => !project.featured)
+  const featuredProjects = siteConfig.projects.filter((project) => project.featured);
+  const otherProjects = siteConfig.projects.filter((project) => !project.featured);
 
   return (
-    <section ref={sectionRef} id="projects" className="py-20 bg-muted/30">
+    <section ref={sectionRef} id="projects" className="py-20">
       <div className="container mx-auto px-4">
         <div className={`transition-all duration-1000 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-scale-in">Featured Projects</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animate-stagger-2">
-              A showcase of my recent work and personal projects
-            </p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-scale-in">
+              Featured <span className="bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">Projects</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animate-stagger-2">A showcase of my recent work and personal projects</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
@@ -56,7 +56,7 @@ export function ProjectsSection() {
                 }`}
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden -mt-6">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
@@ -86,12 +86,7 @@ export function ProjectsSection() {
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
-                      <Badge
-                        key={techIndex}
-                        variant="secondary"
-                        className={`animate-bounce-in animate-stagger-${techIndex + 1} hover-lift`}
-                        style={{ animationDelay: `${techIndex * 0.05}s` }}
-                      >
+                      <Badge key={techIndex} variant="secondary" className={`animate-bounce-in animate-stagger-${techIndex + 1} hover-lift`} style={{ animationDelay: `${techIndex * 0.05}s` }}>
                         {tech}
                       </Badge>
                     ))}
@@ -108,9 +103,7 @@ export function ProjectsSection() {
                 {otherProjects.map((project, index) => (
                   <Card
                     key={project.id}
-                    className={`hover:shadow-lg transition-all duration-300 hover-lift hover-glow ${
-                      animateOtherProjects ? `animate-fade-in-up animate-stagger-${index + 1}` : "opacity-0"
-                    }`}
+                    className={`hover:shadow-lg transition-all duration-300 hover-lift hover-glow ${animateOtherProjects ? `animate-fade-in-up animate-stagger-${index + 1}` : "opacity-0"}`}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="relative overflow-hidden">
@@ -124,9 +117,7 @@ export function ProjectsSection() {
                     </div>
                     <CardHeader>
                       <h4 className="text-xl font-bold animate-fade-in-left">{project.title}</h4>
-                      <p className="text-sm text-muted-foreground animate-fade-in-left animate-stagger-2">
-                        {project.description}
-                      </p>
+                      <p className="text-sm text-muted-foreground animate-fade-in-left animate-stagger-2">{project.description}</p>
                     </CardHeader>
                     <CardContent>
                       <div className="flex flex-wrap gap-2 mb-4">
@@ -142,22 +133,14 @@ export function ProjectsSection() {
                         ))}
                       </div>
                       <div className="flex space-x-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          asChild
-                          className="animate-bounce-in hover-glow bg-transparent"
-                        >
-                          <a href={project.github} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4" />
-                          </a>
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          asChild
-                          className="animate-bounce-in animate-stagger-2 hover-glow bg-transparent"
-                        >
+                        {project.github && (
+                          <Button size="sm" variant="outline" asChild className="animate-bounce-in hover-glow bg-transparent">
+                            <a href={project.github} target="_blank" rel="noopener noreferrer">
+                              <Github className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        )}
+                        <Button size="sm" variant="outline" asChild className="animate-bounce-in animate-stagger-2 hover-glow bg-transparent">
                           <a href={project.live} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="h-4 w-4" />
                           </a>
@@ -172,5 +155,5 @@ export function ProjectsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

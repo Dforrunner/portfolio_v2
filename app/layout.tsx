@@ -1,15 +1,18 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { DM_Sans } from "next/font/google"
-import "./globals.css"
-import { siteConfig } from "@/lib/site-config"
-import { ThemeProvider } from "@/components/theme-provider"
+import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { SEOSchema } from "@/components/seo-schema";
+import { ThemeProvider } from "@/components/theme-provider";
+import { siteConfig } from "@/lib/site-config";
+import type { Metadata } from "next";
+import { DM_Sans } from "next/font/google";
+import type React from "react";
+import "./globals.css";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-dm-sans",
-})
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -18,7 +21,6 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  generator: "Next.js",
   applicationName: siteConfig.name,
   referrer: "origin-when-cross-origin",
   keywords: [
@@ -57,10 +59,10 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/og-image.jpg",
+        url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - Freelance Full-Stack Developer`,
+        alt: `${siteConfig.name} - ${siteConfig.title}`,
       },
     ],
   },
@@ -68,8 +70,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} - ${siteConfig.title}`,
     description: siteConfig.description,
-    creator: "@mobarut",
-    images: ["/og-image.jpg"],
+    creator: siteConfig.social.twitter.username,
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,
@@ -82,67 +84,30 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
   alternates: {
     canonical: siteConfig.url,
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="en" className={dmSans.variable} suppressHydrationWarning>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: siteConfig.name,
-              alternateName: "Mo Barut",
-              url: siteConfig.url,
-              image: `${siteConfig.url}/mo-headshot.jpg`,
-              sameAs: [siteConfig.social.linkedin, siteConfig.social.github, siteConfig.social.twitter],
-              jobTitle: "Freelance Full-Stack Developer",
-              worksFor: {
-                "@type": "Organization",
-                name: "Self-Employed",
-              },
-              knowsAbout: [
-                "Web Development",
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Node.js",
-                "Python",
-                "PostgreSQL",
-                "MongoDB",
-                "Full-Stack Development",
-                "SaaS Development",
-              ],
-              email: siteConfig.email,
-              telephone: siteConfig.phone,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Remote",
-                addressCountry: "Worldwide",
-              },
-            }),
-          }}
-        />
         <link rel="canonical" href={siteConfig.url} />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased min-h-screen bg-gradient-primary overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Navigation />
           {children}
+          <Footer />
         </ThemeProvider>
+
+        <SEOSchema />
       </body>
     </html>
-  )
+  );
 }

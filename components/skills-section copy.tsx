@@ -1,10 +1,9 @@
 "use client";
 
-import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
 import { Monitor, Server, Wrench } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { GlassCard } from "./glass-card";
 
 export function SkillsSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -35,24 +34,18 @@ export function SkillsSection() {
       icon: Monitor,
       skills: siteConfig.skills.frontend,
       color: "text-blue-500",
-      innerGlow: "from-indigo-500 to-blue-500",
-      bgGlow: "group-hover:shadow-indigo-500/50",
     },
     {
       title: "Backend",
       icon: Server,
       skills: siteConfig.skills.backend,
       color: "text-green-500",
-      innerGlow: "from-emerald-500 to-teal-500",
-      bgGlow: "group-hover:shadow-emerald-500/50",
     },
     {
       title: "Tools & Others",
       icon: Wrench,
       skills: siteConfig.skills.tools,
       color: "text-purple-500",
-      innerGlow: "from-purple-500 to-pink-500",
-      bgGlow: "group-hover:shadow-purple-500/50",
     },
   ];
 
@@ -69,7 +62,10 @@ export function SkillsSection() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {skillCategories.map((category, categoryIndex) => (
-              <GlassCard key={categoryIndex} innerGlowColor={category.innerGlow} bgGlowColor={category.bgGlow}>
+              <Card
+                key={categoryIndex}
+                className={`hover:shadow-lg transition-all duration-300 hover-lift hover-glow ${isVisible ? `animate-fade-in-up animate-stagger-${categoryIndex + 3}` : "opacity-0"}`}
+              >
                 <CardHeader className="text-center pb-4">
                   <category.icon className={`h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 ${category.color} animate-bounce-in animate-stagger-${categoryIndex + 1}`} />
                   <CardTitle className="text-xl sm:text-2xl animate-fade-in-up animate-stagger-2">{category.title}</CardTitle>
@@ -79,7 +75,7 @@ export function SkillsSection() {
                     {category.skills.map((skill, skillIndex) => (
                       <div
                         key={skillIndex}
-                        className={`flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-gradient-primary transition-all duration-300 hover-lift ${
+                        className={`flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-muted/50 hover:bg-muted transition-all duration-300 hover-lift ${
                           animateSkills ? `animate-fade-in-left animate-stagger-${skillIndex + 1}` : "opacity-0"
                         }`}
                         style={{ animationDelay: `${categoryIndex * 0.2 + skillIndex * 0.1}s` }}
@@ -92,7 +88,7 @@ export function SkillsSection() {
                     ))}
                   </div>
                 </CardContent>
-              </GlassCard>
+              </Card>
             ))}
           </div>
         </div>

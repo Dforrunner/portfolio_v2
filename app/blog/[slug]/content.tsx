@@ -3,7 +3,7 @@ import { CheckCircle2, Zap } from "lucide-react"
 export function AIIntegrationContent() {
   return (
     <>
-      <p className="lead text-xl text-slate-300">
+      <p className="lead text-xl text-slate-600 dark:text-slate-300">
         Look, I'll be honest with you. A couple of years ago, I thought AI was just hype. Another tech buzzword that
         would fade away. But after integrating AI solutions for dozens of clients, I've seen firsthand how it transforms
         businesses. And I'm not talking about replacing humans—I'm talking about making your team superhuman.
@@ -67,44 +67,44 @@ export function AIIntegrationContent() {
       <p>I've seen companies waste thousands on AI projects that go nowhere. Here's what I've learned works:</p>
 
       <div className="my-8 space-y-4">
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-purple-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Start Small and Specific</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Don't try to automate everything at once. Pick one repetitive task that's eating up time. Customer
               support? Lead qualification? Data entry? Start there.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-purple-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Use Proven Tools</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               I typically use OpenAI's GPT models, Anthropic's Claude, or specialized tools like Vercel's AI SDK. These
               are battle-tested and have great documentation. No need to reinvent the wheel.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-purple-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Keep Humans in the Loop</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               AI should assist, not replace. I always build in review processes where humans can check AI outputs and
               provide feedback. This keeps quality high and helps the AI learn.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-purple-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Measure Everything</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Track metrics before and after AI integration. Response times, customer satisfaction, time saved, revenue
               impact—whatever matters for your business. This helps you prove ROI and identify what's working.
             </p>
@@ -172,7 +172,7 @@ export function AIIntegrationContent() {
 export function WebDevelopmentContent() {
   return (
     <>
-      <p className="lead text-xl text-slate-300">
+      <p className="lead text-xl text-slate-600 dark:text-slate-300">
         I've been building websites professionally for years now, and I can tell you this: the difference between a good
         website and a great one isn't just how it looks. It's how fast it loads, how easy it is to use, and whether it
         actually helps your business grow. Let me show you what modern web development looks like in 2025.
@@ -241,11 +241,11 @@ export function WebDevelopmentContent() {
       <h2 className="mt-12 text-3xl font-bold">Performance Optimization: The Details That Matter</h2>
 
       <div className="my-8 space-y-4">
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-blue-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Image Optimization</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Images are usually the biggest files on your site. I use Next.js's Image component, which automatically
               serves the right size and format for each device. A mobile user gets a small WebP image, while a desktop
               user with a retina display gets a larger one. All automatic.
@@ -253,11 +253,11 @@ export function WebDevelopmentContent() {
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-blue-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Code Splitting</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Why load code for your admin dashboard when someone's just viewing your homepage? Next.js automatically
               splits your code so users only download what they need for the current page. This keeps initial load times
               fast.
@@ -265,22 +265,22 @@ export function WebDevelopmentContent() {
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-blue-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Edge Computing</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               I deploy most sites to Vercel's edge network. This means your site is served from a server close to your
               user, whether they're in New York or Tokyo. Lower latency = faster load times = happier users.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-blue-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Caching Strategies</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Smart caching can make your site feel instant. I use a combination of browser caching, CDN caching, and
               server-side caching to ensure frequently-accessed content loads immediately.
             </p>
@@ -366,7 +366,7 @@ export function WebDevelopmentContent() {
 export function StripePaymentContent() {
   return (
     <>
-      <p className="lead text-xl text-slate-300">
+      <p className="lead text-xl text-slate-600 dark:text-slate-300">
         I've integrated payment systems for everything from simple product sales to complex subscription platforms. And
         I can tell you this: getting payments right is crucial. A smooth checkout experience builds trust and maximizes
         conversions. A clunky one sends customers running. Let me show you how to do it right with Stripe.
@@ -419,11 +419,11 @@ export function StripePaymentContent() {
       </p>
 
       <div className="my-8 space-y-4">
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-emerald-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Flexible Billing Models</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Stripe supports monthly, annual, usage-based, tiered, and custom billing. Want to charge $10/month for the
               first 100 users, then $5/month for each additional user? Stripe can do that. Want to offer a free trial
               that automatically converts to paid? Easy.
@@ -431,22 +431,22 @@ export function StripePaymentContent() {
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-emerald-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Automatic Invoicing</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Stripe automatically generates and sends invoices to your customers. They can view their billing history,
               download receipts, and update their payment method—all without you lifting a finger.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-emerald-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Dunning Management</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Failed payments happen. Cards expire, banks decline transactions, customers forget to update their info.
               Stripe automatically retries failed payments and sends reminder emails. This alone can recover 30-40% of
               failed charges.
@@ -454,11 +454,11 @@ export function StripePaymentContent() {
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-emerald-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Proration</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               When customers upgrade or downgrade their plan mid-cycle, Stripe automatically calculates the prorated
               amount. No manual math required.
             </p>
@@ -584,7 +584,7 @@ export function StripePaymentContent() {
 export function SEOOptimizationContent() {
   return (
     <>
-      <p className="lead text-xl text-slate-300">
+      <p className="lead text-xl text-slate-600 dark:text-slate-300">
         SEO used to be about stuffing keywords and buying backlinks. Those days are long gone. Modern SEO is about
         building fast, well-structured websites that provide real value to users. And honestly? That's way more
         interesting. Let me show you what actually works in 2025.
@@ -708,55 +708,55 @@ export function SEOOptimizationContent() {
       <p>Once you have great content, you need to optimize it for search engines:</p>
 
       <div className="my-8 space-y-4">
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-orange-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Title Tags</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Your title tag is the most important on-page SEO element. I include the target keyword near the beginning
               and keep it under 60 characters so it doesn't get cut off in search results.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-orange-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Meta Descriptions</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               While meta descriptions don't directly affect rankings, they influence click-through rates. I write
               compelling descriptions that include the keyword and give people a reason to click.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-orange-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">URL Structure</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Clean, descriptive URLs rank better. I use /blog/seo-optimization-guide instead of /blog/post?id=12345.
               Include keywords when it makes sense, but keep URLs readable.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-orange-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Internal Linking</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               I link related pages together to help search engines understand your site structure and distribute ranking
               power. This also keeps users engaged longer.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-orange-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Image Optimization</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Every image needs descriptive alt text (for accessibility and SEO), a descriptive filename, and should be
               compressed for fast loading. I also use next-gen formats like WebP.
             </p>
@@ -840,7 +840,7 @@ export function SEOOptimizationContent() {
 export function DatabasePerformanceContent() {
   return (
     <>
-      <p className="lead text-xl text-slate-300">
+      <p className="lead text-xl text-slate-600 dark:text-slate-300">
         I've seen databases bring applications to their knees. A poorly designed schema, a missing index, or inefficient
         queries can turn a snappy app into a sluggish mess. But get it right, and your database becomes an asset that
         scales effortlessly. Let me share what I've learned from building databases that handle millions of records.
@@ -978,11 +978,11 @@ export function DatabasePerformanceContent() {
       <p>As your application grows, you'll need to scale your database. Here's how I approach it:</p>
 
       <div className="my-8 space-y-4">
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-indigo-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Connection Pooling</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Opening a database connection is expensive. Connection pooling reuses connections instead of creating new
               ones for every request. This dramatically improves performance under load. I use tools like PgBouncer or
               Supabase's built-in pooling.
@@ -990,22 +990,22 @@ export function DatabasePerformanceContent() {
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-indigo-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Caching</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Cache frequently-accessed data in Redis or in-memory. This reduces database load and makes reads blazing
               fast. I cache things like user sessions, popular content, and computed aggregations.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-indigo-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Read Replicas</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               For read-heavy applications, I set up read replicas—copies of the database that handle read queries.
               Writes go to the primary database, reads go to replicas. This distributes the load and improves
               performance.
@@ -1013,11 +1013,11 @@ export function DatabasePerformanceContent() {
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-indigo-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Partitioning</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               For very large tables, I use partitioning to split them into smaller chunks. For example, partitioning an
               orders table by date so each month is a separate partition. This makes queries faster because the database
               only scans relevant partitions.
@@ -1025,11 +1025,11 @@ export function DatabasePerformanceContent() {
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <Zap className="h-6 w-6 flex-shrink-0 text-indigo-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Vertical Scaling</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Sometimes the simplest solution is to upgrade your database server—more CPU, more RAM, faster storage.
               This works well up to a point and is often the easiest first step.
             </p>
@@ -1110,7 +1110,7 @@ export function DatabasePerformanceContent() {
 export function WebHostingContent() {
   return (
     <>
-      <p className="lead text-xl text-slate-300">
+      <p className="lead text-xl text-slate-600 dark:text-slate-300">
         I've deployed applications to every major hosting platform—AWS, Google Cloud, DigitalOcean, Heroku, Netlify, and
         more. But for modern web applications, Vercel is my go-to. It's not just hosting—it's a complete platform that
         makes deployment, scaling, and maintenance almost effortless. Let me explain why.
@@ -1158,66 +1158,66 @@ export function WebHostingContent() {
       <p>Here's what I love about Vercel's developer experience:</p>
 
       <div className="my-8 space-y-4">
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-slate-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Git Integration</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Connect your GitHub, GitLab, or Bitbucket repo, and every push deploys automatically. No manual deployment
               steps, no CI/CD configuration. It just works.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-slate-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Preview Deployments</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Every pull request gets its own preview URL. You can test changes in a production-like environment before
               merging. This makes code review way easier and catches bugs before they reach production.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-slate-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Instant Rollbacks</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Deployed a bug? No problem. Vercel keeps every deployment, and you can roll back to any previous version
               with one click. No stress, no downtime.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-slate-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Environment Variables</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Manage environment variables through the dashboard. Set different values for development, preview, and
               production. No more .env files in version control.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-slate-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Built-in Analytics</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               See real-time traffic, Core Web Vitals, and performance metrics without installing anything. Vercel
               Analytics is privacy-friendly and doesn't slow down your site.
             </p>
           </div>
         </div>
 
-        <div className="flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-6">
+        <div className="flex items-start gap-4 rounded-lg border border-slate-300 bg-slate-100/50 dark:border-slate-800 dark:bg-slate-900/50 p-6">
           <CheckCircle2 className="h-6 w-6 flex-shrink-0 text-slate-400 mt-1" />
           <div>
             <h4 className="font-semibold text-lg mb-2">Edge Functions</h4>
-            <p className="text-slate-300">
+            <p className="text-slate-600 dark:text-slate-300">
               Run server-side code at the edge, close to your users. This is perfect for API routes, authentication, and
               dynamic content that needs to be fast.
             </p>

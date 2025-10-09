@@ -7,8 +7,31 @@ export function SEOSchema() {
     name: `${siteConfig.name} - Freelance Development Services`,
     description: siteConfig.description,
     url: siteConfig.url,
-    telephone: siteConfig.phone,
     email: siteConfig.email,
+    image: `${siteConfig.url}/mo-headshot.jpg`,
+    sameAs: [siteConfig.social.linkedin, siteConfig.social.github, siteConfig.social.twitter],
+    jobTitle: "Freelance Full-Stack Developer",
+    worksFor: {
+      "@type": "Organization",
+      name: "Self-Employed",
+    },
+    knowsAbout: Array(
+      new Set([
+        "Web Development",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "PostgreSQL",
+        "MongoDB",
+        "Full-Stack Development",
+        "SaaS Development",
+        ...Object.values(siteConfig.skills)
+          .flat()
+          .map((s) => s.name),
+      ])
+    ),
     address: {
       "@type": "PostalAddress",
       addressLocality: "Remote",

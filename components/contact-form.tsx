@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { AlertCircle, CheckCircle, Send } from "lucide-react";
 import { useRef, useState } from "react";
+import { QuickConnectButtons } from "./quick-connect-buttons";
 import { Label } from "./ui/label";
 
 export function ContactForm() {
@@ -49,21 +50,22 @@ export function ContactForm() {
           <span>{formStatus.message}</span>
         </div>
       )}
-      <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-        <div>
+      <form ref={formRef} onSubmit={handleSubmit} className="space-y-3">
+        <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
           <Input id="name" name="name" placeholder="Your name" required />
         </div>
-        <div>
+
+        <div className="space-y-2">
           <Label htmlFor="email">Email</Label>
           <Input id="email" name="email" type="email" placeholder="your@email.com" required />
         </div>
 
-        <div>
+        <div className="space-y-2">
           <Label htmlFor="message">Message</Label>
           <Textarea id="message" name="message" placeholder="Tell me about your project..." rows={5} required />
         </div>
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button type="submit" className="w-full cursor-pointer" disabled={isSubmitting}>
           {isSubmitting ? (
             "Sending..."
           ) : (
@@ -74,6 +76,18 @@ export function ContactForm() {
           )}
         </Button>
       </form>
+
+      {/* Divider */}
+      <div className="relative py-3">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-slate-300 dark:border-slate-700"></div>
+        </div>
+        <div className="relative flex justify-center text-sm">
+          <span className="px-4 bg-slate-50 text-slate-600 dark:bg-slate-900 dark:text-slate-400 rounded-2xl">Or click one of the options below</span>
+        </div>
+      </div>
+
+      <QuickConnectButtons />
     </>
   );
 }
