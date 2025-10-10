@@ -4,12 +4,35 @@ import { AuthorCard } from "@/components/author-card";
 import { ContactDialog } from "@/components/contact-dialog";
 import MarkdownRenderer from "@/components/markdown-renderer";
 import { ShareDialog } from "@/components/share-dialog";
+import { siteConfig } from "@/lib/site-config";
 import { ArrowLeft, Calendar, Clock, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogPost } from "../post.util";
 
 export default function BlogPostClient({ post }: { post: BlogPost }) {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    image: [post.image],
+    datePublished: post.date,
+    author: {
+      "@type": "Person",
+      name: post.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      logo: {
+        "@type": "ImageObject",
+        url: post.url,
+      },
+    },
+    description: post.excerpt,
+    url: post.url,
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -66,7 +89,7 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
         {/* Content */}
         <div className="prose prose-invert prose-lg max-w-none">
           <MarkdownRenderer content={post.content} />
-          </div>
+        </div>
 
         {/* Author Card Section */}
         <div className="mt-16">
@@ -112,6 +135,11 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
           <ShareDialog title={post.title} description={post.excerpt} />
         </div>
       </article>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
     </>
   );
 }

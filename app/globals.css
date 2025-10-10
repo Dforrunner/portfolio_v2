@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
+
+/* Declare custom variants first */
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -500,4 +502,13 @@ html {
 
 .dark .bg-gradient-primary {
   @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white;
+}
+
+/* Remove bullet points from markdown checklists */
+.prose ul.contains-task-list {
+  @apply list-none pl-0;
+}
+
+.prose ul.contains-task-list li {
+  @apply pl-1;
 }

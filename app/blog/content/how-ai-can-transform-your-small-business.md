@@ -2,6 +2,7 @@
 title: "How AI Can Transform Your Small Business: A Comprehensive Guide to Success in 2025"
 excerpt: "Discover how AI automation can reduce operational costs by 40% and transform your customer experience. Learn the exact strategies top companies use."
 date: Jan 15, 2025
+author: Mo Barut
 category: AI & Automation
 readTime: 8 min read
 image: /ai-artificial-intelligence-neural-network-technolo.webp

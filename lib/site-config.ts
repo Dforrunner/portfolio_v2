@@ -8,6 +8,7 @@ import { LinkedinIcon, XIcon } from "react-share";
 
 export const siteConfig = {
   name: "Mo Barut",
+  siteName: 'Mo Barut - Full-Stack Developer & Tech Consultant',
   title: "Full-Stack Developer & Tech Consultant",
   shortDescription: "I help businesses leverage modern web technologies to build scalable, high-performance applications.",
   description:

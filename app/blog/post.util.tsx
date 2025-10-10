@@ -17,7 +17,8 @@ export interface BlogPostMetaData {
   image: string;
   gradient: string;
   featured: boolean;
-  [key: string]: any;
+  author: string;
+  url: string;
 }
 
 export interface BlogPost extends BlogPostMetaData {
@@ -41,8 +42,9 @@ export async function getAllPosts({
       const fileContents = fs.readFileSync(fullPath, "utf8");
 
       const { data, content } = matter(fileContents);
-console.log(data)
+
       return {
+        url: process.env.NEXT_PUBLIC_SITE_URL + `/blog/${slug}`,
         slug,
         title: data.title || slug,
         date: data.date || new Date().toISOString(),
@@ -52,7 +54,7 @@ console.log(data)
         image: data.image,
         gradient: data.gradient,
         featured: data.featured ?? false,
-        ...data,
+        author: data.author,
       };
     })
     .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1));
@@ -73,6 +75,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
   const { data, content } = matter(fileContents);
 
   return {
+    url: process.env.NEXT_PUBLIC_SITE_URL + `/blog/${slug}`,
     slug,
     title: data.title || slug,
     date: data.date || new Date().toISOString(),
@@ -83,6 +86,6 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     gradient: data.gradient,
     featured: data.featured ?? false,
     content,
-    ...data,
+    author: data.author,
   };
 }

@@ -1,159 +1,128 @@
 "use client";
 
-import React, { memo, Suspense } from "react";
+import { cn } from "@/lib/utils";
+import hljs from "highlight.js";
+import "highlight.js/styles/atom-one-dark.css";
+import React, { memo, useMemo } from "react";
+import ReactMarkdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import CopyButton from "./copy-button";
+import FileDownload from "./file-download";
+import VideoPlayer from "./video-player";
 
-// Props for your renderer
 interface MarkdownRendererProps {
   content: string;
   className?: string;
 }
 
-// Lazy-load heavy markdown modules only when needed
-const LazyMarkdown = React.lazy(async () => {
-  const [
-    { default: ReactMarkdown },
-    { default: remarkGfm },
-    { default: remarkMath },
-    { default: rehypeKatex },
-    { default: rehypeHighlight },
-    { default: rehypeSanitize },
-    { default: rehypeRaw },
-  ] = await Promise.all([
-    import("react-markdown"),
-    import("remark-gfm"),
-    import("remark-math"),
-    import("rehype-katex"),
-    import("rehype-highlight"),
-    import("rehype-sanitize"),
-    import("rehype-raw"),
-  ]);
+const CodeBlock = ({
+  language,
+  value,
+  className,
+}: {
+  language?: string;
+  value: string;
+  className: string;
+}) => {
+  // Pre-highlight before returning JSX
+  const highlighted = React.useMemo(() => {
+    if (language && hljs.getLanguage(language)) {
+      return hljs.highlight(value, { language }).value;
+    }
+    return hljs.highlightAuto(value).value;
+  }, [language, value]);
 
-  // Define custom renderers
-  const components = {
-    code({ className, children, ...props }: any) {
-      const match = /language-(\w+)/.exec(className || "");
-      return match ? (
-        <pre className="rounded-lg bg-zinc-900 text-zinc-100 p-4 overflow-x-auto text-sm">
-          <code className={className} {...props}>
-            {children}
-          </code>
-        </pre>
-      ) : (
-        <code className="bg-zinc-800 text-zinc-100 px-1.5 py-0.5 rounded-md" {...props}>
-          {children}
-        </code>
-      );
-    },
+  return (
+    <pre className="not-prose relative group rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-100 overflow-hidden pt-3">
+      {language && !["text", "plaintext"].includes(language) && (
+        <div className="absolute top-1 left-1 text-xs opacity-70">{language}</div>
+      )}
+      <CopyButton text={value} alwaysShow className="absolute top-1 right-1" />
+      <code
+        className={cn(className, "text-sm p-4 !bg-transparent hljs")}
+        dangerouslySetInnerHTML={{ __html: highlighted }}
+      />
+    </pre>
+  );
+};
 
-    a({ href, children, ...props }: any) {
-      const isYouTube = href && /youtu\.?be/.test(href);
-      const isTweet = href && /twitter\.com\/[^/]+\/status\/\d+/.test(href);
-      const isCodeSandbox = href && /codesandbox\.io/.test(href);
+const MarkdownRenderer: React.FC<MarkdownRendererProps> = memo(({ content, className }) => {
+  const components = useMemo(
+    () => ({
+      pre({ children }: any) {
+        return children;
+      },
+      code({ inline, className, children, ...props }: any) {
+        const language = /language-(\w+)/.exec(className || "")?.[1];
+        const codeString = String(children).trim();
 
-      // YouTube
-      if (isYouTube) {
-        const id = href.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{6,})/)?.[1];
-        if (id) {
+        if (inline) {
           return (
-            <div className="my-6 aspect-video w-full overflow-hidden rounded-xl shadow-lg">
-              <iframe
-                src={`https://www.youtube.com/embed/${id}`}
-                title="YouTube Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
+            <code className="bg-zinc-800/80 text-pink-400 px-1.5 py-0.5 rounded font-mono text-[0.9em]">
+              {children}
+            </code>
           );
         }
-      }
 
-      // Tweet
-      if (isTweet) {
         return (
-          <blockquote className="my-6 border-l-4 border-blue-500 pl-4 italic text-gray-600 dark:text-gray-300">
-            <a href={href} target="_blank" rel="noopener noreferrer">
-              View Tweet
-            </a>
-          </blockquote>
+          <CodeBlock language={language} value={codeString} className={className} {...props} />
         );
-      }
-
-      // CodeSandbox
-      if (isCodeSandbox) {
+      },
+      a({ href, children }: any) {
+        if (href?.match(/\.(mp4|webm|ogg)$/i))
+          return <VideoPlayer src={href} title={children?.toString() || "Video"} />;
+        if (href?.match(/\.(pdf|docx?|zip|rar|txt)$/i))
+          return <FileDownload src={href} title={children?.toString() || "File"} />;
         return (
-          <div className="my-6 rounded-xl overflow-hidden shadow-lg aspect-[4/3]">
-            <iframe
-              src={`${href}?fontsize=14&hidenavigation=1&theme=dark`}
-              title="CodeSandbox"
-              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-              className="w-full h-full"
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:text-blue-400 underline underline-offset-2 transition-colors"
+          >
+            {children}
+          </a>
+        );
+      },
+      img({ src, alt }: any) {
+        if (!src) return null;
+        if (src.match(/\.(mp4|webm|ogg)$/i))
+          return <VideoPlayer src={src} title={alt || "Video"} />;
+        return (
+          <figure className="my-8">
+            <img
+              src={src}
+              alt={alt ?? ""}
+              loading="lazy"
+              className="rounded-lg shadow-lg border border-zinc-800 max-w-full h-auto"
             />
-          </div>
+            {alt && (
+              <figcaption className="text-sm text-center text-gray-400 mt-3 italic">
+                {alt}
+              </figcaption>
+            )}
+          </figure>
         );
-      }
+      },
+    }),
+    []
+  );
 
-      // Default link
-      return (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 hover:underline"
-          {...props}
-        >
-          {children}
-        </a>
-      );
-    },
-
-    img({ src, alt, ...props }: any) {
-      if (!src) return null;
-      return (
-        <img
-          src={src}
-          alt={alt ?? ""}
-          loading="lazy"
-          className="rounded-lg shadow-md max-w-full h-auto"
-          {...props}
-        />
-      );
-    },
-  };
-
-  // Return wrapped markdown component with correct typing
-  const MarkdownComponent: React.FC<MarkdownRendererProps> = ({ content, className }) => (
-    <div
-      className={`prose prose-neutral dark:prose-invert max-w-none prose-img:rounded-xl prose-headings:font-semibold ${className ?? ""}`}
-    >
+  return (
+    <div className={cn("prose prose-neutral dark:prose-invert max-w-none", className)}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkMath]}
-        rehypePlugins={[rehypeKatex, rehypeHighlight, rehypeSanitize, rehypeRaw]}
-        components={components as any}
+        rehypePlugins={[rehypeKatex, rehypeRaw]}
+        components={components}
       >
         {content}
       </ReactMarkdown>
     </div>
   );
-
-  return { default: MarkdownComponent };
-});
-
-const MarkdownRenderer: React.FC<MarkdownRendererProps> = memo(({ content, className }) => {
-  return (
-    <Suspense
-      fallback={
-        <div className="animate-pulse text-gray-500 dark:text-gray-400">
-          Rendering markdown...
-        </div>
-      }
-    >
-      <LazyMarkdown content={content} className={className} />
-    </Suspense>
-  );
 });
 
 MarkdownRenderer.displayName = "MarkdownRenderer";
-
 export default MarkdownRenderer;

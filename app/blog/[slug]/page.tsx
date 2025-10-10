@@ -1,8 +1,8 @@
+import { siteConfig } from "@/lib/site-config";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-// import { blogPosts } from "../blog-posts";
-import { siteConfig } from "@/lib/site-config";
 import { getPostBySlug } from "../post.util";
+
 import {
   AIIntegrationContent,
   DatabasePerformanceContent,
@@ -30,18 +30,17 @@ export async function generateMetadata({
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://mobarut.dev";
-  const postUrl = `${siteUrl}/blog/${post.slug}`;
   const imageUrl = `${siteUrl}${post.image}`;
 
   return {
     title: post.title,
     description: post.excerpt,
-    authors: [{ name: "Your Name" }],
+    authors: [{ name: post.author}],
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: postUrl,
-      siteName: "Full Stack Developer Portfolio",
+      url: post.url,
+      siteName: siteConfig.siteName,
       images: [
         {
           url: imageUrl,
@@ -60,10 +59,10 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt,
       images: [imageUrl],
-      creator: "@yourusername",
+      creator: siteConfig.social.twitter.username,
     },
     alternates: {
-      canonical: postUrl,
+      canonical: post.url,
     },
   };
 }
