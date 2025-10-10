@@ -3,6 +3,7 @@ import { Navigation } from "@/components/navigation";
 import { SEOSchema } from "@/components/seo-schema";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/site-config";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import type React from "react";
@@ -70,7 +71,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} - ${siteConfig.title}`,
     description: siteConfig.description,
-    creator: siteConfig.social.twitter.username,
+    creator: siteConfig.account.twitter.username,
     images: [siteConfig.ogImage],
   },
   robots: {
@@ -99,14 +100,21 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href={siteConfig.url} />
       </head>
-      <body className="font-sans antialiased min-h-screen bg-gradient-primary overflow-x-hidden">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <body className="font-sans antialiased min-h-screen bg-gradient-primary overflow-x-hidden relative">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Navigation />
           {children}
           <Footer />
         </ThemeProvider>
 
         <SEOSchema />
+
+        {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-NJD8KNDYFS" />}
       </body>
     </html>
   );
