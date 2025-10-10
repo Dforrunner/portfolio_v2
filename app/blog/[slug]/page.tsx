@@ -35,7 +35,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
-    authors: [{ name: post.author}],
+    authors: [{ name: post.author }],
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -59,7 +59,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt,
       images: [imageUrl],
-      creator: siteConfig.social.twitter.username,
+      creator: siteConfig.account.twitter.username,
     },
     alternates: {
       canonical: post.url,

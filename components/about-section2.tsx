@@ -1,8 +1,8 @@
 "use client";
 
 import { Award, Code2, Heart, Rocket, Target, TrendingUp, Users, Zap } from "lucide-react";
-import { useState } from "react";
 import { GlassCard } from "./glass-card";
+import TextClamp from "./text-clamp";
 
 const skills = [
   {
@@ -39,8 +39,6 @@ const stats = [
 ];
 
 export function AboutSection2() {
-  const [hoveredSkill, setHoveredSkill] = useState<number | null>(null);
-
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       {/* Stats Section */}
@@ -54,7 +52,9 @@ export function AboutSection2() {
 
               <div className="relative">
                 <Icon className="mb-4 h-8 w-8 text-blue-400 transition-transform duration-500 group-hover:scale-110" />
-                <div className="mb-2 text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">{stat.number}</div>
+                <div className="mb-2 text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  {stat.number}
+                </div>
                 <div className="text-sm text-slate-500 dark:text-slate-400">{stat.label}</div>
               </div>
             </GlassCard>
@@ -65,10 +65,20 @@ export function AboutSection2() {
       {/* Skills Section */}
       <div className="mb-20">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-4xl font-bold tracking-tight text-balance">
-            What I Bring to <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">The Table</span>
-          </h2>
-          <p className="mx-auto max-w-2xl text-lg text-slate-400 text-pretty leading-relaxed">A comprehensive skill set focused on delivering exceptional results</p>
+          <TextClamp
+            maxFont={38}
+            minFont={30}
+            as="h2"
+            className="mb-4 font-bold tracking-tight text-balance"
+          >
+            What I Bring to{" "}
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              The Table
+            </span>
+          </TextClamp>
+          <p className="mx-auto max-w-2xl text-lg text-slate-400 text-pretty leading-relaxed">
+            A comprehensive skill set focused on delivering exceptional results
+          </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -77,13 +87,17 @@ export function AboutSection2() {
             return (
               <GlassCard key={index}>
                 {/* Icon */}
-                <div className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${skill.color} p-3 shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+                <div
+                  className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${skill.color} p-3 shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}
+                >
                   <Icon className="h-6 w-6 text-white" />
                 </div>
 
                 {/* Content */}
                 <h3 className="mb-2 text-lg font-bold text-balance">{skill.title}</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-pretty">{skill.description}</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-pretty">
+                  {skill.description}
+                </p>
               </GlassCard>
             );
           })}
@@ -92,35 +106,52 @@ export function AboutSection2() {
 
       {/* Story Section */}
       <div className="mb-20">
-        <div className="relative overflow-hidden rounded-3xl border border-slate-300 dark:bg-slate-900/50 p-12 backdrop-blur-sm">
+        <div className="relative overflow-hidden rounded-3xl border border-slate-300 dark:bg-slate-900/50 p-3 lg:p-12 backdrop-blur-sm">
           {/* Gradient Background */}
           <div className="absolute -left-32 -top-32 h-64 w-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 opacity-10 blur-3xl" />
           <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-gradient-to-br from-cyan-500 to-emerald-500 opacity-10 blur-3xl" />
 
           <div className="relative">
             <h2 className="mb-6 text-3xl font-bold text-balance">
-              My <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Approach</span>
+              My{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Approach
+              </span>
             </h2>
 
-            <div className="space-y-4 text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+            <div className="space-y-4 md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
               <p>
-                I believe great software is more than just code—it's about solving real problems and creating experiences that users love. Every project I take on is an opportunity to push boundaries
-                and deliver something exceptional.
+                I believe great software is more than just code—it's about solving real problems and
+                creating experiences that users love. Every project I take on is an opportunity to
+                push boundaries and deliver something exceptional.
               </p>
 
               <p>
-                My process is collaborative and transparent. I work closely with clients to understand their vision, provide regular updates, and ensure the final product exceeds expectations. Whether
-                you're a startup looking to launch your MVP or an established business scaling your platform, I bring the technical expertise and business acumen to make it happen.
+                My process is collaborative and transparent. I work closely with clients to
+                understand their vision, provide regular updates, and ensure the final product
+                exceeds expectations. Whether you're a startup looking to launch your MVP or an
+                established business scaling your platform, I bring the technical expertise and
+                business acumen to make it happen.
               </p>
 
               <p>
-                When I'm not coding, I'm staying up-to-date with the latest technologies, contributing to open-source projects, and helping other developers grow. I'm passionate about what I do, and
-                it shows in the quality of my work.
+                When I'm not coding, I'm staying up-to-date with the latest technologies,
+                contributing to open-source projects, and helping other developers grow. I'm
+                passionate about what I do, and it shows in the quality of my work.
               </p>
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "AI/ML", "Stripe", "Vercel"].map((tech, index) => (
+              {[
+                "React",
+                "Next.js",
+                "TypeScript",
+                "Node.js",
+                "PostgreSQL",
+                "AI/ML",
+                "Stripe",
+                "Vercel",
+              ].map((tech, index) => (
                 <span
                   key={index}
                   className="rounded-full border border-slate-500 bg-slate-100 dark:bg-slate-800/50 px-4 py-2 text-sm dark:text-slate-300 backdrop-blur-sm transition-all duration-300 hover:border-slate-600 hover:bg-slate-700/80 hover:text-white"

@@ -59,20 +59,40 @@ export function SkillsSection() {
   return (
     <section ref={sectionRef} id="skills" className="py-20">
       <div className="container mx-auto px-4">
-        <div className={`transition-all duration-1000 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+        <div
+          className={`transition-all duration-1000 ${
+            isVisible ? "animate-fade-in-up" : "opacity-0"
+          }`}
+        >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-scale-in">
-              Skills & <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Expertise</span>
+              Skills &{" "}
+              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                Expertise
+              </span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animate-stagger-2">Technologies and tools I use to bring ideas to life</p>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animate-stagger-2">
+              Technologies and tools I use to bring ideas to life
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3 lg:gap-6">
             {skillCategories.map((category, categoryIndex) => (
-              <GlassCard key={categoryIndex} innerGlowColor={category.innerGlow} bgGlowColor={category.bgGlow}>
+              <GlassCard
+                key={categoryIndex}
+                innerGlowColor={category.innerGlow}
+                bgGlowColor={category.bgGlow}
+                className="py-3 px-0"
+              >
                 <CardHeader className="text-center pb-4">
-                  <category.icon className={`h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 ${category.color} animate-bounce-in animate-stagger-${categoryIndex + 1}`} />
-                  <CardTitle className="text-xl sm:text-2xl animate-fade-in-up animate-stagger-2">{category.title}</CardTitle>
+                  <category.icon
+                    className={`h-10 w-10 sm:h-12 sm:w-12 mx-auto mb-3 sm:mb-4 ${
+                      category.color
+                    } animate-bounce-in animate-stagger-${categoryIndex + 1}`}
+                  />
+                  <CardTitle className="text-xl md:text-2xl animate-fade-in-up animate-stagger-2">
+                    {category.title}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-0">
                   <div className="grid grid-cols-1 gap-2 sm:gap-3">
@@ -80,11 +100,16 @@ export function SkillsSection() {
                       <div
                         key={skillIndex}
                         className={`flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-gradient-primary transition-all duration-300 hover-lift ${
-                          animateSkills ? `animate-fade-in-left animate-stagger-${skillIndex + 1}` : "opacity-0"
+                          animateSkills
+                            ? `animate-fade-in-left animate-stagger-${skillIndex + 1}`
+                            : "opacity-0"
                         }`}
                         style={{ animationDelay: `${categoryIndex * 0.2 + skillIndex * 0.1}s` }}
                       >
-                        <span className="text-xl sm:text-2xl animate-bounce-in flex-shrink-0" style={{ animationDelay: `${categoryIndex * 0.3 + skillIndex * 0.1}s` }}>
+                        <span
+                          className="text-xl sm:text-2xl animate-bounce-in flex-shrink-0"
+                          style={{ animationDelay: `${categoryIndex * 0.3 + skillIndex * 0.1}s` }}
+                        >
                           {skill.icon({})}
                         </span>
                         <span className="font-medium text-base sm:text-lg">{skill.name}</span>

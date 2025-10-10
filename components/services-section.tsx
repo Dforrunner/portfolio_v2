@@ -135,7 +135,7 @@ export default function ServicesSection() {
   const [selectedService, setSelectedService] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen " id="services">
+    <div className="min-h-screen" id="services">
       <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-16 text-center">
@@ -148,7 +148,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Services Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -260,13 +260,13 @@ export default function ServicesSection() {
                 </div>
 
                 {/* CTA Button */}
-                <div className="pt-4 border-t border-slate-800">
+                {/* <div className="pt-4 border-t border-slate-800">
                   <button
                     className={`w-full rounded-lg bg-gradient-to-r ${services[selectedService].color} px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl`}
                   >
                     Get Started with {services[selectedService].title}
                   </button>
-                </div>
+                </div> */}
               </div>
             </>
           )}

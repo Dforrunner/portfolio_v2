@@ -1,6 +1,6 @@
 import { Brain, Code2, CreditCard, Database, Github, Search, Server } from "lucide-react";
 import { BiLogoPostgresql } from "react-icons/bi";
-import { FaGitAlt, FaHtml5, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
+import { FaGitAlt, FaGoogle, FaHtml5, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
 import { IoLogoFigma, IoLogoVercel } from "react-icons/io5";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { SiCanva, SiTypescript } from "react-icons/si";
@@ -8,9 +8,10 @@ import { LinkedinIcon, XIcon } from "react-share";
 
 export const siteConfig = {
   name: "Mo Barut",
-  siteName: 'Mo Barut - Full-Stack Developer & Tech Consultant',
+  siteName: "Mo Barut - Full-Stack Developer & Tech Consultant",
   title: "Full-Stack Developer & Tech Consultant",
-  shortDescription: "I help businesses leverage modern web technologies to build scalable, high-performance applications.",
+  shortDescription:
+    "I help businesses leverage modern web technologies to build scalable, high-performance applications.",
   description:
     "I help businesses leverage modern web technologies to build scalable, high-performance applications. With 6+ years of experience in full-stack development, I specialize in modern web app development, seo, AI integration, payment systems, and cloud architecture.",
   description2:
@@ -29,7 +30,7 @@ export const siteConfig = {
     telegram: "@mobarut",
     line: "mobarut",
   },
-  social: {
+  account: {
     github: {
       username: "@dforrunner",
       url: "https://github.com/Dforrunner",
@@ -45,6 +46,11 @@ export const siteConfig = {
       url: "https://x.com/dforrunner?s=21",
       icon: XIcon,
     },
+    googleDev: {
+      username: 'mobarut',
+      url: 'http://g.dev/mobarut',
+      icon: FaGoogle
+    }
   },
   navigation: [
     { name: "About", href: "/#about" },
@@ -92,7 +98,12 @@ export const siteConfig = {
         "Modern UI/UX that converts visitors into customers",
         "Clean, maintainable code following industry best practices",
       ],
-      deliverables: ["Fully responsive web application", "Source code and documentation", "Deployment to production", "Post-launch support"],
+      deliverables: [
+        "Fully responsive web application",
+        "Source code and documentation",
+        "Deployment to production",
+        "Post-launch support",
+      ],
     },
     {
       icon: Brain,
@@ -111,7 +122,12 @@ export const siteConfig = {
         "Seamless integration with OpenAI, Anthropic, and more",
         "Custom AI solutions tailored to your specific needs",
       ],
-      deliverables: ["AI-powered features integrated into your app", "Custom prompts and fine-tuning", "API integration and optimization", "Training and documentation"],
+      deliverables: [
+        "AI-powered features integrated into your app",
+        "Custom prompts and fine-tuning",
+        "API integration and optimization",
+        "Training and documentation",
+      ],
     },
     {
       icon: CreditCard,
@@ -130,7 +146,12 @@ export const siteConfig = {
         "Support for multiple currencies and payment methods",
         "Webhook integration for automated workflows",
       ],
-      deliverables: ["Complete payment system integration", "Checkout flow and payment forms", "Subscription management dashboard", "Payment webhook handlers"],
+      deliverables: [
+        "Complete payment system integration",
+        "Checkout flow and payment forms",
+        "Subscription management dashboard",
+        "Payment webhook handlers",
+      ],
     },
     {
       icon: Search,
@@ -149,7 +170,12 @@ export const siteConfig = {
         "XML sitemaps and robots.txt configuration",
         "Performance optimization for faster load times",
       ],
-      deliverables: ["Complete SEO audit and recommendations", "Technical SEO implementation", "Performance optimization", "Analytics and tracking setup"],
+      deliverables: [
+        "Complete SEO audit and recommendations",
+        "Technical SEO implementation",
+        "Performance optimization",
+        "Analytics and tracking setup",
+      ],
     },
     {
       icon: Database,
@@ -168,7 +194,12 @@ export const siteConfig = {
         "Optimized queries for lightning-fast performance",
         "Seamless data migration from existing systems",
       ],
-      deliverables: ["Database schema design and implementation", "API endpoints for data access", "Data migration scripts", "Database documentation"],
+      deliverables: [
+        "Database schema design and implementation",
+        "API endpoints for data access",
+        "Data migration scripts",
+        "Database documentation",
+      ],
     },
     {
       icon: Server,
@@ -187,18 +218,24 @@ export const siteConfig = {
         "Automated backups and version control",
         "Priority support for critical issues",
       ],
-      deliverables: ["Production deployment on Vercel", "CI/CD pipeline setup", "Monitoring and alerting", "Monthly maintenance reports"],
+      deliverables: [
+        "Production deployment on Vercel",
+        "CI/CD pipeline setup",
+        "Monitoring and alerting",
+        "Monthly maintenance reports",
+      ],
     },
   ],
   projects: [
     {
       id: 1,
       title: "BargoProCare - Business Website",
-      description: "Custom business website that is SEO optimized, with online booking, quote generation, automated emails, scheduling, progress tracking and more",
+      description:
+        "Custom business website that is SEO optimized, with online booking, quote generation, automated emails, scheduling, progress tracking and more",
       image: "/bargoprocare-landing.webp",
       technologies: ["Next.js", "PostgreSQL", "Tailwind", "Mailgun", "NextAuth"],
       live: "https://bargo.moproserv.com",
-      github: '',
+      github: "",
       featured: true,
     },
   ],

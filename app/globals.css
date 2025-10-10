@@ -2,7 +2,6 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
-
 /* Declare custom variants first */
 @custom-variant dark (&:is(.dark *));
 
@@ -54,7 +53,7 @@
 
 .dark {
   /* Dark mode with steel blue theme and vibrant accents */
-  --background: oklch(0.145 0 0);
+  --background: oklch(21.927% 0.10814 272.993);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -168,6 +167,29 @@
     }
   100% {
     transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }
+  --animate-aurora: aurora 8s ease-in-out infinite alternate;
+  @keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
+    }
+  25% {
+    background-position: 50% 100%;
+    transform: rotate(5deg) scale(1.1);
+    }
+  50% {
+    background-position: 100% 50%;
+    transform: rotate(-3deg) scale(0.95);
+    }
+  75% {
+    background-position: 50% 0%;
+    transform: rotate(3deg) scale(1.05);
+    }
+  100% {
+    background-position: 0% 50%;
+    transform: rotate(-5deg) scale(0.9);
     }
   }}
 
@@ -512,3 +534,16 @@ html {
 .prose ul.contains-task-list li {
   @apply pl-1;
 }
+
+
+/* What is causing overflow */
+
+/* html, body {
+  outline: 2px solid limegreen; 
+  overflow-x: hidden; 
+}
+
+* {
+  outline: 1px solid rgba(0, 255, 17, 0.2); 
+} */
+/* end */

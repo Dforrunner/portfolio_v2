@@ -9,7 +9,7 @@ export function SEOSchema() {
     url: siteConfig.url,
     email: siteConfig.email,
     image: `${siteConfig.url}/mo-headshot.jpg`,
-    sameAs: [siteConfig.social.linkedin, siteConfig.social.github, siteConfig.social.twitter],
+    sameAs: [siteConfig.account.linkedin, siteConfig.account.github, siteConfig.account.twitter],
     jobTitle: "Freelance Full-Stack Developer",
     worksFor: {
       "@type": "Organization",
