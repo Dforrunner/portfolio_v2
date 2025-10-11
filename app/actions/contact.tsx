@@ -71,7 +71,6 @@ export async function sendContactMessage(formData: FormData) {
       }
     }
 
-    // console.log("Email sent successfully:", data?.id)
     return {
       success: true,
       message: "Thank you for your message! I'll get back to you within 24 hours.",

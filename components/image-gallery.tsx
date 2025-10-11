@@ -23,7 +23,6 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openLightbox = (index: number) => {
-    console.log("[v0] Opening lightbox for image:", index, images[index]);
     setSelectedIndex(index);
     setIsOpen(true);
   };
@@ -137,8 +136,6 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
                     className="object-contain"
                     priority
                     sizes="95vw"
-                    onLoad={() => console.log("[v0] Image loaded:", images[selectedIndex].url)}
-                    onError={(e) => console.log("[v0] Image error:", e, images[selectedIndex].url)}
                   />
                 </div>
               </div>

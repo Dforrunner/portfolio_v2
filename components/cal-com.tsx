@@ -15,8 +15,6 @@ export default function CalCom() {
         theme: isDark ? "dark" : "light",
       });
     })();
-
-    console.log({ isDark });
   }, [isDark]);
 
   return (
