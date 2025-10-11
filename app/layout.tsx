@@ -100,7 +100,7 @@ export default function RootLayout({
       <head>
         <link rel="canonical" href={siteConfig.url} />
       </head>
-      <body className="font-sans antialiased min-h-screen bg-gradient-primary overflow-x-hidden relative">
+      <body className="font-sans antialiased min-h-screen bg-gradient-primary relative">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

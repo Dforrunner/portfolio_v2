@@ -1,117 +1,148 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Code, Users, Award, Zap } from "lucide-react";
-import { siteConfig } from "@/lib/site-config";
+import { Award, Code2, Heart, Rocket, Target, TrendingUp, Users, Zap } from "lucide-react";
+import { GlassCard } from "./glass-card";
+import TextClamp from "./text-clamp";
+
+const skills = [
+  {
+    icon: Code2,
+    title: "Full-Stack Development",
+    description: "React, Next.js, TypeScript, Node.js, PostgreSQL",
+    color: "from-blue-500 to-cyan-500",
+  },
+  {
+    icon: Zap,
+    title: "Modern Technologies",
+    description: "AI Integration, Serverless, Edge Computing",
+    color: "from-purple-500 to-pink-500",
+  },
+  {
+    icon: Rocket,
+    title: "Performance Optimization",
+    description: "Core Web Vitals, SEO, Lighthouse Scores",
+    color: "from-emerald-500 to-teal-500",
+  },
+  {
+    icon: Target,
+    title: "Business Focus",
+    description: "ROI-driven solutions that drive growth",
+    color: "from-orange-500 to-red-500",
+  },
+];
+
+const stats = [
+  { number: "80+", label: "Projects Delivered", icon: Award },
+  { number: "100%", label: "Client Satisfaction", icon: Heart },
+  { number: "6+", label: "Years Experience", icon: TrendingUp },
+  { number: "24/7", label: "Support Available", icon: Users },
+];
 
 export function AboutSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [animateStats, setAnimateStats] = useState(false);
-  const [animateHighlights, setAnimateHighlights] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          setTimeout(() => setAnimateStats(true), 400);
-          setTimeout(() => setAnimateHighlights(true), 600);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const stats = [
-    { icon: Code, label: "Experience", value: siteConfig.about.experience },
-    {
-      icon: Award,
-      label: "Projects",
-      value: siteConfig.about.projectsCompleted,
-    },
-    { icon: Users, label: "Clients", value: siteConfig.about.clientsSatisfied },
-    { icon: Zap, label: "Technologies", value: "15+" },
-  ];
-
   return (
-    <section ref={sectionRef} id="about" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div
-          className={`transition-all duration-1000 ${
-            isVisible ? "animate-fade-in-up" : "opacity-0"
-          }`}
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-scale-in">
-              About Mo
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto animate-fade-in-up animate-stagger-2">
-              Your trusted partner for building scalable web solutions that
-              drive business growth
-            </p>
-          </div>
+    <div className="mx-auto container px-4 py-5">
+      {/* Stats Section */}
+      <div className="mb-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {stats.map((stat, index) => {
+          const Icon = stat.icon;
+          return (
+            <GlassCard key={index}>
+              {/* Gradient Background */}
+              <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20" />
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-lg leading-relaxed mb-8 text-muted-foreground animate-fade-in-left animate-stagger-3">
-                {siteConfig.about.bio}
+              <div className="relative">
+                <Icon className="mb-4 h-8 w-8 text-blue-400 transition-transform duration-500 group-hover:scale-110" />
+                <div className="mb-2 text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-slate-500 dark:text-slate-400">{stat.label}</div>
+              </div>
+            </GlassCard>
+          );
+        })}
+      </div>
+
+      {/* Skills Section */}
+      <div className="mb-20">
+        <div className="mb-12 text-center">
+          <TextClamp
+            maxFont={38}
+            minFont={30}
+            as="h2"
+            className="mb-4 font-bold tracking-tight text-balance"
+          >
+            What I Bring to{" "}
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              The Table
+            </span>
+          </TextClamp>
+          <p className="mx-auto max-w-2xl text-lg text-slate-400 text-pretty leading-relaxed">
+            A comprehensive skill set focused on delivering exceptional results
+          </p>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {skills.map((skill, index) => {
+            const Icon = skill.icon;
+            return (
+              <GlassCard key={index}>
+                {/* Icon */}
+                <div
+                  className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${skill.color} p-3 shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6`}
+                >
+                  <Icon className="h-6 w-6 text-white" />
+                </div>
+
+                {/* Content */}
+                <h3 className="mb-2 text-lg font-bold text-balance">{skill.title}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed text-pretty">
+                  {skill.description}
+                </p>
+              </GlassCard>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Story Section */}
+      <div className="mb-20">
+        <div className="relative overflow-hidden rounded-3xl border border-slate-300 dark:bg-slate-900/50 p-3 lg:p-12 backdrop-blur-sm">
+          {/* Gradient Background */}
+          <div className="absolute -left-32 -top-32 h-64 w-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 opacity-10 blur-3xl" />
+          <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-gradient-to-br from-cyan-500 to-emerald-500 opacity-10 blur-3xl" />
+
+          <div className="relative">
+            <h2 className="mb-6 text-3xl font-bold text-balance">
+              My{" "}
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Approach
+              </span>
+            </h2>
+
+            <div className="space-y-4 md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+              <p>
+                I believe great software is more than just code—it's about solving real problems and
+                creating experiences that users love. Every project I take on is an opportunity to
+                push boundaries and deliver something exceptional.
               </p>
 
-              <div className="space-y-4 mb-8">
-                <h3 className="text-2xl font-semibold mb-4 animate-fade-in-left animate-stagger-4">
-                  Why Choose Mo?
-                </h3>
-                {siteConfig.about.highlights.map((highlight, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-start space-x-3 ${
-                      animateHighlights
-                        ? `animate-fade-in-left animate-stagger-${index + 1}`
-                        : "opacity-0"
-                    }`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0 animate-pulse-glow" />
-                    <p className="text-muted-foreground">{highlight}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+              <p>
+                My process is collaborative and transparent. I work closely with clients to
+                understand their vision, provide regular updates, and ensure the final product
+                exceeds expectations. Whether you're a startup looking to launch your MVP or an
+                established business scaling your platform, I bring the technical expertise and
+                business acumen to make it happen.
+              </p>
 
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <Card
-                  key={index}
-                  className={`text-center hover:shadow-lg transition-all duration-300 hover-lift hover-glow ${
-                    animateStats
-                      ? `animate-bounce-in animate-stagger-${index + 1}`
-                      : "opacity-0"
-                  }`}
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <CardContent className="p-6">
-                    <stat.icon className="h-8 w-8 text-primary mx-auto mb-4 animate-bounce-in hover:animate-rotate-glow transition-all duration-300" />
-                    <div className="text-3xl font-bold text-primary mb-2 animate-scale-in">
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-muted-foreground animate-fade-in-up">
-                      {stat.label}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+              <p>
+                When I'm not coding, I'm staying up-to-date with the latest technologies,
+                contributing to open-source projects, and helping other developers grow. I'm
+                passionate about what I do, and it shows in the quality of my work.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

@@ -1,10 +1,9 @@
 "use client";
 
 import { BlogPostMetaData, getAllPosts } from "@/app/blog/post.util";
-import { ArrowRight, Calendar, Clock, TrendingUp } from "lucide-react";
+import { ArrowRight, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
-import { ContactDialog } from "./contact-dialog";
 import { Loading } from "./loading";
 
 interface Props {
@@ -12,7 +11,7 @@ interface Props {
 }
 export default function BlogSection({ featuredOnly }: Props) {
   const [loading, setLoading] = useState(true);
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [posts, setPosts] = useState<BlogPostMetaData[]>([]);
 
   const fetchPosts = useCallback(async () => {
@@ -30,13 +29,10 @@ export default function BlogSection({ featuredOnly }: Props) {
     fetchPosts();
   }, []);
 
-  if (loading) {
-    return <Loading className="pt-28" />;
-  }
-  
+
   return (
-    <section id="blogs">
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <section id="blog">
+      <div className="mx-auto container p-3 py-20 ">
         {/* Header */}
         <div className="mb-16 text-center">
           <h1 className="mb-4 text-5xl font-bold tracking-tight text-balance">
@@ -51,14 +47,16 @@ export default function BlogSection({ featuredOnly }: Props) {
           </p>
         </div>
 
+        {loading && <Loading />}
+
         {/* Blog Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
           {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
               className="group relative block"
-              onMouseEnter={() => setHoveredId(post.id)}
+              onMouseEnter={() => setHoveredId(post.slug)}
               onMouseLeave={() => setHoveredId(null)}
             >
               <article className="relative h-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-slate-400  dark:hover:border-slate-700 hover:shadow-2xl hover:shadow-slate-900/50">
@@ -113,7 +111,7 @@ export default function BlogSection({ featuredOnly }: Props) {
                     </span>
                     <ArrowRight
                       className={`h-4 w-4 transition-transform duration-300 ${
-                        hoveredId === post.id ? "translate-x-1" : ""
+                        hoveredId === post.slug ? "translate-x-1" : ""
                       }`}
                     />
                   </div>
@@ -126,26 +124,6 @@ export default function BlogSection({ featuredOnly }: Props) {
               </article>
             </Link>
           ))}
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-20 rounded-2xl border border-slate-300 dark:border-slate-800  dark:bg-slate-900/50 p-12 text-center backdrop-blur-sm">
-          <TrendingUp className="mx-auto mb-4 h-12 w-12 text-blue-400" />
-          <h2 className="mb-4 text-3xl font-bold text-balance">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-slate-400 leading-relaxed text-pretty">
-            Let's discuss how custom web development, AI integration, and modern tech solutions can
-            drive your business forward.
-          </p>
-          <ContactDialog
-            trigger={
-              <button className="group relative overflow-hidden rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50 cursor-pointer">
-                <span className="relative z-10">Schedule a Free Consultation</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              </button>
-            }
-          />
         </div>
       </div>
     </section>

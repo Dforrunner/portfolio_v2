@@ -14,13 +14,13 @@ const projectTypeLabels: Record<ProjectType, string> = {
   "open-source": "Open Source",
 }
 
-export function ProjectsSection() {
+export function ProjectsSection2() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const featuredProjects = getFeaturedProjects()
 
   return (
-    <div className="min-h-screen bg-gradient-services text-services-primary" id="projects">
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <div className="min-h-screen" id="projects">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-5xl font-bold tracking-tight text-balance">

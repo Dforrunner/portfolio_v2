@@ -294,13 +294,13 @@ const mockProjects: Project[] = [
 export const projects: Project[] = [
   {
     id: 6,
-    slug: "bargoprosrv-website",
-    title: "BargoProServ Website",
+    slug: "bargoprocare-website",
+    title: "BargoProCare Website",
     tagline: "Streamlined scheduling, quotes, and client management",
     description:
-      "A comprehensive Next.js website for BargoProServ with PostgreSQL, Prisma, and TailwindCSS. Includes multiple contact options, online quote builder, scheduler, admin dashboard, and automated client communications.",
+      "A comprehensive Next.js website for BargoProCare with PostgreSQL, Prisma, and TailwindCSS. Includes multiple contact options, online quote builder, scheduler, admin dashboard, and automated client communications.",
     longDescription:
-      "BargoProServ's website is designed to automate most administrative tasks for the business, including quotes, scheduling, and client communication. The site allows clients to contact the company via multiple channels (call, email, SMS, online contact form) and generate instant quotes online. Once a quote is accepted, clients can schedule appointments using a calendar that only shows available time slots to avoid overlaps. The admin dashboard provides full control over quotes, appointments, and user roles. Admins can update schedules, set availability, block dates, and manage employees. Automated emails are sent to clients for confirmations, updates, and reminders, including custom options to reschedule or cancel bookings online. The system ensures seamless communication and scheduling, letting the business focus on providing services rather than administrative tasks.",
+      "BargoProCare's website is designed to automate most administrative tasks for the business, including quotes, scheduling, and client communication. The site allows clients to contact the company via multiple channels (call, email, SMS, online contact form) and generate instant quotes online. Once a quote is accepted, clients can schedule appointments using a calendar that only shows available time slots to avoid overlaps. The admin dashboard provides full control over quotes, appointments, and user roles. Admins can update schedules, set availability, block dates, and manage employees. Automated emails are sent to clients for confirmations, updates, and reminders, including custom options to reschedule or cancel bookings online. The system ensures seamless communication and scheduling, letting the business focus on providing services rather than administrative tasks.",
     type: "web-app",
     featured: true,
     gradient: "from-green-500 to-teal-500",

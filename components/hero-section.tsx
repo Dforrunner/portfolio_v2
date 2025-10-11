@@ -28,8 +28,8 @@ export function HeroSection() {
   };
 
   return (
-    <section className="min-h-screen max-h-screen flex items-center justify-center relative text-foreground overflow-hidden">
-      <div className="absolute inset-0 ">
+    <section className="h-screen flex items-center justify-center relative text-foreground overflow-x-hidden">
+      <div className="absolute inset-0 overflow-x-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full animate-float hover-glow" />
         <div
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/5 rounded-full animate-rotate-glow"
@@ -41,7 +41,7 @@ export function HeroSection() {
       </div>
 
       <div
-        className={`container mx-auto px-4 sm:px-6 text-center relative z-10 transition-all duration-1000 ${
+        className={`container mx-auto text-center relative z-10 transition-all duration-1000 ${
           isVisible ? "animate-fade-in-up" : "opacity-0"
         }`}
       >

@@ -1,4 +1,4 @@
-import { Brain, Code2, CreditCard, Database, Github, Search, Server } from "lucide-react";
+import { Brain, CalculatorIcon, Code2, CreditCard, Database, Github, Search, Server } from "lucide-react";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { FaGitAlt, FaGoogle, FaHtml5, FaNodeJs, FaPython, FaReact } from "react-icons/fa";
 import { IoLogoFigma, IoLogoVercel } from "react-icons/io5";
@@ -50,6 +50,11 @@ export const siteConfig = {
       username: 'mobarut',
       url: 'http://g.dev/mobarut',
       icon: FaGoogle
+    },
+    cal: {
+      username: 'mo-barut',
+      url: 'https://cal.com/mo-barut',
+      icon: CalculatorIcon
     }
   },
   navigation: [
@@ -57,7 +62,7 @@ export const siteConfig = {
     { name: "Services", href: "/#services" },
     { name: "Skills", href: "/#skills" },
     { name: "Projects", href: "/#projects" },
-    { name: "Blog", href: "/#blogs" },
+    { name: "Blog", href: "/#blog" },
     { name: "Contact", href: "/#contact" },
   ],
   skills: {
