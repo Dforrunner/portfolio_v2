@@ -1,4 +1,5 @@
 export type ProjectType =
+  | "website"
   | "web-app"
   | "npm"
   | "chrome-extension"
@@ -7,7 +8,6 @@ export type ProjectType =
   | "open-source";
 
 export interface Project {
-  id: number;
   slug: string;
   title: string;
   tagline: string;
@@ -24,7 +24,6 @@ export interface Project {
   // Media
   images: {
     desktop?: string;
-    tablet?: string;
     mobile?: string;
     thumbnail: string;
   };
@@ -62,7 +61,6 @@ export interface Project {
 
 const mockProjects: Project[] = [
   {
-    id: 1,
     slug: "ai-powered-saas-platform",
     title: "AI-Powered SaaS Platform",
     tagline: "Intelligent automation for modern businesses",
@@ -75,7 +73,6 @@ const mockProjects: Project[] = [
     technologies: ["Next.js", "TypeScript", "OpenAI", "Stripe", "Supabase", "Tailwind CSS"],
     images: {
       desktop: "/ai-saas-dashboard-desktop-view.jpg",
-      tablet: "/ai-saas-dashboard-tablet-view.jpg",
       mobile: "/ai-saas-dashboard-mobile-view.jpg",
       thumbnail: "/ai-saas-platform-thumbnail.jpg",
     },
@@ -107,7 +104,6 @@ const mockProjects: Project[] = [
     year: "2024",
   },
   {
-    id: 2,
     slug: "react-animation-library",
     title: "React Animation Library",
     tagline: "Beautiful animations made simple",
@@ -140,7 +136,6 @@ const mockProjects: Project[] = [
     year: "2023",
   },
   {
-    id: 3,
     slug: "productivity-chrome-extension",
     title: "Productivity Chrome Extension",
     tagline: "Boost your focus and productivity",
@@ -177,7 +172,6 @@ const mockProjects: Project[] = [
     year: "2023",
   },
   {
-    id: 4,
     slug: "e-commerce-platform",
     title: "Modern E-Commerce Platform",
     tagline: "Next-generation online shopping experience",
@@ -190,7 +184,6 @@ const mockProjects: Project[] = [
     technologies: ["Next.js", "Stripe", "Algolia", "Vercel", "PostgreSQL"],
     images: {
       desktop: "/e-commerce-website-desktop.jpg",
-      tablet: "/e-commerce-website-tablet.jpg",
       mobile: "/e-commerce-website-mobile.jpg",
       thumbnail: "/e-commerce-platform.png",
     },
@@ -218,7 +211,6 @@ const mockProjects: Project[] = [
     year: "2024",
   },
   {
-    id: 5,
     slug: "ai-content-generator",
     title: "AI Content Generator",
     tagline: "Generate high-quality content in seconds",
@@ -231,7 +223,6 @@ const mockProjects: Project[] = [
     technologies: ["Next.js", "OpenAI GPT-4", "Vercel AI SDK", "Supabase"],
     images: {
       desktop: "/ai-content-generator-interface.png",
-      tablet: "/ai-content-generator-tablet.jpg",
       mobile: "/ai-content-generator-mobile.jpg",
       thumbnail: "/ai-content-generator.png",
     },
@@ -257,7 +248,6 @@ const mockProjects: Project[] = [
     year: "2024",
   },
   {
-    id: 6,
     slug: "open-source-ui-library",
     title: "Open Source UI Library",
     tagline: "Beautiful components for modern web apps",
@@ -293,69 +283,69 @@ const mockProjects: Project[] = [
 
 export const projects: Project[] = [
   {
-    id: 6,
-    slug: "bargoprocare-website",
-    title: "BargoProCare Website",
-    tagline: "Streamlined scheduling, quotes, and client management",
+    slug: "bargoprocare-web-app",
+    title: "BargoProCare Web App",
+    tagline:
+      "Streamlined scheduling, quotes, client management, SEO & GEO optimized, interactive UI/UX",
     description:
-      "A comprehensive Next.js website for BargoProCare with PostgreSQL, Prisma, and TailwindCSS. Includes multiple contact options, online quote builder, scheduler, admin dashboard, and automated client communications.",
+      "A full-featured business management platform built for BargoProCare using Next.js, PostgreSQL, Prisma, and TailwindCSS. It combines online quotes, real-time scheduling, role-based admin tools, and automated communication into one seamless experience.",
     longDescription:
       "BargoProCare's website is designed to automate most administrative tasks for the business, including quotes, scheduling, and client communication. The site allows clients to contact the company via multiple channels (call, email, SMS, online contact form) and generate instant quotes online. Once a quote is accepted, clients can schedule appointments using a calendar that only shows available time slots to avoid overlaps. The admin dashboard provides full control over quotes, appointments, and user roles. Admins can update schedules, set availability, block dates, and manage employees. Automated emails are sent to clients for confirmations, updates, and reminders, including custom options to reschedule or cancel bookings online. The system ensures seamless communication and scheduling, letting the business focus on providing services rather than administrative tasks.",
     type: "web-app",
     featured: true,
     gradient: "from-green-500 to-teal-500",
-    icon: "🛠️",
+    icon: "🌐",
     technologies: ["Next.js", "PostgreSQL", "Prisma", "TailwindCSS", "Node.js", "Email Automation"],
     images: {
-      desktop: "/bargoprosrv-desktop.png",
-      tablet: "/bargoprosrv-tablet.jpg",
-      mobile: "/bargoprosrv-mobile.jpg",
-      thumbnail: "/bargoprosrv.png",
+      desktop: "/bargo-media/desktop.webp",
+      mobile: "/bargo-media/mobile.webp",
+      thumbnail: "/bargo-media/desktop.webp",
     },
     links: {
-      live: "https://bargo.moproserv.com/",
+      live: "https://bargo.moproserv.com",
     },
+    iframeUrl: "https://bargo.moproserv.com",
     features: [
-      "Multiple client contact options: call, email, SMS, online contact form",
-      "Online quote builder with instant quote generation",
-      "Integrated scheduler to book available time slots only",
-      "Admin dashboard with password and Google authentication",
-      "View, reschedule, delete, or update quotes and appointments",
-      "Automated email notifications for confirmations, updates, and reminders",
-      "Custom emails for clients to manage bookings online (cancel/reschedule)",
-      "Interactive admin calendar with full control over availability and bookings",
-      "Role-based user management for employees and admins",
-      "Handles most admin work to let the business focus on the service itself",
+      "Instant online quote builder for quick and accurate estimates",
+      "Real-time scheduling system that prevents overlapping bookings",
+      "Multiple contact options including phone, email, SMS, and contact form",
+      "Admin dashboard with secure password and Google authentication",
+      "Comprehensive appointment management: view, edit, reschedule, or cancel",
+      "Automated email workflows for confirmations, updates, and reminders",
+      "Custom client emails with direct booking management links",
+      "Interactive admin calendar with full control over staff availability",
+      "Role-based access for admins, managers, and employees",
+      "Streamlined workflow that reduces manual admin effort dramatically",
     ],
     challenges: [
-      "Ensuring real-time appointment scheduling without overlaps",
-      "Designing an intuitive admin dashboard with role-based permissions",
-      "Implementing automated email workflows for confirmations, updates, and reminders",
-      "Integrating multiple contact methods seamlessly",
-      "Building a scalable architecture with Next.js, PostgreSQL, and Prisma",
+      "Implementing a conflict-free scheduling system with live availability tracking",
+      "Building an intuitive admin dashboard that balances power and simplicity",
+      "Creating automated, personalized email flows for every client interaction",
+      "Designing a scalable data model with PostgreSQL and Prisma",
+      "Seamlessly integrating multiple communication channels into one system",
     ],
     results: [
-      "Streamlined scheduling and quote process",
-      "Reduced manual admin workload significantly",
-      "Improved client communication with automated emails",
-      "Ensured no booking overlaps with availability control",
+      "Automated and simplified the entire quote and scheduling process",
+      "Reduced administrative workload by over 70%",
+      "Improved client satisfaction with instant responses and transparent scheduling",
+      "Eliminated double bookings through precise availability management",
+      "Enabled the business to handle more clients with the same staff size",
     ],
     metaDescription:
       "BargoProServ website with Next.js, PostgreSQL, Prisma, and TailwindCSS. Features online quotes, scheduler, admin dashboard, and automated client communication.",
     startDate: "2025-10",
     year: "2025",
   },
-  ...mockProjects,
 ];
 
-export function getProjectBySlug(slug: string): Project | undefined {
+export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
   return projects.find((project) => project.slug === slug);
 }
 
-export function getFeaturedProjects(): Project[] {
+export async function getFeaturedProjects(): Promise<Project[]> {
   return projects.filter((project) => project.featured);
 }
 
-export function getProjectsByType(type: ProjectType): Project[] {
+export async function getProjectsByType(type: ProjectType): Promise<Project[]> {
   return projects.filter((project) => project.type === type);
 }

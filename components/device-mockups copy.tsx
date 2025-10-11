@@ -1,7 +1,5 @@
 "use client";
 
-import { useConnectionSpeed } from "@/hooks/use-connection-speed";
-import { useIsDesktop } from "@/hooks/use-is-desktop";
 import { Battery, Monitor, Signal, Smartphone, Wifi } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -14,6 +12,34 @@ interface DeviceMockupsProps {
   title: string;
   showStatusBar?: boolean;
   showSafariBar?: boolean;
+}
+
+function useConnectionSpeed() {
+  const [isGoodConnection, setIsGoodConnection] = useState(true);
+
+  useEffect(() => {
+    // Check if Network Information API is available
+    const connection =
+      (navigator as any).connection ||
+      (navigator as any).mozConnection ||
+      (navigator as any).webkitConnection;
+
+    if (connection) {
+      const effectiveType = connection.effectiveType;
+      // Only load iframe on 4g or better connections
+      setIsGoodConnection(effectiveType === "4g" || effectiveType === "wifi");
+
+      const handleChange = () => {
+        const newType = connection.effectiveType;
+        setIsGoodConnection(newType === "4g" || newType === "wifi");
+      };
+
+      connection.addEventListener("change", handleChange);
+      return () => connection.removeEventListener("change", handleChange);
+    }
+  }, []);
+
+  return isGoodConnection;
 }
 
 function LazyIframe({
@@ -77,13 +103,12 @@ export function DeviceMockups({
   const [activeDevice, setActiveDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
   const isGoodConnection = useConnectionSpeed();
   const [showIframe, setShowIframe] = useState(!!iframeUrl && isGoodConnection);
-  const isDesktop = useIsDesktop();
 
   useEffect(() => {
-    if (iframeUrl && isGoodConnection && isDesktop) {
+    if (iframeUrl && isGoodConnection) {
       setShowIframe(true);
     }
-  }, [iframeUrl, isGoodConnection, isDesktop]);
+  }, [iframeUrl, isGoodConnection]);
 
   const hasDesktop = images.desktop || iframeUrl;
   const hasMobile = images.mobile || iframeUrl;
@@ -118,10 +143,10 @@ export function DeviceMockups({
             Mobile
           </button>
         )}
-        {iframeUrl && isDesktop && (
+        {iframeUrl && (
           <button
             onClick={() => setShowIframe(!showIframe)}
-            className={`text-xs rounded-lg px-1 sm:px-4 py-2  font-medium transition-all ${
+            className={`text-xs sm:text-sm rounded-lg px-1 sm:px-4 py-2  font-medium transition-all ${
               showIframe
                 ? "bg-accent text-accent-foreground"
                 : "bg-card text-muted-foreground hover:bg-muted"
@@ -135,10 +160,10 @@ export function DeviceMockups({
       {/* Device Mockup */}
       <div className="flex justify-center">
         {activeDevice === "desktop" && (
-          <div className="w-full max-w-6xl animate-fade-in-up">
+          <div className="w-full animate-fade-in-up">
             <DesktopMockup
               image={images.desktop}
-              iframeUrl={showIframe && iframeUrl && isDesktop ? iframeUrl : undefined}
+              iframeUrl={showIframe ? iframeUrl : undefined}
               title={title}
             />
           </div>
@@ -147,7 +172,7 @@ export function DeviceMockups({
           <div className="max-w-sm animate-fade-in-up">
             <MobileMockup
               image={images.mobile}
-              iframeUrl={showIframe && iframeUrl && isDesktop ? iframeUrl : undefined}
+              iframeUrl={showIframe ? iframeUrl : undefined}
               title={title}
               showStatusBar={showStatusBar}
               showSafariBar={showSafariBar}
@@ -159,53 +184,72 @@ export function DeviceMockups({
   );
 }
 
-function DesktopMockup({
-  image,
-  iframeUrl,
-  title,
-}: {
-  image?: string;
-  iframeUrl?: string;
-  title: string;
-}) {
-  return (
-    <div className="group relative">
-      {/* Browser Chrome */}
-      <div className="overflow-hidden rounded-t-xl border border-border bg-card shadow-2xl">
-        {/* Browser Header */}
-        <div className="flex items-center gap-2 border-b border-border bg-muted px-4 py-3">
-          <div className="flex gap-2">
-            <div className="h-3 w-3 rounded-full bg-red-500" />
-            <div className="h-3 w-3 rounded-full bg-yellow-500" />
-            <div className="h-3 w-3 rounded-full bg-green-500" />
-          </div>
-          <div className="ml-4 flex-1 rounded bg-background px-3 py-1 text-xs text-muted-foreground">
-            {iframeUrl || "https://example.com"}
-          </div>
-        </div>
 
-        {/* Content */}
-        <div className="aspect-video bg-background">
-          {iframeUrl ? (
-            <LazyIframe src={iframeUrl} title={title} className="h-full w-full" />
-          ) : image ? (
-            <img
-              src={image || "/placeholder.svg"}
-              alt={title}
-              className="h-full w-full object-cover object-top"
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center text-muted-foreground">
-              No preview available
+function DesktopMockup({ image, iframeUrl, title }: { image?: string; iframeUrl?: string; title: string }) {
+  const [scale, setScale] = useState(1)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const updateScale = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth
+        const desktopWidth = 1200 // Fixed desktop width
+        const newScale = Math.min(containerWidth / desktopWidth, 1)
+        setScale(newScale)
+      }
+    }
+
+    updateScale()
+    window.addEventListener("resize", updateScale)
+    return () => window.removeEventListener("resize", updateScale)
+  }, [])
+
+  return (
+    <div ref={containerRef} className="w-full overflow-x-hidden">
+      <div
+        className="mx-auto origin-top"
+        style={{
+          width: "1200px",
+          transform: `scale(${scale})`,
+          transformOrigin: "top center",
+          marginBottom: scale < 1 ? `${(1 - scale) * -400}px` : "0", // Adjust bottom margin when scaled
+        }}
+      >
+        <div className="group relative">
+          {/* Browser Chrome */}
+          <div className="overflow-hidden rounded-t-xl border border-border bg-card shadow-2xl">
+            {/* Browser Header */}
+            <div className="flex items-center gap-2 border-b border-border bg-muted px-4 py-3">
+              <div className="flex gap-2">
+                <div className="h-3 w-3 rounded-full bg-red-500" />
+                <div className="h-3 w-3 rounded-full bg-yellow-500" />
+                <div className="h-3 w-3 rounded-full bg-green-500" />
+              </div>
+              <div className="ml-4 flex-1 rounded bg-background px-3 py-1 text-xs text-muted-foreground">
+                {iframeUrl || "https://example.com"}
+              </div>
             </div>
-          )}
+
+            {/* Content */}
+            <div className="aspect-video bg-background">
+              {iframeUrl ? (
+                <LazyIframe src={iframeUrl} title={title} className="h-full w-full" />
+              ) : image ? (
+                <img src={image || "/placeholder.svg"} alt={title} className="h-full w-full object-cover object-top" />
+              ) : (
+                <div className="flex h-full items-center justify-center text-muted-foreground">
+                  No preview available
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Shadow */}
+          <div className="absolute -bottom-8 left-1/2 h-8 w-3/4 -translate-x-1/2 rounded-full bg-black/20 blur-2xl transition-all group-hover:w-full" />
         </div>
       </div>
-
-      {/* Shadow */}
-      <div className="absolute -bottom-8 left-1/2 h-8 w-3/4 -translate-x-1/2 rounded-full bg-black/20 blur-2xl transition-all group-hover:w-full" />
     </div>
-  );
+  )
 }
 
 function MobileMockup({

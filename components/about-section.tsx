@@ -106,7 +106,7 @@ export function AboutSection() {
 
       {/* Story Section */}
       <div className="mb-20">
-        <div className="relative overflow-hidden rounded-3xl border border-slate-300 dark:bg-slate-900/50 p-3 lg:p-12 backdrop-blur-sm">
+        <div className="relative overflow-hidden rounded-3xl border border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 p-3 lg:p-12 backdrop-blur-sm">
           {/* Gradient Background */}
           <div className="absolute -left-32 -top-32 h-64 w-64 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 opacity-10 blur-3xl" />
           <div className="absolute -bottom-32 -right-32 h-64 w-64 rounded-full bg-gradient-to-br from-cyan-500 to-emerald-500 opacity-10 blur-3xl" />

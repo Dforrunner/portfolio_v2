@@ -10,7 +10,7 @@ import {
   StripePaymentContent,
   WebDevelopmentContent,
   WebHostingContent,
-} from "./content";
+} from "../content/content";
 import BlogPostClient from "./page.client";
 
 export async function generateMetadata({

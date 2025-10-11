@@ -31,8 +31,14 @@ interface Props {
   title: string;
   description: string;
   children?: React.ReactNode;
+  triggerTitle?: string;
 }
-export function ShareDialog({ title, description, children }: Props) {
+export function ShareDialog({
+  title,
+  description,
+  children,
+  triggerTitle = "Share article ",
+}: Props) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedEmbed, setCopiedEmbed] = useState(false);
 
@@ -61,7 +67,7 @@ export function ShareDialog({ title, description, children }: Props) {
         {children ?? (
           <button className="flex items-center gap-2 dark:text-slate-400 text-slate-600 hover:text-slate-800 transition-colors dark:hover:text-white cursor-pointer">
             <Share2 className="h-4 w-4" />
-            Share article
+            {triggerTitle}
           </button>
         )}
       </DialogTrigger>

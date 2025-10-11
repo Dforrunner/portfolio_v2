@@ -28,7 +28,7 @@ export function QuickConnectButtons() {
       name: "Email",
       icon: EmailIcon,
       href: `mailto:${siteConfig.email}?subject=${subject}&body=${body}`,
-      color: "hover:text-slate-600",
+      color: "hover:text-white",
     },
   ];
   return (
@@ -39,7 +39,7 @@ export function QuickConnectButtons() {
           href={app.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex flex-col items-center p-4 rounded-lg bg-card border hover:border-primary/50 transition-all duration-300 hover:shadow-md cursor-pointer ${app.color}`}
+          className={`flex flex-col items-center p-4 rounded-lg bg-card/30 backdrop-blur-sm border hover:border-primary/50 transition-all duration-300 hover:shadow-md cursor-pointer ${app.color}`}
         >
           {<app.icon className="h-10 w-10" round />}
           <span className="text-sm font-medium text-center pt-2">{app.name}</span>

@@ -1,8 +1,18 @@
 import { cn } from "@/lib/utils";
-import { TrendingUp } from "lucide-react";
+import { LucideIcon, TrendingUp } from "lucide-react";
 import { ContactDialog } from "./contact-dialog";
 
-export function CtaCard({ className }: { className?: string }) {
+export function CtaCard({
+  icon: Icon = TrendingUp,
+  title = "Ready to Transform Your Business?",
+  message = "Let's discuss how custom web development, AI integration, and modern tech solutions can drive your business forward.",
+  className,
+}: {
+  icon?: LucideIcon;
+  title?: string;
+  message?: string;
+  className?: string;
+}) {
   return (
     <div className="px-3 py-10">
       <div
@@ -11,11 +21,10 @@ export function CtaCard({ className }: { className?: string }) {
           className
         )}
       >
-        <TrendingUp className="mx-auto mb-4 h-12 w-12 text-blue-400" />
-        <h2 className="mb-4 text-3xl font-bold text-balance">Ready to Transform Your Business?</h2>
+        <Icon className="mx-auto mb-4 h-12 w-12 text-blue-400" />
+        <h2 className="mb-4 text-3xl font-bold text-balance">{title}</h2>
         <p className="mx-auto mb-8 max-w-2xl text-slate-400 leading-relaxed text-pretty">
-          Let's discuss how custom web development, AI integration, and modern tech solutions can
-          drive your business forward.
+          {message}
         </p>
         <ContactDialog
           trigger={

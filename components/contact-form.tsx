@@ -78,7 +78,7 @@ export function ContactForm() {
       </form>
 
       {/* Divider */}
-      <div className="relative py-2">
+      <div className="relative py-4">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-slate-300 dark:border-slate-700"></div>
         </div>

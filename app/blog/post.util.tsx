@@ -29,9 +29,8 @@ export interface BlogPost extends BlogPostMetaData {
 interface GetAllPostsOptions {
   featuredOnly?: boolean;
 }
-export async function getAllPosts({
-  featuredOnly,
-}: GetAllPostsOptions): Promise<BlogPostMetaData[]> {
+
+export async function getAllPosts(options?: GetAllPostsOptions): Promise<BlogPostMetaData[]> {
   const fileNames = fs.readdirSync(postsDirectory);
 
   let posts = fileNames
@@ -59,7 +58,7 @@ export async function getAllPosts({
     })
     .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1));
 
-  if (featuredOnly) {
+  if (options?.featuredOnly) {
     posts = posts.filter((post) => !post.featured);
   }
 
