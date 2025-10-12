@@ -1,5 +1,5 @@
 services:
-  bargoprocare:
+  mobarut:
     build:
       context: .
       dockerfile: Dockerfile
