@@ -27,6 +27,10 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -36,7 +40,7 @@ export function Navigation() {
       <div className="container mx-auto px-4 py-[1px]">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <Link href={"/#top"}>
+          <Link href={"/"} onClick={scrollToTop}>
             <div className="relative flex items-center justify-center">
               <Image
                 src={siteConfig.logo}
