@@ -10,7 +10,9 @@ import { ContactDialog } from "./contact-dialog";
 import { GlassCard } from "./glass-card";
 import { AuroraText } from "./ui/aurora-text";
 
-const TextAnimate = dynamic(() => import("./ui/text-animate").then((m) => m.TextAnimate));
+const TextAnimate = dynamic(() => import("./ui/text-animate").then((m) => m.TextAnimate),{
+  ssr: false,
+});
 
 export function HeroSection() {
   const scrollToSection = (href: string) => {
