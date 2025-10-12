@@ -16,7 +16,7 @@ export default async function Home() {
       <ServicesSection />
       <SkillsSection />
       <ProjectsSection2 projects={projects} />
-      <BlogSection />
+      <BlogSection featuredOnly={true} />
       <ContactSection />
     </main>
   );

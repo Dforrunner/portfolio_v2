@@ -2,15 +2,15 @@
 
 import { BlogPostMetaData, getAllPosts } from "@/app/blog/post.util";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { Loading } from "./loading";
-import Image from "next/image";
 
 interface Props {
   featuredOnly?: boolean;
 }
-export default function BlogSection({ featuredOnly }: Props) {
+export default function BlogSection({ featuredOnly = false }: Props) {
   const [loading, setLoading] = useState(true);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [posts, setPosts] = useState<BlogPostMetaData[]>([]);
@@ -29,7 +29,6 @@ export default function BlogSection({ featuredOnly }: Props) {
   useEffect(() => {
     fetchPosts();
   }, []);
-
 
   return (
     <section id="blog">
