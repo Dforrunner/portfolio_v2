@@ -41,20 +41,6 @@ export async function ProjectsSection2() {
           </Link>
         </div>
       </div>
-
-      {/* Keyframes for animations */}
-      <style jsx>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateX(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </div>
   );
 }

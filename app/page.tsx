@@ -5,10 +5,8 @@ import { HeroSection } from "@/components/hero-section";
 import { ProjectsSection2 } from "@/components/projects-section2";
 import ServicesSection from "@/components/services-section";
 import SkillsSection from "@/components/skill-section";
-import { getFeaturedProjects } from "@/lib/projects";
 
 export default async function Home() {
-
   return (
     <main>
       <HeroSection />
