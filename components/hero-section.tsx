@@ -52,8 +52,7 @@ export function HeroSection() {
                 width={256}
                 height={208}
                 className="w-full h-full object-cover rounded-full border-4 border-primary/20 shadow-2xl hover:border-primary/40 transition-all duration-300 hover:scale-105"
-                priority
-                fetchPriority="high"
+                loading="lazy"
               />
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent animate-pulse-glow" />
             </div>

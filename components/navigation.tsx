@@ -45,7 +45,6 @@ export function Navigation() {
                 height={50}
                 className="cursor-pointer"
                 loading="lazy"
-                fetchPriority="high"
               />
               <div className="absolute size-11 rounded-full animate-pulse-glow" />
             </div>
