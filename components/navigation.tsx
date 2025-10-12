@@ -31,6 +31,15 @@ export function Navigation() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const navLinks = [
+    { name: "About", href: "/#about" },
+    { name: "Services", href: "/#services" },
+    { name: "Skills", href: "/#skills" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Blog", href: "/#blog" },
+    { name: "Contact", href: "/#contact" },
+  ];
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -48,7 +57,8 @@ export function Navigation() {
                 width={50}
                 height={50}
                 className="cursor-pointer"
-                loading="lazy"
+                priority
+                fetchPriority="high"
               />
               <div className="absolute size-11 rounded-full animate-pulse-glow" />
             </div>
@@ -56,14 +66,15 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {siteConfig.navigation.map((item) => (
-              <Link
+            {navLinks.map((item) => (
+              <a
                 key={item.name}
                 href={item.href}
                 className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label={item.name}
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
             <ContactDialog trigger={<Button size="sm">Let's Talk</Button>} />
             <AnimatedThemeToggler />
@@ -88,14 +99,15 @@ export function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-sm">
             <div className="flex flex-col space-y-3">
-              {siteConfig.navigation.map((item) => (
-                <Link
+              {navLinks.map((item) => (
+                <a
                   key={item.name}
                   href={item.href}
                   className="text-left text-muted-foreground hover:text-foreground transition-colors py-2 px-1 min-h-[44px] flex items-center"
+                  aria-label={item.name}
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
               <ContactDialog trigger={<Button size="sm">Let's Talk</Button>} />
             </div>
