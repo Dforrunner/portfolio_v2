@@ -51,11 +51,11 @@ RUN chown -R nextjs:nodejs /app
 # Switch to non-root
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 3001
 
 # Healthcheck
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:3000/api/health || exit 1
 
 # Start Next.js server
-CMD ["pnpm", "start", "-H", "0.0.0.0", "-p", "3000"]
+CMD ["pnpm", "start", "-H", "0.0.0.0", "-p", "3001"]
