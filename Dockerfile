@@ -26,6 +26,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Build Next.js app (production, minified)
+RUN pnpm build
+
 # Remove devDependencies
 RUN pnpm prune --prod
 
