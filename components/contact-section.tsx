@@ -3,9 +3,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
 import { Mail, MapPin } from "lucide-react";
+import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { ContactForm } from "./contact-form";
-import { Globe } from "./ui/globe";
+
+const Globe = dynamic(() => import("./ui/globe").then((x) => x.Globe), {
+  ssr: false,
+});
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -46,10 +50,14 @@ export function ContactSection() {
   return (
     <section ref={sectionRef} id="contact" className="py-20 overflow-hidden">
       <div className="container mx-auto px-4  ">
-        <div className={`transition-all duration-1000 ${isVisible ? "animate-slide-up" : "opacity-0"}`}>
+        <div
+          className={`transition-all duration-1000 ${isVisible ? "animate-slide-up" : "opacity-0"}`}
+        >
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">Ready to start your next project? Let's discuss how we can work together.</p>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Ready to start your next project? Let's discuss how we can work together.
+            </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12">
@@ -58,8 +66,9 @@ export function ContactSection() {
               <div>
                 <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
                 <p className="text-muted-foreground mb-8 leading-relaxed">
-                  I'm always interested in hearing about new opportunities and exciting projects. Whether you're a company looking to hire, or you're a fellow developer wanting to collaborate, I'd
-                  love to hear from you.
+                  I'm always interested in hearing about new opportunities and exciting projects.
+                  Whether you're a company looking to hire, or you're a fellow developer wanting to
+                  collaborate, I'd love to hear from you.
                 </p>
               </div>
 
@@ -72,7 +81,11 @@ export function ContactSection() {
                     <div>
                       <p className="font-medium">{info.label}</p>
                       {info.href !== "#" ? (
-                        <a href={info.href} className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
+                        <a
+                          href={info.href}
+                          className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                          aria-label={info.label}
+                        >
                           {info.value}
                         </a>
                       ) : (

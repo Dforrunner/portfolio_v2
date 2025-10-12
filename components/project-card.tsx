@@ -2,6 +2,7 @@
 
 import { Project, ProjectType } from "@/lib/projects";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FaGithub, FaNpm } from "react-icons/fa";
@@ -34,10 +35,13 @@ export function ProjectCard({ project }: { project: Project }) {
         {/* Thumbnail */}
         <Link href={`/projects/${project.slug}`}>
           <div className="relative aspect-video overflow-hidden bg-muted">
-            <img
+            <Image
               src={project.images.thumbnail || "/placeholder.svg"}
               alt={project.title}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              width={500}
+              height={500}
+              loading="lazy"
             />
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -85,17 +89,32 @@ export function ProjectCard({ project }: { project: Project }) {
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               {project.links.github && (
-                <Link href={project.links.github} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View on GitHub"
+                >
                   <FaGithub />
                 </Link>
               )}
               {project.links.live && (
-                <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View Live"
+                >
                   <ExternalLink />
                 </Link>
               )}
               {project.links.npm && (
-                <Link href={project.links.npm} target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={project.links.npm}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View on NPM"
+                >
                   <FaNpm />
                 </Link>
               )}

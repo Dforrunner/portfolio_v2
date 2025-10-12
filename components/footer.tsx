@@ -21,6 +21,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
               </a>
@@ -29,12 +30,14 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
                 href={`mailto:${siteConfig.email}`}
                 className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
               </a>
@@ -50,6 +53,7 @@ export function Footer() {
                   <a
                     href={item.href}
                     className="text-muted-foreground hover:text-primary transition-colors"
+                    aria-label={item.name}
                   >
                     {item.name}
                   </a>

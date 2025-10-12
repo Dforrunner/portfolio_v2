@@ -332,7 +332,7 @@ export const projects: Project[] = [
       "Enabled the business to handle more clients with the same staff size",
     ],
     metaDescription:
-      "BargoProServ website with Next.js, PostgreSQL, Prisma, and TailwindCSS. Features online quotes, scheduler, admin dashboard, and automated client communication.",
+      "BargoProCare website with Next.js, PostgreSQL, Prisma, and TailwindCSS. Features online quotes, scheduler, admin dashboard, and automated client communication.",
     startDate: "2025-10",
     year: "2025",
   },

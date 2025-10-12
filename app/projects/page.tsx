@@ -1,21 +1,22 @@
 import { CtaCard } from "@/components/cta-components";
 import { ProjectCard } from "@/components/project-card";
 import { projects } from "@/lib/projects";
+import { siteConfig } from "@/lib/site-config";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Projects | Full-Stack Developer Portfolio",
+  title: "Projects | " + siteConfig.name,
   description:
     "Explore my portfolio of web applications, SaaS platforms, npm packages, Chrome extensions, and AI integrations. Built with Next.js, React, and modern technologies.",
   openGraph: {
-    title: "Projects | Full-Stack Developer Portfolio",
+    title: "Projects | "+ siteConfig.name,
     description:
       "Explore my portfolio of web applications, SaaS platforms, npm packages, Chrome extensions, and AI integrations.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects | Full-Stack Developer Portfolio",
+    title: "Projects | "+ siteConfig.name,
     description:
       "Explore my portfolio of web applications, SaaS platforms, npm packages, Chrome extensions, and AI integrations.",
   },

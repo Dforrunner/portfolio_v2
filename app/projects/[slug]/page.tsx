@@ -127,6 +127,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`inline-flex items-center gap-2 rounded-lg bg-gradient-to-r ${project.gradient} px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl`}
+                    aria-label="View Live Site"
                   >
                     <ExternalLink className="h-4 w-4" />
                     View Live Site
@@ -138,6 +139,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:border-card-services-hover hover:shadow-lg"
+                    aria-label="View Code"
                   >
                     <FaGithub className="h-4 w-4" />
                     View Code
@@ -149,6 +151,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:border-card-services-hover hover:shadow-lg"
+                    aria-label="View on NPM"
                   >
                     <FaNpm className="h-4 w-4" />
                     View on NPM
@@ -160,6 +163,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:border-card-services-hover hover:shadow-lg"
+                    aria-label="View on Chrome Store"
                   >
                     <FaChrome className="h-4 w-4" />
                     Chrome Store

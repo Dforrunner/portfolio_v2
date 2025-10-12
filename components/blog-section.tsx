@@ -5,6 +5,7 @@ import { ArrowRight, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { Loading } from "./loading";
+import Image from "next/image";
 
 interface Props {
   featuredOnly?: boolean;
@@ -62,10 +63,13 @@ export default function BlogSection({ featuredOnly }: Props) {
               <article className="relative h-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-slate-400  dark:hover:border-slate-700 hover:shadow-2xl hover:shadow-slate-900/50">
                 {/* Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={post.image || "/placeholder.svg"}
                     alt={post.title}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    width={400}
+                    height={300}
+                    loading="lazy"
                   />
                   <div
                     className={`absolute inset-0 bg-gradient-to-t ${post.gradient} opacity-20 transition-opacity duration-500 group-hover:opacity-30`}

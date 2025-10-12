@@ -3,12 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { Menu, X } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ContactDialog } from "./contact-dialog";
 import { AnimatedThemeToggler } from "./ui/animated-theme-toggler";
-import { ScrollProgress } from "./ui/scroll-progress";
+
+const ScrollProgress = dynamic(() => import("./ui/scroll-progress").then((x) => x.ScrollProgress), {
+  ssr: false,
+});
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,6 +74,7 @@ export function Navigation() {
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 min-w-[40px] min-h-[40px]"
+              aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>

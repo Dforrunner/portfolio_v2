@@ -33,6 +33,7 @@ const FileDownload: React.FC<FileDownloadProps> = ({ src, title }) => {
             href={src}
             download
             className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+            aria-label="Download File"
           >
             Download
           </a>

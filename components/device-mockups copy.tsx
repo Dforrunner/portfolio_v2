@@ -1,6 +1,7 @@
 "use client";
 
 import { Battery, Monitor, Signal, Smartphone, Wifi } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 interface DeviceMockupsProps {
@@ -184,25 +185,32 @@ export function DeviceMockups({
   );
 }
 
-
-function DesktopMockup({ image, iframeUrl, title }: { image?: string; iframeUrl?: string; title: string }) {
-  const [scale, setScale] = useState(1)
-  const containerRef = useRef<HTMLDivElement>(null)
+function DesktopMockup({
+  image,
+  iframeUrl,
+  title,
+}: {
+  image?: string;
+  iframeUrl?: string;
+  title: string;
+}) {
+  const [scale, setScale] = useState(1);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const updateScale = () => {
       if (containerRef.current) {
-        const containerWidth = containerRef.current.offsetWidth
-        const desktopWidth = 1200 // Fixed desktop width
-        const newScale = Math.min(containerWidth / desktopWidth, 1)
-        setScale(newScale)
+        const containerWidth = containerRef.current.offsetWidth;
+        const desktopWidth = 1200; // Fixed desktop width
+        const newScale = Math.min(containerWidth / desktopWidth, 1);
+        setScale(newScale);
       }
-    }
+    };
 
-    updateScale()
-    window.addEventListener("resize", updateScale)
-    return () => window.removeEventListener("resize", updateScale)
-  }, [])
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
 
   return (
     <div ref={containerRef} className="w-full overflow-x-hidden">
@@ -235,7 +243,14 @@ function DesktopMockup({ image, iframeUrl, title }: { image?: string; iframeUrl?
               {iframeUrl ? (
                 <LazyIframe src={iframeUrl} title={title} className="h-full w-full" />
               ) : image ? (
-                <img src={image || "/placeholder.svg"} alt={title} className="h-full w-full object-cover object-top" />
+                <Image
+                  src={image || "/placeholder.svg"}
+                  alt={title}
+                  width={1200}
+                  height={630}
+                  className="h-full w-full object-cover object-top"
+                  loading="lazy"
+                />
               ) : (
                 <div className="flex h-full items-center justify-center text-muted-foreground">
                   No preview available
@@ -249,7 +264,7 @@ function DesktopMockup({ image, iframeUrl, title }: { image?: string; iframeUrl?
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function MobileMockup({
@@ -334,10 +349,13 @@ function MobileMockup({
               }}
             />
           ) : (
-            <img
+            <Image
               src={image || "/placeholder.svg"}
               alt={title}
               className="h-full w-full object-cover object-top"
+              width={370}
+              height={886}
+              loading="lazy"
             />
           )}
         </div>

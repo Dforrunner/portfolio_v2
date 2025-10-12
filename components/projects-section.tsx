@@ -77,7 +77,7 @@ export function ProjectsSection() {
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4 animate-shimmer">
                     {project.github && (
                       <Button size="sm" variant="secondary" asChild className="animate-bounce-in">
-                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                           <Github className="h-4 w-4 mr-2" />
                           Code
                         </a>
@@ -85,7 +85,7 @@ export function ProjectsSection() {
                     )}
                     {project.live && (
                       <Button size="sm" asChild className="animate-bounce-in animate-stagger-2">
-                        <a href={project.live} target="_blank" rel="noopener noreferrer">
+                        <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
                           <ExternalLink className="h-4 w-4 mr-2" />
                           Live Demo
                         </a>
@@ -172,7 +172,7 @@ export function ProjectsSection() {
                             asChild
                             className="animate-bounce-in hover-glow bg-transparent"
                           >
-                            <a href={project.github} target="_blank" rel="noopener noreferrer">
+                            <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                               <Github className="h-4 w-4" />
                             </a>
                           </Button>
@@ -183,7 +183,7 @@ export function ProjectsSection() {
                           asChild
                           className="animate-bounce-in animate-stagger-2 hover-glow bg-transparent"
                         >
-                          <a href={project.live} target="_blank" rel="noopener noreferrer">
+                          <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label="Live Demo">
                             <ExternalLink className="h-4 w-4" />
                           </a>
                         </Button>

@@ -3,12 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-config";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { AvailableBadge } from "./available-badge";
 import { ContactDialog } from "./contact-dialog";
 import { GlassCard } from "./glass-card";
 import { AuroraText } from "./ui/aurora-text";
-import { TextAnimate } from "./ui/text-animate";
+
+const TextAnimate = dynamic(() => import("./ui/text-animate").then((m) => m.TextAnimate));
 
 export function HeroSection() {
   const scrollToSection = (href: string) => {
@@ -94,17 +96,27 @@ export function HeroSection() {
           </div>
 
           <div className="flex justify-center space-x-4 sm:space-x-6 mb-12 sm:mb-16">
-            <a href={siteConfig.account.github.url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={siteConfig.account.github.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
               <GlassCard className="rounded-full p-2 sm:p-3">
                 <Github className="h-6 w-6" />
               </GlassCard>
             </a>
-            <a href={siteConfig.account.linkedin.url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={siteConfig.account.linkedin.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
               <GlassCard className="rounded-full p-2 sm:p-3">
                 <Linkedin className="h-6 w-6" />
               </GlassCard>
             </a>
-            <a href={`mailto:${siteConfig.email}`}>
+            <a href={`mailto:${siteConfig.email}`} aria-label="Email">
               <GlassCard className="rounded-full p-2 sm:p-3">
                 <Mail className="h-6 w-6" />
               </GlassCard>

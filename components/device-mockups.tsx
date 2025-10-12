@@ -4,7 +4,7 @@ import { useConnectionSpeed } from "@/hooks/use-connection-speed";
 import { useIsDesktop } from "@/hooks/use-is-desktop";
 import { Battery, Monitor, Signal, Smartphone, Wifi } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
+import Image from "next/image";
 interface DeviceMockupsProps {
   images: {
     desktop?: string;
@@ -189,10 +189,13 @@ function DesktopMockup({
           {iframeUrl ? (
             <LazyIframe src={iframeUrl} title={title} className="h-full w-full" />
           ) : image ? (
-            <img
+            <Image
               src={image || "/placeholder.svg"}
               alt={title}
               className="h-full w-full object-cover object-top"
+              loading="lazy"
+              width={1200}
+              height={630}
             />
           ) : (
             <div className="flex h-full items-center justify-center text-muted-foreground">
@@ -290,10 +293,13 @@ function MobileMockup({
               }}
             />
           ) : (
-            <img
+            <Image
               src={image || "/placeholder.svg"}
               alt={title}
               className="h-full w-full object-cover object-top"
+              width={370}
+              height={886}
+              loading="lazy"
             />
           )}
         </div>

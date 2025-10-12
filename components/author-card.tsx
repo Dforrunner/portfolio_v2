@@ -28,6 +28,7 @@ export function AuthorCard({
       target="_blank"
       rel="noopener noreferrer"
       className="group block"
+      aria-label="Author"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

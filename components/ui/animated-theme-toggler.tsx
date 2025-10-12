@@ -67,7 +67,7 @@ export const AnimatedThemeToggler = ({
   }, [isDark, duration]);
 
   return (
-    <button ref={buttonRef} onClick={toggleTheme} className={cn(className)} {...props}>
+    <button ref={buttonRef} onClick={toggleTheme} className={cn(className)} {...props} aria-label="theme toggle">
       {isDark ? <Sun /> : <Moon />}
     </button>
   );

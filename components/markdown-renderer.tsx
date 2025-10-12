@@ -71,6 +71,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = memo(({ content, class
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:text-blue-400 underline underline-offset-2 transition-colors"
+            aria-label={"Open Link"}
           >
             {children}
           </a>
