@@ -39,7 +39,9 @@ export function Navigation() {
                 alt={siteConfig.logoAlt}
                 width={50}
                 height={50}
-                className="cursor-pointer "
+                className="cursor-pointer"
+                loading="lazy"
+                fetchPriority="high"
               />
               <div className="absolute size-11 rounded-full animate-pulse-glow" />
             </div>

@@ -17,10 +17,10 @@ export const siteConfig = {
   description2:
     "I turn ideas into powerful web applications that drive real business results. With a passion for clean code and user-centric design, I help businesses scale with modern, performant solutions.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://mobarut.dev",
-  logo: "/logo.webp",
+  logo: "/logo-100.webp",
   logoAlt: "Mo Barut's logo",
   ogImage: "og-image.webp",
-  profileImage: "/developer-headshot.webp",
+  profileImage: "/developer-headshot-256.webp",
   email: "mobarutdev@gmail.com",
   phone: "+1 (802) 310-9538",
   phoneDigitsOnly: "+18023109538",

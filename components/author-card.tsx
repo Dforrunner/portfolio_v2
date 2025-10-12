@@ -2,6 +2,7 @@
 
 import { siteConfig } from "@/lib/site-config";
 import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 
 interface AuthorCardProps {
@@ -53,12 +54,15 @@ export function AuthorCard({
                 isHovered ? "opacity-50 scale-110" : ""
               }`}
             />
-            <img
+            <Image
               src={image || "/placeholder.svg"}
+              width={256}
+              height={208}
               alt={name}
               className={`relative h-16 w-16 rounded-full border-2 border-slate-700 object-cover transition-all duration-500 ${
                 isHovered ? "scale-110 border-purple-500" : ""
               }`}
+              loading="lazy"
             />
           </div>
 

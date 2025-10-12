@@ -74,6 +74,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
                 alt={image.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
               />
 
               {/* Overlay */}
@@ -134,7 +135,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
                     alt={images[selectedIndex].alt}
                     fill
                     className="object-contain"
-                    priority
+                    loading="lazy"
                     sizes="95vw"
                   />
                 </div>
@@ -184,6 +185,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
                           alt={image.alt}
                           fill
                           className="object-cover"
+                          loading="lazy"
                         />
                       </button>
                     ))}

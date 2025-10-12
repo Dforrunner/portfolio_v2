@@ -72,6 +72,7 @@ export function ProjectsSection() {
                     width={400}
                     height={300}
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4 animate-shimmer">
                     {project.github && (
@@ -139,6 +140,7 @@ export function ProjectsSection() {
                         width={400}
                         height={200}
                         className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
                       />
                     </div>
                     <CardHeader>
