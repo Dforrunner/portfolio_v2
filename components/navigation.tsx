@@ -92,7 +92,7 @@ export function Navigation() {
           </div>
         )}
       </div>
-      <ScrollProgress className="top-[65px] bg-gradient-to-br from-slate-300 via-slate-300 to-slate-400 dark:from-slate-800 dark:via-slate-700 dark:to-slate-700" />
+      <ScrollProgress className="top-[57px] sm:top-[65px] bg-gradient-to-br from-slate-300 via-slate-300 to-slate-400 dark:from-slate-800 dark:via-slate-700 dark:to-slate-700" />
     </nav>
   );
 }
