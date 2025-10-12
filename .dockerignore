@@ -24,11 +24,14 @@ pnpm-debug.log
 *.log
 
 # Documentation & miscellaneous
-*.md
 LICENSE
 tests
 docs
 reports
+.vscode
+scripts
 
 # Docker-specific
 docker-data
+
+

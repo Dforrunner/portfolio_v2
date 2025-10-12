@@ -1,7 +1,7 @@
 import { siteConfig } from "@/lib/site-config";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "../post.util";
+import { getAllPosts, getPostBySlug } from "../post.util";
 
 import {
   AIIntegrationContent,
@@ -12,6 +12,13 @@ import {
   WebHostingContent,
 } from "../content/content";
 import BlogPostClient from "./page.client";
+
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export async function generateMetadata({
   params,

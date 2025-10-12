@@ -1,14 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import hljs from "highlight.js";
-import "highlight.js/styles/atom-one-dark.css";
 import React, { memo, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
+import { highlight } from "sugar-high";
 import CopyButton from "./copy-button";
 import FileDownload from "./file-download";
 import VideoPlayer from "./video-player";
@@ -27,23 +24,15 @@ const CodeBlock = ({
   value: string;
   className: string;
 }) => {
-  // Pre-highlight before returning JSX
-  const highlighted = React.useMemo(() => {
-    if (language && hljs.getLanguage(language)) {
-      return hljs.highlight(value, { language }).value;
-    }
-    return hljs.highlightAuto(value).value;
-  }, [language, value]);
-
   return (
-    <pre className="not-prose relative group rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-100 overflow-hidden pt-3">
+    <pre className="not-prose relative group rounded-lg border border-zinc-300 dark:border-zinc-800 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-100 overflow-y-hidden p-3 lg:p-6 pt-5">
       {language && !["text", "plaintext"].includes(language) && (
         <div className="absolute top-1 left-1 text-xs opacity-70">{language}</div>
       )}
       <CopyButton text={value} alwaysShow className="absolute top-1 right-1" />
       <code
-        className={cn(className, "text-sm p-4 !bg-transparent hljs")}
-        dangerouslySetInnerHTML={{ __html: highlighted }}
+        className={cn(className, "text-sm")}
+        dangerouslySetInnerHTML={{ __html: highlight(value) }}
       />
     </pre>
   );
@@ -114,7 +103,6 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = memo(({ content, class
   return (
     <div className={cn("prose prose-neutral dark:prose-invert max-w-none", className)}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkMath]}
         rehypePlugins={[rehypeKatex, rehypeRaw]}
         components={components}
       >

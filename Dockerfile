@@ -14,7 +14,7 @@ ENV NODE_ENV=production
 # ========================================
 FROM base AS deps
 
-COPY package.json pnpm-lock.yaml* ./
+COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 # ========================================
@@ -29,35 +29,46 @@ COPY . .
 # Build Next.js app (production, minified)
 RUN pnpm build
 
-# Remove devDependencies
-RUN pnpm prune --prod
+# ========================================
+# Production dependencies stage
+# ========================================
+FROM base AS prod-deps
+
+COPY package.json pnpm-lock.yaml ./
+
+# Install only production dependencies
+RUN pnpm install --prod --frozen-lockfile
 
 # ========================================
-# Runner stage
+# Runner stage (minimal production image)
 # ========================================
 FROM node:22-alpine AS runner
 
 WORKDIR /app
-RUN corepack enable && corepack prepare pnpm@latest --activate
+
+# Install runtime dependencies only
 RUN apk add --no-cache libc6-compat curl
 
 # Create non-root user
-RUN addgroup -g 1001 -S nodejs && adduser -S mobarutdev -u 1001
+RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001 -G nodejs
 
-# Copy all build artifacts and node_modules
-COPY --from=builder /app /app
+# Copy only necessary files for production
+COPY --from=prod-deps --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
+COPY --from=builder --chown=nextjs:nodejs /app/next.config.* ./
 
-# Ensure mobarutdev owns everything
-RUN chown -R mobarutdev:nodejs /app
+RUN chown -R nextjs:nodejs /app
 
-# Switch to non-root
-USER mobarutdev
+# Switch to non-root user
+USER nextjs
 
 EXPOSE 3001
 
 # Healthcheck
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=3s --start-period=6s --retries=3 \
   CMD curl -f http://localhost:3001/api/health || exit 1
 
-# Start Next.js server
-CMD ["pnpm", "start", "-H", "0.0.0.0", "-p", "3001"]
+# Start Next.js in production mode
+CMD ["node_modules/.bin/next", "start", "-H", "0.0.0.0", "-p", "3001"]
