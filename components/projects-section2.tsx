@@ -1,11 +1,11 @@
-"use client";
-
-import { Project } from "@/lib/projects";
+import { getFeaturedProjects } from "@/lib/projects";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { ProjectCard } from "./project-card";
 
-export function ProjectsSection2({ projects }: { projects: Project[] }) {
+export async function ProjectsSection2() {
+  const projects = await getFeaturedProjects();
+  
   return (
     <div className="min-h-screen" id="projects">
       <div className="mx-auto container px-3 py-20">

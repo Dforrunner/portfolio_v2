@@ -8,14 +8,14 @@ import SkillsSection from "@/components/skill-section";
 import { getFeaturedProjects } from "@/lib/projects";
 
 export default async function Home() {
-  const projects = await getFeaturedProjects();
+
   return (
     <main>
       <HeroSection />
       <AboutSection />
       <ServicesSection />
       <SkillsSection />
-      <ProjectsSection2 projects={projects} />
+      <ProjectsSection2 />
       <BlogSection featuredOnly={true} />
       <ContactSection />
     </main>

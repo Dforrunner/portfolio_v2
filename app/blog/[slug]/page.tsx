@@ -2,15 +2,6 @@ import { siteConfig } from "@/lib/site-config";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "../post.util";
-
-import {
-  AIIntegrationContent,
-  DatabasePerformanceContent,
-  SEOOptimizationContent,
-  StripePaymentContent,
-  WebDevelopmentContent,
-  WebHostingContent,
-} from "../content/content";
 import BlogPostClient from "./page.client";
 
 export async function generateStaticParams() {
@@ -88,23 +79,4 @@ export default async function BlogPostPage({ params }: Props) {
   }
 
   return <BlogPostClient post={post} />;
-}
-
-function getPostContent(slug: string) {
-  switch (slug) {
-    case "ai-integration-business-2025":
-      return <AIIntegrationContent />;
-    case "modern-web-development-guide-2025":
-      return <WebDevelopmentContent />;
-    case "stripe-payment-integration-best-practices":
-      return <StripePaymentContent />;
-    case "seo-optimization-strategies-that-work":
-      return <SEOOptimizationContent />;
-    case "database-performance-scaling":
-      return <DatabasePerformanceContent />;
-    case "web-hosting-maintenance-vercel":
-      return <WebHostingContent />;
-    default:
-      return null;
-  }
 }

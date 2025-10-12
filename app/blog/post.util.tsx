@@ -59,7 +59,7 @@ export async function getAllPosts(options?: GetAllPostsOptions): Promise<BlogPos
     .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1));
 
   if (options?.featuredOnly) {
-    posts = posts.filter((post) => !post.featured);
+    posts = posts.filter((post) => post.featured);
   }
 
   return posts;
