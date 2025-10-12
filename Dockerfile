@@ -8,7 +8,6 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV CI=true
 ENV NODE_ENV=production
-ENV PORT=3000
 
 # ========================================
 # Dependencies stage (all deps, dev + prod)
@@ -40,16 +39,16 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN apk add --no-cache libc6-compat curl
 
 # Create non-root user
-RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
+RUN addgroup -g 1001 -S nodejs && adduser -S mobarutdev -u 1001
 
 # Copy all build artifacts and node_modules
 COPY --from=builder /app /app
 
-# Ensure nextjs owns everything
-RUN chown -R nextjs:nodejs /app
+# Ensure mobarutdev owns everything
+RUN chown -R mobarutdev:nodejs /app
 
 # Switch to non-root
-USER nextjs
+USER mobarutdev
 
 EXPOSE 3001
 
