@@ -1,16 +1,16 @@
-import { BlogPostMetaData } from "@/app/blog/post.util";
-import { ArrowRight, Calendar, Clock } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { BlogPostMetaData } from '@/app/blog/post.util';
+import { ArrowRight, Calendar, Clock } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export function BlogCard({ post }: { post: BlogPostMetaData }) {
   return (
     <Link key={post.slug} href={`/blog/${post.slug}`} className="group relative block" prefetch>
-      <article className="relative h-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-slate-400  dark:hover:border-slate-700 hover:shadow-2xl hover:shadow-slate-900/50">
+      <article className="relative h-full overflow-hidden rounded-2xl border border-slate-300 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-slate-400 hover:shadow-2xl hover:shadow-slate-900/50 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700">
         {/* Image */}
         <div className="relative h-48 overflow-hidden">
           <Image
-            src={post.image || "/placeholder.svg"}
+            src={post.image || '/placeholder.svg'}
             alt={post.title}
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
             width={400}
@@ -22,7 +22,7 @@ export function BlogCard({ post }: { post: BlogPostMetaData }) {
           />
           {/* Category Badge */}
           <div
-            className={`absolute right-4 top-4 rounded-full bg-gradient-to-r ${post.gradient} px-3 py-1 text-xs font-semibold text-white shadow-lg`}
+            className={`absolute top-4 right-4 rounded-full bg-gradient-to-r ${post.gradient} px-3 py-1 text-xs font-semibold text-white shadow-lg`}
           >
             {post.category}
           </div>
@@ -43,12 +43,12 @@ export function BlogCard({ post }: { post: BlogPostMetaData }) {
           </div>
 
           {/* Title */}
-          <h2 className="mb-3 text-xl font-bold leading-tight text-balance group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-blue-400 group-hover:to-cyan-400 transition-all duration-300">
+          <h2 className="mb-3 text-xl leading-tight font-bold text-balance transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-cyan-400 group-hover:bg-clip-text group-hover:text-transparent">
             {post.title}
           </h2>
 
           {/* Excerpt */}
-          <p className="mb-4 text-sm text-slate-400 leading-relaxed text-pretty line-clamp-3">
+          <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-pretty text-slate-400">
             {post.excerpt}
           </p>
 
@@ -65,7 +65,7 @@ export function BlogCard({ post }: { post: BlogPostMetaData }) {
 
         {/* Hover Glow Effect */}
         <div
-          className={`absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br ${post.gradient} opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20`}
+          className={`absolute -top-8 -right-8 h-32 w-32 rounded-full bg-gradient-to-br ${post.gradient} opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20`}
         />
       </article>
     </Link>

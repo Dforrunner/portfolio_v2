@@ -76,6 +76,8 @@
     "@types/react-dom": "^19.2.1",
     "clipboardy": "^5.0.0",
     "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "readline": "^1.3.0",
     "tailwindcss": "^4.1.14",
     "tw-animate-css": "1.4.0",

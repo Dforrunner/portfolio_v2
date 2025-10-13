@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useConnectionSpeed } from "@/hooks/use-connection-speed";
-import { useIsDesktop } from "@/hooks/use-is-desktop";
-import { Battery, Monitor, Signal, Smartphone, Wifi } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { useConnectionSpeed } from '@/hooks/use-connection-speed';
+import { useIsDesktop } from '@/hooks/use-is-desktop';
+import { Battery, Monitor, Signal, Smartphone, Wifi } from 'lucide-react';
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 interface DeviceMockupsProps {
   images: {
     desktop?: string;
@@ -59,7 +59,7 @@ function LazyIframe({
           style={iframeStyle}
         />
       ) : (
-        <div className="flex h-full items-center justify-center text-muted-foreground">
+        <div className="text-muted-foreground flex h-full items-center justify-center">
           <div className="animate-pulse">Loading preview...</div>
         </div>
       )}
@@ -74,7 +74,7 @@ export function DeviceMockups({
   showStatusBar = false,
   showSafariBar = false,
 }: DeviceMockupsProps) {
-  const [activeDevice, setActiveDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
+  const [activeDevice, setActiveDevice] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const isGoodConnection = useConnectionSpeed();
   const [showIframe, setShowIframe] = useState(!!iframeUrl && isGoodConnection);
   const isDesktop = useIsDesktop();
@@ -94,11 +94,11 @@ export function DeviceMockups({
       <div className="flex items-center justify-center gap-2">
         {hasDesktop && (
           <button
-            onClick={() => setActiveDevice("desktop")}
+            onClick={() => setActiveDevice('desktop')}
             className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
-              activeDevice === "desktop"
-                ? "bg-primary text-primary-foreground shadow-lg"
-                : "bg-card text-muted-foreground hover:bg-muted"
+              activeDevice === 'desktop'
+                ? 'bg-primary text-primary-foreground shadow-lg'
+                : 'bg-card text-muted-foreground hover:bg-muted'
             }`}
           >
             <Monitor className="h-4 w-4" />
@@ -107,11 +107,11 @@ export function DeviceMockups({
         )}
         {hasMobile && (
           <button
-            onClick={() => setActiveDevice("mobile")}
+            onClick={() => setActiveDevice('mobile')}
             className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all ${
-              activeDevice === "mobile"
-                ? "bg-primary text-primary-foreground shadow-lg"
-                : "bg-card text-muted-foreground hover:bg-muted"
+              activeDevice === 'mobile'
+                ? 'bg-primary text-primary-foreground shadow-lg'
+                : 'bg-card text-muted-foreground hover:bg-muted'
             }`}
           >
             <Smartphone className="h-4 w-4" />
@@ -121,21 +121,21 @@ export function DeviceMockups({
         {iframeUrl && isDesktop && (
           <button
             onClick={() => setShowIframe(!showIframe)}
-            className={`text-xs rounded-lg px-1 sm:px-4 py-2  font-medium transition-all ${
+            className={`rounded-lg px-1 py-2 text-xs font-medium transition-all sm:px-4 ${
               showIframe
-                ? "bg-accent text-accent-foreground"
-                : "bg-card text-muted-foreground hover:bg-muted"
+                ? 'bg-accent text-accent-foreground'
+                : 'bg-card text-muted-foreground hover:bg-muted'
             }`}
           >
-            {showIframe ? "Show Screenshot" : "Show Live Preview"}
+            {showIframe ? 'Show Screenshot' : 'Show Live Preview'}
           </button>
         )}
       </div>
 
       {/* Device Mockup */}
       <div className="flex justify-center">
-        {activeDevice === "desktop" && (
-          <div className="w-full max-w-6xl animate-fade-in-up">
+        {activeDevice === 'desktop' && (
+          <div className="animate-fade-in-up w-full max-w-6xl">
             <DesktopMockup
               image={images.desktop}
               iframeUrl={showIframe && iframeUrl && isDesktop ? iframeUrl : undefined}
@@ -143,8 +143,8 @@ export function DeviceMockups({
             />
           </div>
         )}
-        {activeDevice === "mobile" && (
-          <div className="max-w-sm animate-fade-in-up">
+        {activeDevice === 'mobile' && (
+          <div className="animate-fade-in-up max-w-sm">
             <MobileMockup
               image={images.mobile}
               iframeUrl={showIframe && iframeUrl && isDesktop ? iframeUrl : undefined}
@@ -171,26 +171,26 @@ function DesktopMockup({
   return (
     <div className="group relative">
       {/* Browser Chrome */}
-      <div className="overflow-hidden rounded-t-xl border border-border bg-card shadow-2xl">
+      <div className="border-border bg-card overflow-hidden rounded-t-xl border shadow-2xl">
         {/* Browser Header */}
-        <div className="flex items-center gap-2 border-b border-border bg-muted px-4 py-3">
+        <div className="border-border bg-muted flex items-center gap-2 border-b px-4 py-3">
           <div className="flex gap-2">
             <div className="h-3 w-3 rounded-full bg-red-500" />
             <div className="h-3 w-3 rounded-full bg-yellow-500" />
             <div className="h-3 w-3 rounded-full bg-green-500" />
           </div>
-          <div className="ml-4 flex-1 rounded bg-background px-3 py-1 text-xs text-muted-foreground">
-            {iframeUrl || "https://example.com"}
+          <div className="bg-background text-muted-foreground ml-4 flex-1 rounded px-3 py-1 text-xs">
+            {iframeUrl || 'https://example.com'}
           </div>
         </div>
 
         {/* Content */}
-        <div className="aspect-video bg-background">
+        <div className="bg-background aspect-video">
           {iframeUrl ? (
             <LazyIframe src={iframeUrl} title={title} className="h-full w-full" />
           ) : image ? (
             <Image
-              src={image || "/placeholder.svg"}
+              src={image || '/placeholder.svg'}
               alt={title}
               className="h-full w-full object-cover object-top"
               loading="lazy"
@@ -198,7 +198,7 @@ function DesktopMockup({
               height={630}
             />
           ) : (
-            <div className="flex h-full items-center justify-center text-muted-foreground">
+            <div className="text-muted-foreground flex h-full items-center justify-center">
               No preview available
             </div>
           )}
@@ -229,15 +229,15 @@ function MobileMockup({
       {/* Phone Frame */}
       <div className="overflow-hidden rounded-[2.5rem] border-8 border-slate-800 bg-slate-800 shadow-2xl dark:border-slate-700">
         {/* Notch */}
-        <div className="relative bg-background">
-          <div className="absolute left-1/2 top-0 h-6 w-32 -translate-x-1/2 rounded-b-2xl bg-slate-800 dark:bg-slate-700" />
+        <div className="bg-background relative">
+          <div className="absolute top-0 left-1/2 h-6 w-32 -translate-x-1/2 rounded-b-2xl bg-slate-800 dark:bg-slate-700" />
         </div>
 
         {/* Screen */}
-        <div className="aspect-[9/19.5] bg-background">
+        <div className="bg-background aspect-[9/19.5]">
           {/* iOS Status Bar */}
           {showStatusBar && (
-            <div className="relative z-10 flex items-center justify-between px-6 pt-3 pb-2 text-xs font-medium text-foreground">
+            <div className="text-foreground relative z-10 flex items-center justify-between px-6 pt-3 pb-2 text-xs font-medium">
               {/* Left side - Time */}
               <div className="flex items-center gap-1">
                 <span>9:41</span>
@@ -255,13 +255,13 @@ function MobileMockup({
           {/* Safari Search Bar */}
           {showSafariBar && (
             <div className="relative z-10 mx-3 mt-2 mb-3">
-              <div className="flex items-center gap-2 rounded-xl bg-muted/50 backdrop-blur-sm px-3 py-2">
+              <div className="bg-muted/50 flex items-center gap-2 rounded-xl px-3 py-2 backdrop-blur-sm">
                 {/* AA Text Size Button */}
-                <button className="text-xs font-bold text-muted-foreground">aA</button>
+                <button className="text-muted-foreground text-xs font-bold">aA</button>
 
                 {/* URL/Search Field */}
-                <div className="flex-1 text-center text-xs text-muted-foreground">
-                  {title || "Search or enter website name"}
+                <div className="text-muted-foreground flex-1 text-center text-xs">
+                  {title || 'Search or enter website name'}
                 </div>
 
                 {/* Refresh Button */}
@@ -286,15 +286,15 @@ function MobileMockup({
               title={title}
               className="h-full w-full"
               iframeStyle={{
-                width: "370px",
-                height: "886px", // iPhone 12/13/14 dimensions
-                transform: "scale(1)",
-                transformOrigin: "top center",
+                width: '370px',
+                height: '886px', // iPhone 12/13/14 dimensions
+                transform: 'scale(1)',
+                transformOrigin: 'top center',
               }}
             />
           ) : (
             <Image
-              src={image || "/placeholder.svg"}
+              src={image || '/placeholder.svg'}
               alt={title}
               className="h-full w-full object-cover object-top"
               width={370}

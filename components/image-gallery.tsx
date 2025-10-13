@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import type React from "react";
+import type React from 'react';
 
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
+import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
 
 interface GalleryImage {
   url: string;
@@ -45,9 +45,9 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowLeft") goToPrevious();
-    if (e.key === "ArrowRight") goToNext();
-    if (e.key === "Escape") closeLightbox();
+    if (e.key === 'ArrowLeft') goToPrevious();
+    if (e.key === 'ArrowRight') goToNext();
+    if (e.key === 'Escape') closeLightbox();
   };
 
   return (
@@ -67,10 +67,10 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
             <button
               key={index}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-video overflow-hidden rounded-xl border-card-services bg-card-services transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
+              className="group border-card-services bg-card-services relative aspect-video overflow-hidden rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
             >
               <Image
-                src={image.url || "/placeholder.svg"}
+                src={image.url || '/placeholder.svg'}
                 alt={image.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -79,12 +79,12 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
 
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="absolute bottom-0 left-0 right-0 p-4">
+                <div className="absolute right-0 bottom-0 left-0 p-4">
                   {image.caption && (
-                    <p className="text-sm font-medium text-white text-balance">{image.caption}</p>
+                    <p className="text-sm font-medium text-balance text-white">{image.caption}</p>
                   )}
                 </div>
-                <div className="absolute right-3 top-3">
+                <div className="absolute top-3 right-3">
                   <div className="rounded-full bg-white/20 p-2 backdrop-blur-sm">
                     <Maximize2 className="h-4 w-4 text-white" />
                   </div>
@@ -92,7 +92,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               </div>
 
               {/* Animated border gradient */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 transition-opacity duration-300 group-hover:opacity-20 blur-xl" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-20" />
             </button>
           ))}
         </div>
@@ -101,7 +101,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
       {/* Lightbox Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent
-          className="max-w-[95vw] h-[95vh] border-0 bg-black/95 p-0 backdrop-blur-xl"
+          className="h-[95vh] max-w-[95vw] border-0 bg-black/95 p-0 backdrop-blur-xl"
           onKeyDown={handleKeyDown}
         >
           {selectedIndex !== null && (
@@ -109,13 +109,13 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               {/* Close Button */}
               <button
                 onClick={closeLightbox}
-                className="absolute right-4 top-4 z-50 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110"
+                className="absolute top-4 right-4 z-50 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20"
               >
                 <X className="h-6 w-6" />
               </button>
 
               {/* Image Counter */}
-              <div className="absolute left-1/2 top-4 z-50 -translate-x-1/2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
+              <div className="absolute top-4 left-1/2 z-50 -translate-x-1/2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm">
                 {selectedIndex + 1} / {images.length}
               </div>
 
@@ -123,15 +123,15 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
               <div
                 className={`relative w-full ${
                   images[selectedIndex].caption
-                    ? "h-[calc(100%-180px)]"
+                    ? 'h-[calc(100%-180px)]'
                     : images.length > 1
-                    ? "h-[calc(100%-100px)]"
-                    : "h-full"
+                      ? 'h-[calc(100%-100px)]'
+                      : 'h-full'
                 } p-4 md:p-8`}
               >
-                <div className="relative h-full w-full animate-fade-in">
+                <div className="animate-fade-in relative h-full w-full">
                   <Image
-                    src={images[selectedIndex].url || "/placeholder.svg"}
+                    src={images[selectedIndex].url || '/placeholder.svg'}
                     alt={images[selectedIndex].alt}
                     fill
                     className="object-contain"
@@ -143,7 +143,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
 
               {/* Caption */}
               {images[selectedIndex].caption && (
-                <div className="absolute bottom-[100px] left-0 right-0 border-t border-white/10 bg-black/50 p-6 text-center backdrop-blur-sm">
+                <div className="absolute right-0 bottom-[100px] left-0 border-t border-white/10 bg-black/50 p-6 text-center backdrop-blur-sm">
                   <p className="text-lg text-white">{images[selectedIndex].caption}</p>
                 </div>
               )}
@@ -153,13 +153,13 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
                 <>
                   <button
                     onClick={goToPrevious}
-                    className="absolute left-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110"
+                    className="absolute top-1/2 left-4 z-50 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20"
                   >
                     <ChevronLeft className="h-6 w-6" />
                   </button>
                   <button
                     onClick={goToNext}
-                    className="absolute right-4 top-1/2 z-50 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-110"
+                    className="absolute top-1/2 right-4 z-50 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:scale-110 hover:bg-white/20"
                   >
                     <ChevronRight className="h-6 w-6" />
                   </button>
@@ -168,20 +168,20 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
 
               {/* Thumbnail Strip */}
               {images.length > 1 && (
-                <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/50 p-4 backdrop-blur-sm overflow-x-auto">
-                  <div className="flex justify-center gap-2 min-w-max">
+                <div className="absolute right-0 bottom-0 left-0 overflow-x-auto border-t border-white/10 bg-black/50 p-4 backdrop-blur-sm">
+                  <div className="flex min-w-max justify-center gap-2">
                     {images.map((image, index) => (
                       <button
                         key={index}
                         onClick={() => setSelectedIndex(index)}
                         className={`relative h-16 w-24 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
                           index === selectedIndex
-                            ? "border-blue-500 scale-110"
-                            : "border-transparent opacity-50 hover:opacity-100"
+                            ? 'scale-110 border-blue-500'
+                            : 'border-transparent opacity-50 hover:opacity-100'
                         }`}
                       >
                         <Image
-                          src={image.url || "/placeholder.svg"}
+                          src={image.url || '/placeholder.svg'}
                           alt={image.alt}
                           fill
                           className="object-cover"

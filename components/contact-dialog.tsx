@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import type React from "react";
+import type React from 'react';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -10,11 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Calendar, MessageSquare, Sparkles } from "lucide-react";
-import { useState } from "react";
-import { ContactForm } from "./contact-form";
-import CalCom from "./cal-com";
+} from '@/components/ui/dialog';
+import { Calendar, MessageSquare, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import CalCom from './cal-com';
+import { ContactForm } from './contact-form';
 
 interface ContactDialogProps {
   trigger?: React.ReactNode;
@@ -23,9 +23,9 @@ interface ContactDialogProps {
 
 export function ContactDialog({
   trigger,
-  buttonText = "Book Free Consultation",
+  buttonText = 'Book Free Consultation',
 }: ContactDialogProps) {
-  const [activeView, setActiveView] = useState<"contact" | "calendar">("contact");
+  const [activeView, setActiveView] = useState<'contact' | 'calendar'>('contact');
 
   return (
     <Dialog>
@@ -33,43 +33,43 @@ export function ContactDialog({
         {trigger || (
           <Button
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="bg-gradient-to-r from-blue-600 to-cyan-600 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-cyan-700 hover:shadow-xl"
           >
             <Sparkles className="mr-2 h-5 w-5" />
             {buttonText}
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="max-w-3xl w-full max-h-[90vh] overflow-y-auto border-slate-300 dark:border-slate-700">
+      <DialogContent className="max-h-[90vh] w-full max-w-3xl overflow-y-auto border-slate-300 dark:border-slate-700">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+          <DialogTitle className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-3xl font-bold text-transparent">
             Let's Build Something Amazing
           </DialogTitle>
-          <DialogDescription className="text-slate-500 dark:text-slate-300 text-base">
+          <DialogDescription className="text-base text-slate-500 dark:text-slate-300">
             Choose your preferred way to connect. I typically respond within 24 hours.
           </DialogDescription>
         </DialogHeader>
 
         <div className="flex gap-2 border-b border-slate-700 pb-4">
           <Button
-            onClick={() => setActiveView("contact")}
-            variant={activeView === "contact" ? "default" : "outline"}
+            onClick={() => setActiveView('contact')}
+            variant={activeView === 'contact' ? 'default' : 'outline'}
             className={`flex-1 ${
-              activeView === "contact"
-                ? "bg-gradient-to-r from-blue-600 to-cyan-600 dark:text-white"
-                : "border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+              activeView === 'contact'
+                ? 'bg-gradient-to-r from-blue-600 to-cyan-600 dark:text-white'
+                : 'border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'
             }`}
           >
             <MessageSquare className="mr-2 h-4 w-4" />
             Contact Form
           </Button>
           <Button
-            onClick={() => setActiveView("calendar")}
-            variant={activeView === "calendar" ? "default" : "outline"}
+            onClick={() => setActiveView('calendar')}
+            variant={activeView === 'calendar' ? 'default' : 'outline'}
             className={`flex-1 ${
-              activeView === "calendar"
-                ? "bg-gradient-to-r from-blue-600 to-cyan-600 dark:text-white"
-                : "border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+              activeView === 'calendar'
+                ? 'bg-gradient-to-r from-blue-600 to-cyan-600 dark:text-white'
+                : 'border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800'
             }`}
           >
             <Calendar className="mr-2 h-4 w-4" />
@@ -78,18 +78,18 @@ export function ContactDialog({
         </div>
 
         <div>
-          {activeView === "contact" ? (
+          {activeView === 'contact' ? (
             <ContactForm />
           ) : (
             <div className="space-y-4">
-              <div className="text-center space-y-2">
-                <p className="text-slate-400 text-sm">
+              <div className="space-y-2 text-center">
+                <p className="text-sm text-slate-400">
                   Pick a time that works best for you. I'll send you a calendar invite with meeting
                   details.
                 </p>
               </div>
 
-              <div className="rounded-lg overflow-hidden">
+              <div className="overflow-hidden rounded-lg">
                 <CalCom />
               </div>
 
@@ -102,7 +102,7 @@ export function ContactDialog({
           )}
 
           {/* Trust Badge */}
-          <div className="text-center pt-3">
+          <div className="pt-3 text-center">
             <p className="text-sm text-slate-400">
               🔒 Your information is secure and will never be shared
             </p>

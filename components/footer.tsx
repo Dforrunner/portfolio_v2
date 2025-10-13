@@ -1,16 +1,16 @@
-import { siteConfig } from "@/lib/site-config";
-import { Github, Linkedin, Mail } from "lucide-react";
-import { ContactDialog } from "./contact-dialog";
+import { siteConfig } from '@/lib/site-config';
+import { Github, Linkedin, Mail } from 'lucide-react';
+import { ContactDialog } from './contact-dialog';
 
 export function Footer() {
   return (
     <footer className="bg-gradient-primary border-t">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-3">
           {/* Brand */}
           <div>
-            <h3 className="font-bold text-xl mb-4">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text dark:text-transparent">
+            <h3 className="mb-4 text-xl font-bold">
+              <span className="from-primary to-accent bg-gradient-to-r bg-clip-text dark:text-transparent">
                 {siteConfig.name}
               </span>
             </h3>
@@ -46,7 +46,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-4">Quick Links</h4>
+            <h4 className="mb-4 font-semibold">Quick Links</h4>
             <ul className="space-y-2">
               {siteConfig.navigation.map((item) => (
                 <li key={item.name}>
@@ -64,8 +64,8 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-semibold mb-4">Get In Touch</h4>
-            <div className="space-y-2 text-muted-foreground">
+            <h4 className="mb-4 font-semibold">Get In Touch</h4>
+            <div className="text-muted-foreground space-y-2">
               <p>{siteConfig.email}</p>
               <p>{siteConfig.location}</p>
 
@@ -74,7 +74,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground ">
+        <div className="border-border text-muted-foreground mt-8 border-t pt-8 text-center">
           <p>
             &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>

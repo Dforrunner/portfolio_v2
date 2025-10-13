@@ -5,13 +5,32 @@
   "editor.minimap.enabled": false,
   "gitlens.keymap": "none",
   "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.configPath": ".prettierrc",
+  "prettier.requireConfig": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
     "source.fixAll.ts": "always",
     "source.organizeImports": "always",
     "source.removeUnusedImports": "always"
   },
-  "prettier.singleAttributePerLine": false,
-  "prettier.printWidth": 100,
   "cSpell.words": ["bargo", "Barut", "Canva", "dforrunner", "Headshot", "mobarut"]
 }

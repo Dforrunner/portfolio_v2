@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
 interface Props {
   text: string;
@@ -21,8 +21,8 @@ export default function CopyButton({ className, text, alwaysShow = false }: Prop
     <button
       onClick={handleCopy}
       className={cn(
-        `px-3 py-1 text-xs font-medium flex items-center gap-1.5 z-20`,
-        alwaysShow ? "" : "opacity-0 group-hover:opacity-100 transition-opacity duration-200",
+        `z-20 flex items-center gap-1.5 px-3 py-1 text-xs font-medium`,
+        alwaysShow ? '' : 'opacity-0 transition-opacity duration-200 group-hover:opacity-100',
         className
       )}
       aria-label="Copy code"
@@ -30,7 +30,7 @@ export default function CopyButton({ className, text, alwaysShow = false }: Prop
       {copied ? (
         <>
           <svg
-            className="w-3.5 h-3.5"
+            className="h-3.5 w-3.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -45,7 +45,7 @@ export default function CopyButton({ className, text, alwaysShow = false }: Prop
       ) : (
         <>
           <svg
-            className="w-3.5 h-3.5"
+            className="h-3.5 w-3.5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

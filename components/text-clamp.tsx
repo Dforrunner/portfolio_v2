@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { JSX, useMemo } from "react";
+import React, { JSX, useMemo } from 'react';
 
 interface TextClampProps {
   minFont: number; // minimum font size in px
@@ -22,7 +22,7 @@ export default function TextClamp({
   maxFont,
   minVw = 375,
   maxVw = 1440,
-  as: Tag = "div",
+  as: Tag = 'div',
   className,
   children,
 }: TextClampProps) {

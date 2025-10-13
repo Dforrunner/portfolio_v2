@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Dialog,
@@ -7,9 +7,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Check, Code, Copy, Share2 } from "lucide-react";
-import { useState } from "react";
+} from '@/components/ui/dialog';
+import { Check, Code, Copy, Share2 } from 'lucide-react';
+import { useState } from 'react';
 import {
   EmailIcon,
   EmailShareButton,
@@ -25,7 +25,7 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
   XIcon,
-} from "react-share";
+} from 'react-share';
 
 interface Props {
   title: string;
@@ -37,13 +37,13 @@ export function ShareDialog({
   title,
   description,
   children,
-  triggerTitle = "Share article ",
+  triggerTitle = 'Share article ',
 }: Props) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedEmbed, setCopiedEmbed] = useState(false);
 
   // Get the full URL for sharing
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = title;
   const shareDescription = description;
 
@@ -65,13 +65,13 @@ export function ShareDialog({
     <Dialog>
       <DialogTrigger asChild>
         {children ?? (
-          <button className="flex items-center gap-2 dark:text-slate-400 text-slate-600 hover:text-slate-800 transition-colors dark:hover:text-white cursor-pointer">
+          <button className="flex cursor-pointer items-center gap-2 text-slate-600 transition-colors hover:text-slate-800 dark:text-slate-400 dark:hover:text-white">
             <Share2 className="h-4 w-4" />
             {triggerTitle}
           </button>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md dark:bg-slate-900 dark:border-slate-800 dark:text-white">
+      <DialogContent className="sm:max-w-md dark:border-slate-800 dark:bg-slate-900 dark:text-white">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">Share this article</DialogTitle>
           <DialogDescription className="dark:text-slate-400">
@@ -120,11 +120,11 @@ export function ShareDialog({
                 type="text"
                 value={shareUrl}
                 readOnly
-                className="flex-1 rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 px-4 py-2 text-sm text-slate-600 dark:text-slate-300 focus:border-slate-400 dark:focus:border-slate-600 focus:outline-none"
+                className="flex-1 rounded-lg border border-slate-300 px-4 py-2 text-sm text-slate-600 focus:border-slate-400 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:focus:border-slate-600"
               />
               <button
                 onClick={handleCopyLink}
-                className="flex items-center gap-2 rounded-lg border border-slate-600 dark:bg-slate-800 px-4 py-2 text-sm font-medium transition-colors dark:hover:bg-slate-700"
+                className="flex items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-medium transition-colors dark:bg-slate-800 dark:hover:bg-slate-700"
               >
                 {copiedLink ? (
                   <>
@@ -151,11 +151,11 @@ export function ShareDialog({
                 value={embedCode}
                 readOnly
                 rows={3}
-                className="w-full rounded-lg border border-slate-400 dark:border-slate-700 dark:bg-slate-800 px-4 py-2 text-sm text-slate-600 dark:text-slate-300 font-mono focus:border-slate-600 focus:outline-none resize-none"
+                className="w-full resize-none rounded-lg border border-slate-400 px-4 py-2 font-mono text-sm text-slate-600 focus:border-slate-600 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
               />
               <button
                 onClick={handleCopyEmbed}
-                className="flex items-center gap-2 rounded-lg border border-slate-400 dark:border-slate-700 dark:bg-slate-800 px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-700"
+                className="flex items-center gap-2 rounded-lg border border-slate-400 px-4 py-2 text-sm font-medium transition-colors hover:bg-slate-700 dark:border-slate-700 dark:bg-slate-800"
               >
                 {copiedEmbed ? (
                   <>

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface FileDownloadProps {
   src: string;
@@ -7,11 +7,11 @@ interface FileDownloadProps {
 
 const FileDownload: React.FC<FileDownloadProps> = ({ src, title }) => {
   return (
-    <div className="my-6 p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg bg-zinc-50 dark:bg-zinc-900/30">
+    <div className="my-6 rounded-lg border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/30">
       <div className="flex items-center gap-3">
         {/* File icon */}
         <svg
-          className="w-6 h-6 text-blue-500"
+          className="h-6 w-6 text-blue-500"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -26,13 +26,11 @@ const FileDownload: React.FC<FileDownloadProps> = ({ src, title }) => {
 
         {/* File details */}
         <div>
-          <p className="font-medium text-gray-900 dark:text-gray-100">
-            {title || "Download File"}
-          </p>
+          <p className="font-medium text-gray-900 dark:text-gray-100">{title || 'Download File'}</p>
           <a
             href={src}
             download
-            className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+            className="text-sm text-blue-600 hover:underline dark:text-blue-400"
             aria-label="Download File"
           >
             Download

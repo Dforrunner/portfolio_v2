@@ -40,7 +40,10 @@ export function GlassCard({
     >
       <div
         className={cn(
-          `relative h-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 bg-background dark:bg-slate-900/50 p-3 md:p-8 backdrop-blur-sm transition-all duration-500  hover:scale-105 hover:border-slate-400 dark:hover:border-slate-700 hover:shadow-2xl anime-on-view animate-scale-in animate-stagger-${index}`,
+          `relative h-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800
+           bg-background dark:bg-slate-900/50 p-3 md:p-8 backdrop-blur-sm transition-all duration-500  
+           hover:scale-105 hover:border-slate-400 dark:hover:border-slate-700 hover:shadow-2xl 
+           anime-on-view animate-scale-in animate-stagger-${index}`,
           className,
           bgGlowColor
         )}
@@ -48,7 +51,8 @@ export function GlassCard({
         {/* Gradient Orb Background */}
         <div
           className={cn(
-            `absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20`,
+            `absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br opacity-0 blur-3xl 
+            transition-opacity duration-500 group-hover:opacity-20`,
             innerGlowColor
           )}
         />

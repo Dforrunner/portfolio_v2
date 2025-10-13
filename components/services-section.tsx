@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { services } from "@/lib/services";
-import { ArrowRight, Check } from "lucide-react";
-import { useState } from "react";
-import { ContactDialog } from "./contact-dialog";
-import { GlassCard } from "./glass-card";
-import TextClamp from "./text-clamp";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { services } from '@/lib/services';
+import { ArrowRight, Check } from 'lucide-react';
+import { useState } from 'react';
+import { ContactDialog } from './contact-dialog';
+import { GlassCard } from './glass-card';
+import TextClamp from './text-clamp';
 
 export default function ServicesSection() {
   const [selectedService, setSelectedService] = useState<number | null>(null);
 
   return (
-    <section className='scroll-mt-13 md:scroll-mt-16' id="services">
+    <section className="scroll-mt-13 md:scroll-mt-16" id="services">
       <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-16 text-center">
@@ -22,20 +22,20 @@ export default function ServicesSection() {
             as="h2"
             className="mb-4 font-bold tracking-tight text-balance"
           >
-            Services That Drive{" "}
+            Services That Drive{' '}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               Results
             </span>
           </TextClamp>
 
-          <p className="mx-auto max-w-2xl text-lg text-slate-400 text-pretty leading-relaxed">
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-pretty text-slate-400">
             Full-stack solutions tailored to your business needs. From concept to deployment, I
             deliver high-quality applications that scale.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid gap-6 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -63,7 +63,7 @@ export default function ServicesSection() {
                   {service.title}
                 </TextClamp>
 
-                <p className="mb-6 text-slate-600 dark:text-slate-400 leading-relaxed text-pretty">
+                <p className="mb-6 leading-relaxed text-pretty text-slate-600 dark:text-slate-400">
                   {service.description}
                 </p>
 
@@ -72,7 +72,7 @@ export default function ServicesSection() {
                   {service.features.map((feature, featureIndex) => (
                     <li
                       key={featureIndex}
-                      className={`flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300 group-hover:animate-slide-in animate-stagger-${index}`}
+                      className={`group-hover:animate-slide-in flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300 animate-stagger-${index}`}
                     >
                       <div
                         className={`h-1.5 w-1.5 rounded-full bg-gradient-to-r ${service.color}`}
@@ -82,7 +82,7 @@ export default function ServicesSection() {
                   ))}
                 </ul>
 
-                <button className="flex items-center gap-2 text-sm font-semibold transition-all cursor-pointer">
+                <button className="flex cursor-pointer items-center gap-2 text-sm font-semibold transition-all">
                   <span
                     className={`bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}
                   >
@@ -92,8 +92,8 @@ export default function ServicesSection() {
                     className={`h-4 w-4 transition-transform duration-300 group-hover:translate-x-1`}
                     style={{
                       background: `linear-gradient(to right, var(--tw-gradient-stops))`,
-                      WebkitBackgroundClip: "text",
-                      backgroundClip: "text",
+                      WebkitBackgroundClip: 'text',
+                      backgroundClip: 'text',
                     }}
                   />
                 </button>
@@ -110,7 +110,7 @@ export default function ServicesSection() {
       </div>
 
       <Dialog open={selectedService !== null} onOpenChange={() => setSelectedService(null)}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-gradient-primary">
+        <DialogContent className="bg-gradient-primary max-h-[90vh] max-w-3xl overflow-y-auto">
           {selectedService !== null && (
             <>
               <DialogHeader>
@@ -124,10 +124,10 @@ export default function ServicesSection() {
                     })()}
                   </div>
                   <div className="flex-1">
-                    <DialogTitle className="text-2xl font-bold mb-2">
+                    <DialogTitle className="mb-2 text-2xl font-bold">
                       {services[selectedService].title}
                     </DialogTitle>
-                    <p className="dark:text-slate-400 leading-relaxed">
+                    <p className="leading-relaxed dark:text-slate-400">
                       {services[selectedService].detailedDescription}
                     </p>
                   </div>
@@ -137,7 +137,7 @@ export default function ServicesSection() {
               <div className="mt-6 space-y-6">
                 {/* Benefits Section */}
                 <div>
-                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
                     <span
                       className={`bg-gradient-to-r ${services[selectedService].color} bg-clip-text text-transparent`}
                     >
@@ -148,9 +148,9 @@ export default function ServicesSection() {
                     {services[selectedService].benefits.map((benefit, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <Check
-                          className={`h-5 w-5 mt-0.5 flex-shrink-0 text-white bg-gradient-to-r ${services[selectedService].color} rounded-full p-0.5`}
+                          className={`mt-0.5 h-5 w-5 flex-shrink-0 bg-gradient-to-r text-white ${services[selectedService].color} rounded-full p-0.5`}
                         />
-                        <span className="dark:text-slate-300 leading-relaxed">{benefit}</span>
+                        <span className="leading-relaxed dark:text-slate-300">{benefit}</span>
                       </li>
                     ))}
                   </ul>
@@ -158,7 +158,7 @@ export default function ServicesSection() {
 
                 {/* Deliverables Section */}
                 <div>
-                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                  <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
                     <span
                       className={`bg-gradient-to-r ${services[selectedService].color} bg-clip-text text-transparent`}
                     >
@@ -171,7 +171,7 @@ export default function ServicesSection() {
                         <div
                           className={`h-1.5 w-1.5 rounded-full bg-gradient-to-r ${services[selectedService].color} mt-2`}
                         />
-                        <span className="dark:text-slate-300 leading-relaxed">{deliverable}</span>
+                        <span className="leading-relaxed dark:text-slate-300">{deliverable}</span>
                       </li>
                     ))}
                   </ul>

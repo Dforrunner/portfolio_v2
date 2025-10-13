@@ -10,6 +10,7 @@ import { DM_Sans } from "next/font/google";
 import type React from "react";
 import { Suspense } from "react";
 import "./globals.css";
+import { seoKeywords } from "@/lib/keywords";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -26,25 +27,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.name,
   referrer: "origin-when-cross-origin",
-  keywords: [
-    "freelance full-stack developer",
-    "web development services",
-    "React developer for hire",
-    "Next.js development",
-    "TypeScript developer",
-    "custom web applications",
-    "SaaS development",
-    "e-commerce development",
-    "API development",
-    "database design",
-    "responsive web design",
-    "Muhammet Barut",
-    "Mo Barut developer",
-    "freelance programmer",
-    "web app development",
-    "startup MVP development",
-    "business web solutions",
-  ],
+  keywords: seoKeywords,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,

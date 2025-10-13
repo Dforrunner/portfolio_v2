@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configure `pageExtensions` to include markdown and MDX files
-  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -23,8 +23,8 @@ const nextConfig = {
 // export default nextConfig;
 
 export default async function config() {
-  if (process.env.ANALYZE === "true") {
-    const { default: withBundleAnalyzer } = await import("@next/bundle-analyzer");
+  if (process.env.ANALYZE === 'true') {
+    const { default: withBundleAnalyzer } = await import('@next/bundle-analyzer');
     const finalConfig = withBundleAnalyzer({
       enabled: true,
       openAnalyzer: true, // ✅ Automatically open in browser
