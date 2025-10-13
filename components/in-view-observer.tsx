@@ -1,8 +1,10 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 export function InViewObserver() {
+  const pathname = usePathname();
   useEffect(() => {
     console.log('called');
     const observer = new IntersectionObserver(
@@ -33,6 +35,6 @@ export function InViewObserver() {
       }
     });
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
   return <></>;
 }
