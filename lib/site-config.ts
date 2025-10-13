@@ -20,7 +20,7 @@ export const siteConfig = {
   logo: "/logo-100.webp",
   logoAlt: "Mo Barut's logo",
   ogImage: "og-image.webp",
-  profileImage: "/developer-headshot-256.webp",
+  profileImage: "/developer-headshot-209x208.webp",
   email: "mobarutdev@gmail.com",
   phone: "+1 (802) 310-9538",
   phoneDigitsOnly: "+18023109538",

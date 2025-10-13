@@ -90,10 +90,17 @@ export function Navigation() {
 
           {/* Mobile Menu Button and Theme Toggle */}
           <div className="flex items-center space-x-1 md:hidden">
-            <AnimatedThemeToggler className="z-20 w-8 h-8 flex items-center justify-center" />
+            <AnimatedThemeToggler className="z-20 flex h-8 w-8 items-center justify-center" />
             <Drawer direction="right" open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-              <DrawerTrigger asChild onClick={() => setIsMobileMenuOpen(true)} className='w-8 h-8 p-1'>
-                <Menu className="h-5 w-5" />
+              <DrawerTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="h-8 w-8"
+                  onClick={() => setIsMobileMenuOpen(true)}
+                  aria-label="open side nav "
+                >
+                  <Menu size="lg" />
+                </Button>
               </DrawerTrigger>
               <DrawerContent>
                 <DrawerTitle className="hidden">Site Navigation Menu</DrawerTitle>
@@ -103,6 +110,7 @@ export function Navigation() {
                       className="h-6 w-6"
                       variant="outline"
                       onClick={() => setIsMobileMenuOpen(false)}
+                      aria-label="Close side menu"
                     >
                       <X className="h-5 w-5" />
                     </Button>
