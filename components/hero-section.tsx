@@ -97,7 +97,7 @@ export function HeroSection() {
               rel="noopener noreferrer"
               aria-label="GitHub"
             >
-              <GlassCard className="rounded-full md:p-3" index={0}>
+              <GlassCard className="rounded-full md:p-3 in-view" index={0}>
                 <Github className="h-6 w-6" />
               </GlassCard>
             </a>
@@ -107,12 +107,12 @@ export function HeroSection() {
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
-              <GlassCard className="rounded-full md:p-3" index={1}>
+              <GlassCard className="rounded-full md:p-3 in-view" index={1}>
                 <Linkedin className="h-6 w-6" />
               </GlassCard>
             </a>
             <a href={`mailto:${siteConfig.email}`} aria-label="Email">
-              <GlassCard className="rounded-full md:p-3" index={2}>
+              <GlassCard className="rounded-full md:p-3 in-view" index={2}>
                 <Mail className="h-6 w-6" />
               </GlassCard>
             </a>
