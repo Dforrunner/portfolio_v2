@@ -1,14 +1,14 @@
-import { CtaCard } from "@/components/cta-components";
-import { DeviceMockups } from "@/components/device-mockups";
-import { GlassCard } from "@/components/glass-card";
-import { ImageGallery } from "@/components/image-gallery";
-import { ShareDialog } from "@/components/share-dialog";
-import TextClamp from "@/components/text-clamp";
-import { getProjectBySlug, Project, projects } from "@/lib/projects";
-import { Code2, ExternalLink, HandshakeIcon } from "lucide-react";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { FaChrome, FaGithub, FaNpm } from "react-icons/fa";
+import { CtaCard } from '@/components/cta-components';
+import { DeviceMockups } from '@/components/device-mockups';
+import { GlassCard } from '@/components/glass-card';
+import { ImageGallery } from '@/components/image-gallery';
+import { ShareDialog } from '@/components/share-dialog';
+import TextClamp from '@/components/text-clamp';
+import { getProjectBySlug, Project, projects } from '@/lib/projects';
+import { Code2, ExternalLink, HandshakeIcon } from 'lucide-react';
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { FaChrome, FaGithub, FaNpm } from 'react-icons/fa';
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -19,17 +19,18 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     return {
-      title: "Project Not Found",
+      title: 'Project Not Found',
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
 
   return {
     title: `${project.title} | Projects`,
@@ -37,7 +38,7 @@ export async function generateMetadata({
     openGraph: {
       title: project.title,
       description: project.metaDescription,
-      type: "website",
+      type: 'website',
       url: `${siteUrl}/projects/${project.slug}`,
       images: [
         {
@@ -49,7 +50,7 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title: project.title,
       description: project.metaDescription,
       images: [project.images.thumbnail],
@@ -59,24 +60,24 @@ export async function generateMetadata({
 
 function ProjectSchema({ project }: { project: Project }) {
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Project",
+    '@context': 'https://schema.org',
+    '@type': 'Project',
     name: project.title,
-    url: project.links?.live || project.iframeUrl || "",
+    url: project.links?.live || project.iframeUrl || '',
     description: project.longDescription || project.description,
     image: [project.images?.desktop, project.images?.mobile, project.images?.thumbnail].filter(
       Boolean
     ),
     startDate: project.startDate,
-    keywords: project.technologies?.join(", "),
+    keywords: project.technologies?.join(', '),
     potentialAction: {
-      "@type": "ViewAction",
-      target: project.links?.live || project.iframeUrl || "",
-      name: "View Project",
+      '@type': 'ViewAction',
+      target: project.links?.live || project.iframeUrl || '',
+      name: 'View Project',
     },
     mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": project.links?.live || project.iframeUrl || "",
+      '@type': 'WebPage',
+      '@id': project.links?.live || project.iframeUrl || '',
     },
   };
 
@@ -89,8 +90,9 @@ function ProjectSchema({ project }: { project: Project }) {
   );
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = await getProjectBySlug(params.slug);
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();
@@ -99,7 +101,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
   return (
     <div className="min-h-screen pt-10">
       {/* Hero Section */}
-      <div className="border-b border-border/50 bg-card-services/50 backdrop-blur-sm">
+      <div className="border-border/50 bg-card-services/50 border-b backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
             {/* Left Column - Project Info */}
@@ -108,7 +110,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 <span
                   className={`inline-flex items-center gap-1 rounded-full bg-gradient-to-r ${project.gradient} px-4 py-1.5 text-sm font-semibold text-white shadow-lg`}
                 >
-                  {project.type.replace("-", " ").toUpperCase()}
+                  {project.type.replace('-', ' ').toUpperCase()}
                 </span>
               </div>
 
@@ -123,7 +125,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 </span>
               </TextClamp>
 
-              <p className="mb-6 md:text-xl text-muted-foreground text-pretty leading-relaxed">
+              <p className="text-muted-foreground mb-6 leading-relaxed text-pretty md:text-xl">
                 {project.tagline}
               </p>
               <p className="mb-8 leading-relaxed">{project.description}</p>
@@ -147,7 +149,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
+                    className="border-card-services bg-card-services inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
                     aria-label="View Code"
                   >
                     <FaGithub className="h-4 w-4" />
@@ -159,7 +161,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     href={project.links.npm}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
+                    className="border-card-services bg-card-services inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
                     aria-label="View on NPM"
                   >
                     <FaNpm className="h-4 w-4" />
@@ -171,7 +173,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     href={project.links.chrome}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
+                    className="border-card-services bg-card-services inline-flex items-center gap-2 rounded-lg px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
                     aria-label="View on Chrome Store"
                   >
                     <FaChrome className="h-4 w-4" />
@@ -192,7 +194,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
             <div className="space-y-6">
               {/* Tech Stack */}
               <div>
-                <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+                <h3 className="text-muted-foreground mb-3 flex items-center gap-2 text-sm font-semibold tracking-wider uppercase">
                   <Code2 className="h-4 w-4" />
                   Tech Stack
                 </h3>
@@ -200,7 +202,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="rounded-full bg-muted px-4 py-2 text-sm font-medium "
+                      className="bg-muted rounded-full px-4 py-2 text-sm font-medium"
                     >
                       {tech}
                     </span>
@@ -214,7 +216,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
       {/* Device Mockups Section */}
       {(project.images.desktop || project.images.mobile || project.iframeUrl) && (
-        <div className="border-b border-border/50 py-16">
+        <div className="border-border/50 border-b py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <DeviceMockups
               images={project.images}
@@ -228,7 +230,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
       {/* Image Gallery Section */}
       {project.gallery && project.gallery.length > 0 && (
-        <div className="border-b border-border/50 bg-card-services/30 py-16 backdrop-blur-sm">
+        <div className="border-border/50 bg-card-services/30 border-b py-16 backdrop-blur-sm">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <ImageGallery images={project.gallery} title="Project Screenshots" />
           </div>
@@ -253,7 +255,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                   <div
                     className={`mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r ${project.gradient}`}
                   />
-                  <span className=" leading-relaxed">{feature}</span>
+                  <span className="leading-relaxed">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -261,7 +263,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
           {/* Challenges */}
           {project.challenges && project.challenges.length > 0 && (
-            <div className="anime-on-view animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+            <div className="anime-on-view animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               <h2 className="mb-6 text-3xl font-bold">
                 <span
                   className={`bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}
@@ -275,7 +277,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     <div
                       className={`mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r ${project.gradient}`}
                     />
-                    <span className=" leading-relaxed">{challenge}</span>
+                    <span className="leading-relaxed">{challenge}</span>
                   </li>
                 ))}
               </ul>
@@ -284,7 +286,10 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
           {/* Results */}
           {project.results && project.results.length > 0 && (
-            <div className="anime-on-view animate-fade-in-up lg:col-span-2" style={{ animationDelay: "0.2s" }}>
+            <div
+              className="anime-on-view animate-fade-in-up lg:col-span-2"
+              style={{ animationDelay: '0.2s' }}
+            >
               <h2 className="mb-6 text-3xl font-bold">
                 <span
                   className={`bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}
@@ -297,14 +302,14 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                   <GlassCard
                     key={index}
                     index={index}
-                    className="rounded-xl p-6 backdrop-blur-sm transition-all duration-300 bg-background hover:shadow-lg"
+                    className="bg-background rounded-xl p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg"
                   >
                     <div
                       className={`mb-2 inline-block rounded-lg bg-gradient-to-r ${project.gradient} p-2`}
                     >
                       <div className="h-6 w-6" />
                     </div>
-                    <p className=" leading-relaxed">{result}</p>
+                    <p className="leading-relaxed">{result}</p>
                   </GlassCard>
                 ))}
               </div>
