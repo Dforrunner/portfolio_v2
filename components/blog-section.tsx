@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/app/blog/post.util";
 import { BlogCard } from "./blog-card";
+import TextClamp from "./text-clamp";
 
 interface Props {
   featuredOnly?: boolean;
@@ -10,17 +11,18 @@ export default async function BlogSection({ featuredOnly = false }: Props) {
   });
 
   return (
-    <section id="blog">
-      <div className="mx-auto container p-3 py-20 ">
+    <section className=" scroll-mt-5 py-12" id="blog">
+      <div className="mx-auto container p-3 ">
         {/* Header */}
         <div className="mb-16 text-center">
-          <h1 className="mb-4 text-5xl font-bold tracking-tight text-balance">
+          <TextClamp maxFont={48} minFont={24} as="h2" className=" font-bold mb-4">
             Insights &{" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               Expertise
             </span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg text-slate-400 text-pretty leading-relaxed">
+          </TextClamp>
+
+          <p className="mx-auto max-w-2xl md:text-lg text-muted-foreground text-pretty leading-relaxed">
             Deep dives into web development, AI integration, and modern tech strategies that drive
             business growth.
           </p>

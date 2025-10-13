@@ -3,6 +3,7 @@ import { DeviceMockups } from "@/components/device-mockups";
 import { GlassCard } from "@/components/glass-card";
 import { ImageGallery } from "@/components/image-gallery";
 import { ShareDialog } from "@/components/share-dialog";
+import TextClamp from "@/components/text-clamp";
 import { getProjectBySlug, Project, projects } from "@/lib/projects";
 import { Code2, ExternalLink, HandshakeIcon } from "lucide-react";
 import type { Metadata } from "next";
@@ -111,13 +112,21 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 </span>
               </div>
 
-              <h1 className="mb-4 text-5xl font-bold tracking-tight text-balance">
-                {project.title}
-              </h1>
-              <p className="mb-6 text-xl text-services-muted text-pretty leading-relaxed">
+              <TextClamp
+                maxFont={32}
+                minFont={20}
+                as="h1"
+                className="mb-4 font-bold tracking-tight text-balance"
+              >
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  {project.title}
+                </span>
+              </TextClamp>
+
+              <p className="mb-6 md:text-xl text-muted-foreground text-pretty leading-relaxed">
                 {project.tagline}
               </p>
-              <p className="mb-8 text-services-secondary leading-relaxed">{project.description}</p>
+              <p className="mb-8 leading-relaxed">{project.description}</p>
 
               {/* Links */}
               <div className="flex flex-wrap gap-3">
@@ -138,7 +147,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:border-card-services-hover hover:shadow-lg"
+                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
                     aria-label="View Code"
                   >
                     <FaGithub className="h-4 w-4" />
@@ -150,7 +159,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     href={project.links.npm}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:border-card-services-hover hover:shadow-lg"
+                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
                     aria-label="View on NPM"
                   >
                     <FaNpm className="h-4 w-4" />
@@ -162,7 +171,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     href={project.links.chrome}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:border-card-services-hover hover:shadow-lg"
+                    className="inline-flex items-center gap-2 rounded-lg border-card-services bg-card-services px-6 py-3 font-semibold transition-all duration-300 hover:shadow-lg"
                     aria-label="View on Chrome Store"
                   >
                     <FaChrome className="h-4 w-4" />
@@ -183,7 +192,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
             <div className="space-y-6">
               {/* Tech Stack */}
               <div>
-                <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-services-muted">
+                <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                   <Code2 className="h-4 w-4" />
                   Tech Stack
                 </h3>
@@ -191,7 +200,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="rounded-full bg-muted px-4 py-2 text-sm font-medium text-services-secondary"
+                      className="rounded-full bg-muted px-4 py-2 text-sm font-medium "
                     >
                       {tech}
                     </span>
@@ -230,7 +239,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Features */}
-          <div className="animate-fade-in-up">
+          <div className="anime-on-view animate-fade-in-up">
             <h2 className="mb-6 text-3xl font-bold">
               <span
                 className={`bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}
@@ -244,7 +253,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                   <div
                     className={`mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r ${project.gradient}`}
                   />
-                  <span className="text-services-secondary leading-relaxed">{feature}</span>
+                  <span className=" leading-relaxed">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -252,7 +261,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
           {/* Challenges */}
           {project.challenges && project.challenges.length > 0 && (
-            <div className="animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+            <div className="anime-on-view animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
               <h2 className="mb-6 text-3xl font-bold">
                 <span
                   className={`bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}
@@ -266,7 +275,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     <div
                       className={`mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-gradient-to-r ${project.gradient}`}
                     />
-                    <span className="text-services-secondary leading-relaxed">{challenge}</span>
+                    <span className=" leading-relaxed">{challenge}</span>
                   </li>
                 ))}
               </ul>
@@ -275,7 +284,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
 
           {/* Results */}
           {project.results && project.results.length > 0 && (
-            <div className="animate-fade-in-up lg:col-span-2" style={{ animationDelay: "0.2s" }}>
+            <div className="anime-on-view animate-fade-in-up lg:col-span-2" style={{ animationDelay: "0.2s" }}>
               <h2 className="mb-6 text-3xl font-bold">
                 <span
                   className={`bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}
@@ -287,6 +296,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                 {project.results.map((result, index) => (
                   <GlassCard
                     key={index}
+                    index={index}
                     className="rounded-xl p-6 backdrop-blur-sm transition-all duration-300 bg-background hover:shadow-lg"
                   >
                     <div
@@ -294,7 +304,7 @@ export default async function ProjectPage({ params }: { params: { slug: string }
                     >
                       <div className="h-6 w-6" />
                     </div>
-                    <p className="text-services-secondary leading-relaxed">{result}</p>
+                    <p className=" leading-relaxed">{result}</p>
                   </GlassCard>
                 ))}
               </div>

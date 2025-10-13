@@ -67,7 +67,7 @@ export function ImageGallery({ images, title }: ImageGalleryProps) {
             <button
               key={index}
               onClick={() => openLightbox(index)}
-              className="group relative aspect-video overflow-hidden rounded-xl border-card-services bg-card-services transition-all duration-300 hover:border-card-services-hover hover:shadow-xl hover:scale-[1.02]"
+              className="group relative aspect-video overflow-hidden rounded-xl border-card-services bg-card-services transition-all duration-300 hover:shadow-xl hover:scale-[1.02]"
             >
               <Image
                 src={image.url || "/placeholder.svg"}

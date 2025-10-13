@@ -33,7 +33,7 @@ export function ProjectCard({ project }: { project: Project }) {
         />
 
         {/* Thumbnail */}
-        <Link href={`/projects/${project.slug}`}>
+        <Link href={`/projects/${project.slug}`} prefetch>
           <div className="relative aspect-video overflow-hidden bg-muted">
             <Image
               src={project.images.thumbnail || "/placeholder.svg"}
@@ -60,7 +60,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="p-6">
           <Link href={`/projects/${project.slug}`}>
             <h3 className="mb-2 text-2xl font-bold text-balance">{project.title}</h3>
-            <p className="mb-4 text-services-muted leading-relaxed text-pretty line-clamp-2">
+            <p className="mb-4 text-muted-foreground leading-relaxed text-pretty line-clamp-2">
               {project.tagline}
             </p>
 
@@ -69,7 +69,7 @@ export function ProjectCard({ project }: { project: Project }) {
               {project.technologies.slice(0, 3).map((tech, techIndex) => (
                 <span
                   key={techIndex}
-                  className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-services-secondary"
+                  className="rounded-full bg-muted px-3 py-1 text-xs font-medium "
                   style={{
                     animation: hovered ? `slideIn 0.3s ease-out ${techIndex * 0.1}s both` : "none",
                   }}
@@ -78,7 +78,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 </span>
               ))}
               {project.technologies.length > 3 && (
-                <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-services-secondary">
+                <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium ">
                   +{project.technologies.length - 3}
                 </span>
               )}

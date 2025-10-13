@@ -4,6 +4,8 @@
 
 /* Declare custom variants first */
 @custom-variant dark (&:is(.dark *));
+@custom-variant portrait (@media (orientation: portrait));
+@custom-variant landscape (@media (orientation: landscape));
 
 :root {
   /* Light mode - Enhanced whiter tones */
@@ -388,6 +390,34 @@ html {
   }
 }
 
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+    visibility: visible;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+  }
+}
+
+/* 🔥 Global in-view trigger */
+.anime-on-view:not(.in-view) {
+  animation-play-state: paused !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px); /* optional initial offset */
+}
+
+.anime-on-view.in-view {
+  animation-play-state: running !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none;
+}
+
 /* Pre-hide animated elements to prevent flash of unstyled content */
 .animate-fade-in-up,
 .animate-fade-in-left,
@@ -395,6 +425,7 @@ html {
 .animate-scale-in,
 .animate-bounce-in,
 .animate-slide-up,
+.animate-slide-in,
 .animate-slide-in-right {
   opacity: 0;
   visibility: hidden;
@@ -423,6 +454,7 @@ html {
 .animate-scale-in,
 .animate-bounce-in,
 .animate-slide-up,
+.animate-slide-in,
 .animate-slide-in-right {
   visibility: visible;
 }
@@ -480,6 +512,9 @@ html {
   animation: slide-in-right 0.8s ease-out both;
 }
 
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out both;
+}
 /* Stagger animation delays */
 .animate-stagger-1 {
   animation-delay: 0.1s;

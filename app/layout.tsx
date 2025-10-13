@@ -1,4 +1,5 @@
 import { Footer } from "@/components/footer";
+import { InViewObserver } from "@/components/in-view-observer";
 import { Navigation } from "@/components/navigation";
 import { SEOSchema } from "@/components/seo-schema";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -7,6 +8,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import type React from "react";
+import { Suspense } from "react";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -101,7 +103,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="canonical" href={siteConfig.url} />
       </head>
-      <body className="font-sans antialiased min-h-screen bg-gradient-primary relative">
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -109,8 +111,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navigation />
-          {children}
+          <main className="min-h-screen bg-gradient-primary relative">{children}</main>
           <Footer />
+          <Suspense>
+            <InViewObserver />
+          </Suspense>
         </ThemeProvider>
 
         <SEOSchema />

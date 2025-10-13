@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function BlogCard({ post }: { post: BlogPostMetaData }) {
   return (
-    <Link key={post.slug} href={`/blog/${post.slug}`} className="group relative block">
+    <Link key={post.slug} href={`/blog/${post.slug}`} className="group relative block" prefetch>
       <article className="relative h-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 backdrop-blur-sm transition-all duration-500 hover:scale-105 hover:border-slate-400  dark:hover:border-slate-700 hover:shadow-2xl hover:shadow-slate-900/50">
         {/* Image */}
         <div className="relative h-48 overflow-hidden">

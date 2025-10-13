@@ -2,20 +2,20 @@ import { AboutSection } from "@/components/about-section";
 import BlogSection from "@/components/blog-section";
 import { ContactSection } from "@/components/contact-section";
 import { HeroSection } from "@/components/hero-section";
-import { ProjectsSection2 } from "@/components/projects-section2";
+import { ProjectsSection } from "@/components/projects-section";
 import ServicesSection from "@/components/services-section";
 import SkillsSection from "@/components/skill-section";
 
 export default async function Home() {
   return (
-    <main>
+    <>
       <HeroSection />
       <AboutSection />
       <ServicesSection />
       <SkillsSection />
-      <ProjectsSection2 />
+      <ProjectsSection />
       <BlogSection featuredOnly={true} />
       <ContactSection />
-    </main>
+    </>
   );
 }

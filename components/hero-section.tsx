@@ -7,6 +7,7 @@ import Image from "next/image";
 import { AvailableBadge } from "./available-badge";
 import { ContactDialog } from "./contact-dialog";
 import { GlassCard } from "./glass-card";
+import TextClamp from "./text-clamp";
 import { AuroraText } from "./ui/aurora-text";
 
 export function HeroSection() {
@@ -18,8 +19,8 @@ export function HeroSection() {
   };
 
   return (
-    <section className="h-screen flex items-center justify-center relative text-foreground">
-     
+    <header className="h-screen relative min-h-screen landscape:min-h-[100vw] lg:landscape:min-h-screen max-h-[900px]">
+      {/* background glowing orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute size-45 -top-15 -right-15 md:-top-40 md:-right-40  md:size-80 bg-primary/10 rounded-full animate-float hover-glow" />
         <div
@@ -31,61 +32,72 @@ export function HeroSection() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-40 md:size-64 bg-primary/5 rounded-full animate-pulse-glow" />
       </div>
 
-      <div className={"container mx-auto text-center relative z-10 "}>
-        <div className="max-w-4xl mx-auto">
-          {/* Available Badge */}
-          <AvailableBadge />
+      <div className="max-w-4xl mx-auto z-10 flex flex-col items-center justify-evenly gap-3 h-full pt-16 pb-1">
+        {/* Available Badge */}
+        <AvailableBadge />
 
-          <div className="animate-scale-in">
-            <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-2 sm:mb-6">
-              <Image
-                src={siteConfig.profileImage}
-                alt="Mo Barut - Professional Headshot"
-                width={256}
-                height={208}
-                className="w-full h-full object-cover rounded-full border-4 border-primary/20 shadow-2xl hover:border-primary/40 transition-all duration-300 hover:scale-105 z-10"
-                priority
-                fetchPriority="high"
-              />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent animate-pulse-glow" />
-            </div>
+        <div className="animate-scale-in mb-4">
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto">
+            <Image
+              src={siteConfig.profileImage}
+              alt="Mo Barut - Professional Headshot"
+              width={156}
+              height={108}
+              className="w-full h-full object-cover rounded-full border-4 border-primary/20 shadow-2xl hover:border-primary/40 transition-all duration-300 hover:scale-105 z-10"
+              priority
+              fetchPriority="high"
+            />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent animate-pulse-glow" />
           </div>
+        </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent animate-scale-in">
+        <div className="text-center space-y-3">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent  animate-scale-in mb-3">
             <AuroraText>{siteConfig.name}</AuroraText>
           </h1>
-          <div className="h-10 sm:h-12">
-            <h2 className="text-lg sm:text-xl md:text-3xl text-slate-800 dark:text-slate-200 font-medium ">
-              {siteConfig.title}
-            </h2>
-          </div>
 
-          <p className="text-sm sm:text-lg md:text-xl break-keep text-muted-foreground mb-6  sm:mb-14 max-w-2xl mx-auto leading-snug px-4 sm:px-0">
-            {siteConfig.description2}
-          </p>
+          <TextClamp
+            minFont={18}
+            maxFont={34}
+            as="h2"
+            className="text-slate-800 dark:text-slate-200 font-medium"
+          >
+            {siteConfig.title}
+          </TextClamp>
 
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center mb-10 md:mb-20 px-4 sm:px-0">
-            <ContactDialog />
+          <TextClamp
+            minFont={14}
+            maxFont={20}
+            as="p"
+            className="text-muted-foreground max-w-2xl mx-auto leading-snug px-4 sm:px-0 mb-6 md:mb-8 text-center"
+          >
+            {siteConfig.description}
+          </TextClamp>
+        </div>
 
-            <Button
-              variant="outline"
-              size="lg"
-              className="hover-lift bg-transparent w-full sm:w-auto cursor-pointer max-w-40"
-              onClick={() => scrollToSection("#services")}
-            >
-              View Services
-              <ArrowDown className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-            </Button>
-          </div>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center px-4 sm:px-0 mb-3 md:mb-8">
+          <ContactDialog />
 
-          <div className="flex justify-center space-x-4 sm:space-x-6 mb-12 sm:mb-16">
+          <Button
+            variant="outline"
+            size="lg"
+            className="hover-lift bg-transparent w-full sm:w-auto cursor-pointer max-w-40"
+            onClick={() => scrollToSection("#services")}
+          >
+            View Services
+            <ArrowDown className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+          </Button>
+        </div>
+
+        <div className="w-full space-y-3">
+          <div className="flex justify-center space-x-4 sm:space-x-6">
             <a
               href={siteConfig.account.github.url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
             >
-              <GlassCard className="rounded-full p-2 sm:p-3">
+              <GlassCard className="rounded-full md:p-3" index={0}>
                 <Github className="h-6 w-6" />
               </GlassCard>
             </a>
@@ -95,22 +107,21 @@ export function HeroSection() {
               rel="noopener noreferrer"
               aria-label="LinkedIn"
             >
-              <GlassCard className="rounded-full p-2 sm:p-3">
+              <GlassCard className="rounded-full md:p-3" index={1}>
                 <Linkedin className="h-6 w-6" />
               </GlassCard>
             </a>
             <a href={`mailto:${siteConfig.email}`} aria-label="Email">
-              <GlassCard className="rounded-full p-2 sm:p-3">
+              <GlassCard className="rounded-full md:p-3" index={2}>
                 <Mail className="h-6 w-6" />
               </GlassCard>
             </a>
           </div>
+          <div className="flex items-center justify-center mx-auto size-7 animate-bounce animate-shimmer rounded-2xl">
+            <ArrowDown className="h-6 w-6 text-muted-foreground" />
+          </div>
         </div>
       </div>
-
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce animate-shimmer rounded-2xl">
-        <ArrowDown className="h-6 w-6 text-muted-foreground" />
-      </div>
-    </section>
+    </header>
   );
 }

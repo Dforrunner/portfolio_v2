@@ -16,6 +16,7 @@ import { FaCloud, FaGitAlt, FaHtml5, FaNodeJs, FaPython, FaReact } from "react-i
 import { IoLogoFigma, IoLogoVercel } from "react-icons/io5";
 import { RiNextjsFill, RiTailwindCssFill } from "react-icons/ri";
 import { SiCanva, SiTypescript } from "react-icons/si";
+import TextClamp from "./text-clamp";
 
 const skills = [
   // Frontend
@@ -164,7 +165,7 @@ const SkillCard = ({
   return (
     <figure
       className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        "relative w-36 md:w-56 lg:w-64 cursor-pointer overflow-hidden rounded-xl border p-2 lg:p-4",
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
@@ -172,21 +173,21 @@ const SkillCard = ({
         "transition-all duration-300 hover:shadow-lg hover:shadow-accent-blue/20"
       )}
     >
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col md:gap-3">
         {/* Icon and Name */}
         <div className="flex items-center gap-3">
           <div className="relative flex items-center justify-center">
             <div
               className={`absolute inset-0 bg-gradient-to-br ${color} opacity-20 blur-xl transition-opacity duration-500`}
             />
-            <div className={`relative z-10 p-2 rounded-lg bg-gradient-to-br ${color}`}>
+            <div className={`relative z-10 p-1 md:p-2 rounded-lg bg-gradient-to-br ${color}`}>
               <Icon className="h-6 w-6 text-white drop-shadow-lg" />
             </div>
           </div>
-          <figcaption className="text-sm font-semibold text-services-primary">{name}</figcaption>
+          <figcaption className="text-xs md:text-sm font-semibold">{name}</figcaption>
         </div>
         {/* Description */}
-        <blockquote className="text-xs text-services-muted leading-relaxed">
+        <blockquote className="text-xs text-muted-foreground leading-relaxed">
           {description}
         </blockquote>
       </div>
@@ -198,17 +199,26 @@ export default function SkillsSection() {
   return (
     <>
       <div className="from-background dark:from-[#080F22] inset-x-0 bottom-0 h-20 bg-gradient-to-t"></div>
-      <section className="relative min-h-screen overflow-hidden bg-background dark:bg-[#080F22]" id="skills">
-        <div className="relative z-10 mx-auto px-4">
+      <section
+        className="relative overflow-hidden bg-background dark:bg-[#080F22] scroll-mt-14 md:scroll-mt-18"
+        id="skills"
+      >
+        <div className="z-10 mx-auto">
           {/* Header */}
-          <div className="text-center mb-16 animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 animate-scale-in">
+          <div className="text-center mb-16">
+            <TextClamp
+              maxFont={48}
+              minFont={24}
+              as="h2"
+              className="font-bold mb-4"
+            >
               Skills &{" "}
               <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
                 Expertise
               </span>
-            </h2>
-            <p className="text-lg text-services-muted max-w-lg text-muted-foreground mx-auto">
+            </TextClamp>
+
+            <p className="md:text-lg max-w-lg text-muted-foreground mx-auto">
               A comprehensive toolkit of modern technologies and specialized skills I use to bring
               ideas to life
             </p>
@@ -223,7 +233,7 @@ export default function SkillsSection() {
             </div>
 
             <div
-              className="flex flex-row gap-4"
+              className="flex flex-row"
               style={{
                 transform:
                   "translateX(-50px) translateY(0px) translateZ(-50px) rotateX(15deg) rotateY(-15deg) rotateZ(10deg)",
@@ -261,8 +271,8 @@ export default function SkillsSection() {
             {/* Gradient overlays */}
             <div className="from-background dark:from-[#080F22] pointer-events-none absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b"></div>
             <div className="from-background dark:from-[#080F22] pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t"></div>
-            <div className="from-background dark:from-[#080F22] pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-            <div className="from-background dark:from-[#080F22] pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+            <div className="from-background dark:from-[#080F22] pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r hidden md:inline"></div>
+            <div className="from-background dark:from-[#080F22] pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l hidden md:inline"></div>
           </div>
         </div>
       </section>

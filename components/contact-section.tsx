@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site-config";
 import { Mail, MapPin } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { ContactForm } from "./contact-form";
 
 const Globe = dynamic(() => import("./ui/globe").then((x) => x.Globe), {
@@ -12,25 +12,7 @@ const Globe = dynamic(() => import("./ui/globe").then((x) => x.Globe), {
 });
 
 export function ContactSection() {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   const contactInfo = [
     {
@@ -48,11 +30,13 @@ export function ContactSection() {
   ];
 
   return (
-    <section ref={sectionRef} id="contact" className="py-20 overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="contact"
+      className="py-10 overflow-hidden scroll-mt-13 md:scroll-mt-16"
+    >
       <div className="container mx-auto px-4  ">
-        <div
-          className={`transition-all duration-1000 ${isVisible ? "animate-slide-up" : "opacity-0"}`}
-        >
+        <div>
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">

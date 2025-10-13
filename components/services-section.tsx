@@ -6,22 +6,28 @@ import { ArrowRight, Check } from "lucide-react";
 import { useState } from "react";
 import { ContactDialog } from "./contact-dialog";
 import { GlassCard } from "./glass-card";
+import TextClamp from "./text-clamp";
 
 export default function ServicesSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedService, setSelectedService] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen" id="services">
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <section className='scroll-mt-13 md:scroll-mt-16' id="services">
+      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-5xl font-bold tracking-tight text-balance">
+          <TextClamp
+            maxFont={48}
+            minFont={24}
+            as="h2"
+            className="mb-4 font-bold tracking-tight text-balance"
+          >
             Services That Drive{" "}
             <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               Results
             </span>
-          </h2>
+          </TextClamp>
+
           <p className="mx-auto max-w-2xl text-lg text-slate-400 text-pretty leading-relaxed">
             Full-stack solutions tailored to your business needs. From concept to deployment, I
             deliver high-quality applications that scale.
@@ -37,10 +43,8 @@ export default function ServicesSection() {
                 key={index}
                 innerGlowColor={service.color}
                 bgGlowColor={service.bgGlow}
-                shine={hoveredIndex === index}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
                 onClick={() => setSelectedService(index)}
+                index={index}
               >
                 {/* Icon */}
                 <div
@@ -50,7 +54,15 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Content */}
-                <h3 className="mb-3 text-2xl font-bold text-balance">{service.title}</h3>
+                <TextClamp
+                  maxFont={24}
+                  minFont={18}
+                  as="h2"
+                  className="mb-4 font-bold text-balance"
+                >
+                  {service.title}
+                </TextClamp>
+
                 <p className="mb-6 text-slate-600 dark:text-slate-400 leading-relaxed text-pretty">
                   {service.description}
                 </p>
@@ -60,13 +72,7 @@ export default function ServicesSection() {
                   {service.features.map((feature, featureIndex) => (
                     <li
                       key={featureIndex}
-                      className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300 animate group-hover:animate-slideIn"
-                      style={{
-                        animation:
-                          hoveredIndex === index
-                            ? `slideIn 0.3s ease-out ${featureIndex * 0.1}s both`
-                            : "none",
-                      }}
+                      className={`flex items-center gap-2 text-sm text-slate-500 dark:text-slate-300 group-hover:animate-slide-in animate-stagger-${index}`}
                     >
                       <div
                         className={`h-1.5 w-1.5 rounded-full bg-gradient-to-r ${service.color}`}
@@ -184,20 +190,6 @@ export default function ServicesSection() {
           )}
         </DialogContent>
       </Dialog>
-
-      {/* Keyframes for animations */}
-      <style jsx>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateX(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-      `}</style>
-    </div>
+    </section>
   );
 }

@@ -1,6 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { siteConfig } from "@/lib/site-config";
 import { Menu, X } from "lucide-react";
 import dynamic from "next/dynamic";
@@ -42,25 +50,25 @@ export function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300  ${
         isScrolled ? "bg-background backdrop-blur-lg shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 py-[1px]">
-        <div className="flex items-center justify-between h-14 sm:h-16">
+      <div className="container mx-auto px-4 py-[1px] ">
+        <div className="flex items-center justify-between h-14 sm:h-16 ">
           {/* Logo */}
           <Link href={"/"} onClick={scrollToTop}>
-            <div className="relative flex items-center justify-center">
+            <div className="relative flex items-center justify-center p-2">
               <Image
                 src={siteConfig.logo}
                 alt={siteConfig.logoAlt}
-                width={50}
-                height={50}
+                width={45}
+                height={45}
                 className="cursor-pointer"
                 priority
                 fetchPriority="high"
               />
-              <div className="absolute size-11 rounded-full animate-pulse-glow" />
+              <div className="absolute size-10 rounded-full animate-pulse-glow" />
             </div>
           </Link>
 
@@ -82,37 +90,45 @@ export function Navigation() {
 
           {/* Mobile Menu Button and Theme Toggle */}
           <div className="md:hidden flex items-center space-x-1">
-            <AnimatedThemeToggler />
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 min-w-[40px] min-h-[40px]"
-              aria-label={isMobileMenuOpen ? "Close Menu" : "Open Menu"}
-            >
-              {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+            <AnimatedThemeToggler className="z-20" />
+            <Drawer direction="right" open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <DrawerTrigger asChild onClick={() => setIsMobileMenuOpen(true)}>
+                <Menu className="h-5 w-5 mx-2" />
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerTitle className="hidden">Site Navigation Menu</DrawerTitle>
+                <div className="mx-auto w-full max-w-sm">
+                  <DrawerHeader>
+                    <Button
+                      className="h-6 w-6"
+                      variant="outline"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <X className="h-5 w-5" />
+                    </Button>
+                  </DrawerHeader>
+                  <div className="flex flex-col space-y-3 p-4">
+                    {navLinks.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className="text-left text-muted-foreground hover:text-foreground transition-colors py-2 px-1 min-h-[44px] flex items-center"
+                        aria-label={item.name}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </div>
+
+                  <DrawerFooter>
+                    <ContactDialog trigger={<Button size="sm">Let's Talk</Button>} />
+                  </DrawerFooter>
+                </div>
+              </DrawerContent>
+            </Drawer>
           </div>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border bg-background/95 backdrop-blur-sm">
-            <div className="flex flex-col space-y-3">
-              {navLinks.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-left text-muted-foreground hover:text-foreground transition-colors py-2 px-1 min-h-[44px] flex items-center"
-                  aria-label={item.name}
-                >
-                  {item.name}
-                </a>
-              ))}
-              <ContactDialog trigger={<Button size="sm">Let's Talk</Button>} />
-            </div>
-          </div>
-        )}
       </div>
       <ScrollProgress className="top-[57px] sm:top-[65px] bg-gradient-to-br from-slate-300 via-slate-300 to-slate-400 dark:from-slate-800 dark:via-slate-700 dark:to-slate-700" />
     </nav>

@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { ReactNode, useState } from "react";
 
 interface Props {
+  index?: number;
   children: ReactNode;
   innerGlowColor?: string;
   bgGlowColor?: string;
@@ -14,6 +15,7 @@ interface Props {
   onClick?: () => void;
 }
 export function GlassCard({
+  index = 0,
   children,
   innerGlowColor = "from-indigo-500 to-blue-500",
   bgGlowColor = "group-hover:shadow-indigo-500/50",
@@ -38,7 +40,7 @@ export function GlassCard({
     >
       <div
         className={cn(
-          `relative h-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 bg-background dark:bg-slate-900/50 p-8 backdrop-blur-sm transition-all duration-500  hover:scale-105 hover:border-slate-400 dark:hover:border-slate-700 hover:shadow-2xl`,
+          `relative h-full overflow-hidden rounded-2xl border border-slate-300 dark:border-slate-800 bg-background dark:bg-slate-900/50 p-3 md:p-8 backdrop-blur-sm transition-all duration-500  hover:scale-105 hover:border-slate-400 dark:hover:border-slate-700 hover:shadow-2xl anime-on-view animate-scale-in animate-stagger-${index}`,
           className,
           bgGlowColor
         )}

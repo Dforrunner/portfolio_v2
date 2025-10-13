@@ -43,7 +43,7 @@ export const siteConfig = {
     },
     twitter: {
       username: "@dforrunner",
-      url: "https://x.com/dforrunner?s=21",
+      url: "https://x.com/dforrunner",
       icon: XIcon,
     },
     googleDev: {
