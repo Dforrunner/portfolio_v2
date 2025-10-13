@@ -102,8 +102,8 @@ export default function RootLayout({
         </ThemeProvider>
 
         <SEOSchema />
-
-        {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-NJD8KNDYFS" />}
+  
+        {process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-Z3KN4MJNZ2" />}
       </body>
     </html>
   );
