@@ -21,7 +21,7 @@ export function HeroSection() {
   return (
     <header className="relative h-screen max-h-[900px] min-h-screen landscape:min-h-[100vw] lg:landscape:min-h-screen">
       {/* background glowing orbs */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden z-0">
         <div className="bg-primary/10 animate-float hover-glow absolute -top-15 -right-15 size-45 rounded-full md:-top-40 md:-right-40 md:size-80" />
         <div
           className="bg-accent/5 animate-rotate-glow absolute -bottom-20 -left-20 size-45 rounded-full lg:-bottom-40 lg:-left-40 lg:size-96"
@@ -32,7 +32,7 @@ export function HeroSection() {
         <div className="bg-primary/5 animate-pulse-glow absolute top-1/2 left-1/2 size-40 -translate-x-1/2 -translate-y-1/2 transform rounded-full md:size-64" />
       </div>
 
-      <div className="z-10 mx-auto flex h-full max-w-4xl flex-col items-center justify-evenly gap-3 pt-16 pb-1">
+      <div className="z-40 relative mx-auto flex h-full max-w-4xl flex-col items-center justify-evenly gap-3 pt-16 pb-1">
         {/* Available Badge */}
         <AvailableBadge />
 
